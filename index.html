@@ -4,10 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Pizzería La Italiana Vinaròs</title>
-<meta name="description" content="Pizzería La Italiana en Vinaròs. Carta completa, pedidos por WhatsApp y tradición italiana desde 1982.">
+<meta name="description" content="Pizzería La Italiana en Vinaròs. Carta completa, pizzas artesanas, pedidos por WhatsApp y tradición italiana desde 1982.">
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700;800&display=swap');
 
 :root{
   --bg:#1f1814;
@@ -18,9 +18,12 @@
   --muted:#ccb7a0;
   --gold:#d4b183;
   --gold2:#b98c57;
+  --gold3:#ead7bd;
   --line:rgba(239,227,214,.10);
   --shadow:0 20px 50px rgba(0,0,0,.28);
   --max:1180px;
+  --whatsapp:#25D366;
+  --dark:#111;
 }
 
 *{box-sizing:border-box}
@@ -50,14 +53,18 @@ a{text-decoration:none;color:inherit}
   from{transform:translateY(0);opacity:.22}
   to{transform:translateY(-45px);opacity:.08}
 }
+@keyframes pulse{
+  0%,100%{transform:scale(1)}
+  50%{transform:scale(1.03)}
+}
 
 .reveal{animation:fadeUp .9s ease both}
 
 .topbar{
   position:sticky;
   top:0;
-  z-index:50;
-  background:linear-gradient(180deg, rgba(24,18,14,.96), rgba(24,18,14,.88));
+  z-index:90;
+  background:linear-gradient(180deg, rgba(24,18,14,.97), rgba(24,18,14,.90));
   backdrop-filter:blur(10px);
   border-bottom:1px solid var(--line);
 }
@@ -66,12 +73,12 @@ a{text-decoration:none;color:inherit}
   align-items:center;
   justify-content:space-between;
   gap:16px;
-  padding:18px 0;
+  padding:16px 0;
 }
 .brand h1{
   margin:0;
   font-family:'Cormorant Garamond',serif;
-  font-size:58px;
+  font-size:56px;
   line-height:.95;
   font-style:italic;
   font-weight:600;
@@ -82,12 +89,13 @@ a{text-decoration:none;color:inherit}
   color:var(--muted);
   text-transform:uppercase;
   letter-spacing:1.4px;
-  font-size:14px;
+  font-size:13px;
 }
 .brand .phone{
   margin-top:8px;
   font-size:18px;
-  font-weight:700;
+  font-weight:800;
+  color:var(--gold3);
 }
 
 .actions{
@@ -101,17 +109,17 @@ a{text-decoration:none;color:inherit}
   justify-content:center;
   padding:13px 22px;
   border-radius:999px;
-  font-weight:700;
+  font-weight:800;
   transition:.25s ease;
+  border:1px solid transparent;
+  cursor:pointer;
 }
 .btn:hover{transform:translateY(-2px)}
-
 .btn-outline{
   background:#111;
   color:#eadfce;
   border:1px solid #333;
 }
-
 .btn-gold{
   background:#111;
   color:#eadfce;
@@ -121,9 +129,18 @@ a{text-decoration:none;color:inherit}
 .btn-gold:hover{
   box-shadow:0 0 24px rgba(212,177,131,.20);
 }
+.btn-whatsapp{
+  background:var(--whatsapp);
+  color:#0e1a12;
+  font-weight:800;
+  box-shadow:0 12px 28px rgba(37,211,102,.22);
+}
+.btn-whatsapp:hover{
+  transform:translateY(-2px) scale(1.01);
+}
 
 .hero{
-  padding:34px 0 20px;
+  padding:30px 0 20px;
 }
 .hero-box{
   position:relative;
@@ -132,7 +149,7 @@ a{text-decoration:none;color:inherit}
   border:1px solid rgba(239,227,214,.10);
   box-shadow:var(--shadow);
   background:
-    linear-gradient(rgba(28,20,16,.78), rgba(28,20,16,.90)),
+    linear-gradient(rgba(28,20,16,.80), rgba(28,20,16,.90)),
     radial-gradient(circle at bottom right, rgba(255,120,40,.18), transparent 28%),
     linear-gradient(120deg, rgba(80,55,36,.20), rgba(0,0,0,0));
 }
@@ -157,16 +174,22 @@ a{text-decoration:none;color:inherit}
 .hero h2{
   margin:0 0 18px;
   font-family:'Cormorant Garamond',serif;
-  font-size:76px;
+  font-size:74px;
   line-height:1;
   font-weight:600;
 }
 .hero p{
-  margin:0 0 22px;
-  max-width:650px;
+  margin:0 0 20px;
+  max-width:680px;
   color:var(--muted);
   font-size:20px;
   line-height:1.6;
+}
+.hero .sales-line{
+  margin:0 0 26px;
+  color:var(--gold3);
+  font-size:16px;
+  font-weight:600;
 }
 .info-card{
   background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
@@ -183,6 +206,10 @@ a{text-decoration:none;color:inherit}
   margin:8px 0;
   color:var(--text);
   font-size:17px;
+}
+.info-card .small{
+  color:var(--muted);
+  font-size:14px;
 }
 
 .story{
@@ -260,6 +287,31 @@ a{text-decoration:none;color:inherit}
   box-shadow:0 8px 20px rgba(0,0,0,.22);
 }
 
+.promo-strip{
+  margin:18px 0 0;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:14px;
+}
+.promo-card{
+  background:linear-gradient(180deg, rgba(53,40,33,.98), rgba(64,48,41,.98));
+  border:1px solid var(--line);
+  border-radius:18px;
+  padding:18px;
+  box-shadow:var(--shadow);
+  text-align:center;
+}
+.promo-card strong{
+  display:block;
+  color:var(--gold3);
+  font-size:15px;
+  margin-bottom:5px;
+}
+.promo-card span{
+  color:var(--muted);
+  font-size:14px;
+}
+
 .menu{
   padding:8px 0 24px;
 }
@@ -286,6 +338,47 @@ a{text-decoration:none;color:inherit}
   border-bottom:1px solid var(--line);
   padding-bottom:12px;
 }
+
+.best-sellers{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:16px;
+  margin-bottom:18px;
+}
+.best-card{
+  background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+  border:1px solid rgba(212,177,131,.22);
+  border-radius:18px;
+  padding:16px;
+}
+.best-card .tag{
+  display:inline-block;
+  margin-bottom:8px;
+  padding:5px 10px;
+  border-radius:999px;
+  background:rgba(212,177,131,.12);
+  color:var(--gold3);
+  font-size:12px;
+  font-weight:800;
+}
+.best-card h4{
+  margin:0 0 6px;
+  font-size:19px;
+  color:#f7ecdf;
+}
+.best-card p{
+  margin:0 0 12px;
+  color:var(--muted);
+  font-size:14px;
+  line-height:1.5;
+}
+.best-card .price{
+  color:var(--gold);
+  font-weight:800;
+  margin-bottom:10px;
+  display:block;
+}
+
 .menu-grid{
   display:grid;
   grid-template-columns:repeat(2,1fr);
@@ -296,7 +389,7 @@ a{text-decoration:none;color:inherit}
   justify-content:space-between;
   align-items:flex-start;
   gap:16px;
-  padding:14px 10px;
+  padding:16px 10px;
   border-bottom:1px dashed rgba(239,227,214,.10);
   border-radius:12px;
   transition:.2s ease;
@@ -311,9 +404,10 @@ a{text-decoration:none;color:inherit}
 }
 .item .name{
   display:block;
-  font-weight:700;
+  font-weight:800;
   color:#f5ebdf;
   margin-bottom:4px;
+  font-size:16px;
 }
 .item .desc{
   display:block;
@@ -321,9 +415,30 @@ a{text-decoration:none;color:inherit}
   font-size:14px;
   line-height:1.5;
 }
+.item .mini-tags{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  margin-top:8px;
+}
+.mini-tag{
+  display:inline-block;
+  padding:5px 9px;
+  border-radius:999px;
+  font-size:12px;
+  font-weight:800;
+}
+.mini-tag.hot{
+  background:rgba(255,120,40,.12);
+  color:#ffbf8a;
+}
+.mini-tag.top{
+  background:rgba(212,177,131,.12);
+  color:var(--gold3);
+}
 .item .price{
   color:var(--gold);
-  font-weight:700;
+  font-weight:800;
   white-space:nowrap;
   padding-top:1px;
 }
@@ -335,6 +450,23 @@ a{text-decoration:none;color:inherit}
   border:1px solid var(--line);
   color:var(--muted);
   font-size:15px;
+}
+
+.order-btn{
+  display:inline-block;
+  margin-top:10px;
+  padding:9px 14px;
+  background:var(--gold);
+  color:#1e1713;
+  text-decoration:none;
+  border-radius:999px;
+  font-size:13px;
+  font-weight:800;
+  transition:.2s ease;
+}
+.order-btn:hover{
+  transform:translateY(-2px);
+  background:var(--gold3);
 }
 
 .cta{
@@ -386,17 +518,16 @@ footer{
   left:14px;
   right:14px;
   bottom:14px;
-  z-index:70;
+  z-index:95;
   text-align:center;
   padding:16px 20px;
   border-radius:999px;
-  font-weight:800;
+  font-weight:900;
   background:linear-gradient(135deg,var(--gold),var(--gold2));
   color:#2b1f18;
   animation:glow 2.8s ease-in-out infinite;
   box-shadow:0 18px 36px rgba(0,0,0,.35);
 }
-
 .smoke{
   position:fixed;
   left:0;
@@ -410,12 +541,13 @@ footer{
 }
 
 @media (max-width: 980px){
-  .hero-grid,.footer-grid,.cta{grid-template-columns:1fr}
   .hero-grid{grid-template-columns:1fr}
   .menu-grid{grid-template-columns:1fr}
+  .best-sellers{grid-template-columns:1fr}
+  .promo-strip{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr}
   .hero h2{font-size:48px}
 }
-
 @media (max-width: 560px){
   .brand h1{font-size:40px}
   .hero-grid{padding:32px 20px}
@@ -424,6 +556,13 @@ footer{
   .btn{width:100%}
   .actions{width:100%}
   .actions .btn{flex:1}
+  .sticky{
+    left:10px;
+    right:10px;
+    bottom:10px;
+    padding:14px 14px;
+    font-size:14px;
+  }
 }
 </style>
 </head>
@@ -438,7 +577,7 @@ footer{
     </div>
     <div class="actions">
       <a class="btn btn-outline" href="tel:+34621492566">Llamar</a>
-      <a class="btn btn-gold" href="https://wa.me/34621492566?text=Hola,%20quiero%20hacer%20un%20pedido">Pedir por WhatsApp</a>
+      <a class="btn btn-whatsapp" href="https://wa.me/34621492566?text=Hola,%20quiero%20hacer%20un%20pedido">Pedir por WhatsApp</a>
     </div>
   </div>
 </div>
@@ -449,11 +588,12 @@ footer{
       <div class="hero-grid">
         <div>
           <div class="badge">Auténtica pizzería italiana · Desde 1982</div>
-          <h2>Pizzería desde 1982, pizzas buenísimas hechas con mucho cariño</h2>
+          <h2>Pizzas buenísimas hechas con mucho cariño</h2>
           <p><strong>Tradición italiana desde 1982</strong><br>Frente al mar en Vinaròs · Para llevar, en local y a domicilio</p>
+          <p class="sales-line">Recetas italianas desde 1982 · Pedido rápido por WhatsApp · Abiertos de miércoles a domingo</p>
           <div class="actions">
-            <a class="btn btn-gold" href="https://wa.me/34621492566?text=Hola,%20quiero%20hacer%20un%20pedido">Pedir ahora</a>
-            <a class="btn btn-outline" href="#historia">Nuestra historia</a>
+            <a class="btn btn-whatsapp" href="https://wa.me/34621492566?text=Hola,%20quiero%20hacer%20un%20pedido">📲 Pedir ahora por WhatsApp</a>
+            <a class="btn btn-outline" href="#pizzas">Ver pizzas</a>
           </div>
         </div>
         <div class="info-card">
@@ -465,7 +605,23 @@ footer{
           <p>Servicio a domicilio</p>
           <p>Pedido mínimo: 10,00€</p>
           <p>Pedidos por teléfono o WhatsApp</p>
+          <p class="small">Haz clic en cualquier botón de pedido y el mensaje te saldrá ya preparado.</p>
         </div>
+      </div>
+    </div>
+
+    <div class="promo-strip reveal">
+      <div class="promo-card">
+        <strong>⭐ Pizzas más pedidas</strong>
+        <span>Te marcamos las favoritas para que el cliente decida más rápido.</span>
+      </div>
+      <div class="promo-card">
+        <strong>📲 Pedido rápido</strong>
+        <span>Botones directos para pedir las pizzas estrella por WhatsApp.</span>
+      </div>
+      <div class="promo-card">
+        <strong>🚚 A domicilio</strong>
+        <span>Pedido mínimo 10,00€ · Servicio 1,50€ o 2,50€.</span>
       </div>
     </div>
   </div>
@@ -504,20 +660,71 @@ footer{
 <section class="menu container" id="carta">
   <div class="section-title">
     <h2>Nuestra carta</h2>
+    <p>Haz clic en las pizzas destacadas para pedirlas al instante</p>
   </div>
 
   <div class="menu-wrap">
 
     <div class="category reveal" id="pizzas">
       <h3>Pizzas</h3>
+
+      <div class="best-sellers">
+        <div class="best-card">
+          <span class="tag">⭐ Más vendida</span>
+          <h4>Barbacoa</h4>
+          <p>Tomate, carne picada, bacon, salsa barbacoa y mozzarella.</p>
+          <span class="price">11,90€</span>
+          <a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20la%20pizza%20Barbacoa">Pedir esta pizza</a>
+        </div>
+
+        <div class="best-card">
+          <span class="tag">🔥 Muy pedida</span>
+          <h4>Cuatro estaciones</h4>
+          <p>Tomate, jamón york, champiñones, alcachofas, aceitunas negras, anchoas y mozzarella.</p>
+          <span class="price">11,80€</span>
+          <a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20la%20pizza%20Cuatro%20estaciones">Pedir esta pizza</a>
+        </div>
+
+        <div class="best-card">
+          <span class="tag">⭐ Favorita</span>
+          <h4>Calzone</h4>
+          <p>Tomate, mozzarella, requesón, jamón york y espinacas.</p>
+          <span class="price">11,20€</span>
+          <a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20la%20pizza%20Calzone">Pedir esta pizza</a>
+        </div>
+      </div>
+
       <div class="menu-grid">
-        <div class="item"><div class="item-text"><span class="name">Calzone</span><span class="desc">Tomate, mozzarella, requesón, jamón york y espinacas.</span></div><span class="price">11,20€</span></div>
+        <div class="item">
+          <div class="item-text">
+            <span class="name">Calzone</span>
+            <span class="desc">Tomate, mozzarella, requesón, jamón york y espinacas.</span>
+            <div class="mini-tags"><span class="mini-tag top">⭐ Más vendida</span></div>
+            <a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20la%20pizza%20Calzone">Pedir esta pizza</a>
+          </div>
+          <span class="price">11,20€</span>
+        </div>
+
         <div class="item"><div class="item-text"><span class="name">Sencilla</span><span class="desc">Tomate y mozzarella.</span></div><span class="price">7,90€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Margarita</span><span class="desc">Tomate, jamón york y mozzarella.</span></div><span class="price">8,50€</span></div>
+
+        <div class="item"><div class="item-text"><span class="name">Margarita</span><span class="desc">Tomate, jamón york y mozzarella.</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20la%20pizza%20Margarita">Pedir esta pizza</a></div><span class="price">8,50€</span></div>
+
         <div class="item"><div class="item-text"><span class="name">Bianca</span><span class="desc">Nata, bacon, champiñones y mozzarella.</span></div><span class="price">11,20€</span></div>
+
         <div class="item"><div class="item-text"><span class="name">Sorrento</span><span class="desc">Tomate, jamón york, champiñones, alcachofas y mozzarella.</span></div><span class="price">10,90€</span></div>
+
         <div class="item"><div class="item-text"><span class="name">Savoia</span><span class="desc">Jamón york, tomate, champiñones y mozzarella.</span></div><span class="price">10,70€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Cuatro estaciones</span><span class="desc">Tomate, jamón york, champiñones, alcachofas, aceitunas negras, anchoas y mozzarella.</span></div><span class="price">11,80€</span></div>
+
+        <div class="item">
+          <div class="item-text">
+            <span class="name">Cuatro estaciones</span>
+            <span class="desc">Tomate, jamón york, champiñones, alcachofas, aceitunas negras, anchoas y mozzarella.</span>
+            <div class="mini-tags"><span class="mini-tag hot">🔥 Muy pedida hoy</span></div>
+            <a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20la%20pizza%20Cuatro%20estaciones">Pedir esta pizza</a>
+          </div>
+          <span class="price">11,80€</span>
+        </div>
+
         <div class="item"><div class="item-text"><span class="name">Cuatro quesos</span><span class="desc">Tomate, quesos variados y mozzarella.</span></div><span class="price">10,70€</span></div>
         <div class="item"><div class="item-text"><span class="name">Roquefort</span><span class="desc">Tomate, roquefort y mozzarella.</span></div><span class="price">10,30€</span></div>
         <div class="item"><div class="item-text"><span class="name">Gorgonzola</span><span class="desc">Tomate natural y gorgonzola.</span></div><span class="price">10,90€</span></div>
@@ -543,7 +750,20 @@ footer{
         <div class="item"><div class="item-text"><span class="name">Tropical</span><span class="desc">Tomate, jamón york, piña y mozzarella.</span></div><span class="price">10,90€</span></div>
         <div class="item"><div class="item-text"><span class="name">Bambini</span><span class="desc">Tomate, patatas fritas, frankfurt y mozzarella.</span></div><span class="price">9,50€</span></div>
         <div class="item"><div class="item-text"><span class="name">Queso de cabra</span><span class="desc">Jamón york, tomate, queso de cabra y mozzarella.</span></div><span class="price">10,90€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Barbacoa</span><span class="desc">Tomate, carne picada, bacon, salsa barbacoa y mozzarella.</span></div><span class="price">11,90€</span></div>
+
+        <div class="item">
+          <div class="item-text">
+            <span class="name">Barbacoa</span>
+            <span class="desc">Tomate, carne picada, bacon, salsa barbacoa y mozzarella.</span>
+            <div class="mini-tags">
+              <span class="mini-tag top">⭐ Más vendida</span>
+              <span class="mini-tag hot">🔥 Muy pedida hoy</span>
+            </div>
+            <a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20la%20pizza%20Barbacoa">Pedir esta pizza</a>
+          </div>
+          <span class="price">11,90€</span>
+        </div>
+
         <div class="item"><div class="item-text"><span class="name">Curry</span><span class="desc">Tomate, pollo, piña, curry y mozzarella.</span></div><span class="price">11,70€</span></div>
         <div class="item"><div class="item-text"><span class="name">Rúcula</span><span class="desc">Tomate, champiñones, rúcula y parmesano.</span></div><span class="price">11,90€</span></div>
         <div class="item"><div class="item-text"><span class="name">Fiorentina</span><span class="desc">Tomate, mozzarella, berenjena, spek, tomate cherry y parmesano.</span></div><span class="price">12,00€</span></div>
@@ -625,6 +845,7 @@ footer{
         <div class="item"><div class="item-text"><span class="name">Gnocchi</span></div><span class="price">Según salsa</span></div>
         <div class="item"><div class="item-text"><span class="name">Pasta rellena</span><span class="desc">Ravioli o tortellini según disposición. Carne, funghi, espinacas y requesón, y funghi con trufa.</span></div><span class="price">Suplemento 1€</span></div>
       </div>
+      <div class="note">Escoge el tipo de pasta y combínalo con una de nuestras salsas.</div>
     </div>
 
     <div class="category reveal" id="salsas">
@@ -697,7 +918,7 @@ footer{
         <div class="item"><div class="item-text"><span class="name">Vino de la casa tinto 1 l</span></div><span class="price">6,50€</span></div>
         <div class="item"><div class="item-text"><span class="name">Vino de la casa tinto 1/2 l</span></div><span class="price">4,00€</span></div>
         <div class="item"><div class="item-text"><span class="name">Tinto de verano copa</span></div><span class="price">3,50€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Copa sangria</span></div><span class="price">3,50€</span></div>
+        <div class="item"><div class="item-text"><span class="name">Copa sangría</span></div><span class="price">3,50€</span></div>
         <div class="item"><div class="item-text"><span class="name">Copa de vino de la casa</span></div><span class="price">2,50€</span></div>
         <div class="item"><div class="item-text"><span class="name">Copa de vino Rioja o verdejo</span></div><span class="price">3,50€</span></div>
       </div>
@@ -732,7 +953,7 @@ footer{
     </div>
     <div class="actions">
       <a class="btn btn-outline" href="tel:+34621492566">Llamar</a>
-      <a class="btn btn-gold" href="https://wa.me/34621492566?text=Hola,%20quiero%20hacer%20un%20pedido">Pedir por WhatsApp</a>
+      <a class="btn btn-whatsapp" href="https://wa.me/34621492566?text=Hola,%20quiero%20hacer%20un%20pedido">Pedir por WhatsApp</a>
     </div>
   </div>
 </section>
@@ -748,7 +969,7 @@ footer{
 
 <div class="smoke"></div>
 
-<a class="sticky" href="https://wa.me/34621492566?text=Hola,%20quiero%20hacer%20un%20pedido">PEDIR AHORA</a>
+<a class="sticky" href="https://wa.me/34621492566?text=Hola,%20quiero%20hacer%20un%20pedido">📲 PEDIR AHORA POR WHATSAPP</a>
 
 </body>
 </html>
