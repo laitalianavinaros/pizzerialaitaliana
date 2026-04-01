@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Pizzería La Italiana Vinaròs</title>
-<meta name="description" content="Pizzería La Italiana en Vinaròs. Carta completa, pizzas artesanas, pedidos por WhatsApp y tradición italiana desde 1982.">
+<meta name="description" content="Pizzería La Italiana en Vinaròs. Carta completa, pizzas artesanas, carrito de pedido y pedidos por WhatsApp.">
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700;800&display=swap');
@@ -17,8 +17,11 @@
   --gold3:#ead7bd;
   --line:rgba(239,227,214,.10);
   --shadow:0 20px 50px rgba(0,0,0,.28);
-  --max:1180px;
+  --max:1240px;
   --whatsapp:#25D366;
+  --danger:#c35b4b;
+  --panel:#2b211c;
+  --panel2:#342821;
 }
 
 *{box-sizing:border-box}
@@ -39,7 +42,6 @@ body{
   overflow-x:hidden;
 }
 
-/* FUEGO SUTIL MÁS VISIBLE */
 body::before{
   content:"";
   position:fixed;
@@ -58,7 +60,6 @@ body::before{
   animation:fuegoSutil 5s ease-in-out infinite alternate;
 }
 
-/* HUMO MÁS VISIBLE */
 body::after{
   content:"";
   position:fixed;
@@ -81,25 +82,22 @@ body::after{
   from{transform:translateY(0) scale(1);opacity:.9}
   to{transform:translateY(-10px) scale(1.04);opacity:1}
 }
-
 @keyframes humoVisible{
   from{transform:translateY(0);opacity:.55}
   to{transform:translateY(-24px);opacity:.85}
 }
-
 @keyframes fadeUp{
   from{opacity:0;transform:translateY(24px)}
   to{opacity:1;transform:translateY(0)}
 }
-
 @keyframes glow{
   0%,100%{box-shadow:0 14px 30px rgba(0,0,0,.28)}
   50%{box-shadow:0 18px 38px rgba(212,177,131,.18)}
 }
-
 .reveal{animation:fadeUp .9s ease both}
 
 a{text-decoration:none;color:inherit}
+button{font:inherit}
 .container{
   max-width:var(--max);
   margin:0 auto;
@@ -172,6 +170,7 @@ a{text-decoration:none;color:inherit}
   font-weight:800;
   transition:.25s ease;
   border:1px solid transparent;
+  cursor:pointer;
 }
 .btn:hover{transform:translateY(-2px)}
 .btn-outline{
@@ -184,13 +183,13 @@ a{text-decoration:none;color:inherit}
   color:#0e1a12;
   box-shadow:0 12px 28px rgba(37,211,102,.22);
 }
-.btn-whatsapp:hover{
-  transform:translateY(-2px) scale(1.01);
+.btn-whatsapp:hover{transform:translateY(-2px) scale(1.01)}
+.btn-gold{
+  background:linear-gradient(135deg,var(--gold),var(--gold2));
+  color:#2b1f18;
 }
 
-.hero{
-  padding:20px 0 28px;
-}
+.hero{padding:20px 0 24px}
 .hero-box{
   overflow:hidden;
   border-radius:32px;
@@ -239,12 +238,12 @@ a{text-decoration:none;color:inherit}
 .hero h2{
   margin:0 0 18px;
   font-family:'Cormorant Garamond',serif;
-  font-size:74px;
+  font-size:72px;
   line-height:1;
   font-weight:600;
 }
 .hero p{
-  margin:0 0 20px;
+  margin:0 0 18px;
   max-width:680px;
   color:var(--muted);
   font-size:20px;
@@ -273,14 +272,16 @@ a{text-decoration:none;color:inherit}
   font-family:'Cormorant Garamond',serif;
   font-size:30px;
 }
-.info-card p{
-  margin:8px 0;
-  font-size:17px;
+.info-card p{margin:8px 0;font-size:17px}
+
+.layout{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 360px;
+  gap:20px;
+  align-items:start;
 }
 
-.story{
-  margin-top:18px;
-}
+.story{margin-top:10px}
 .story-box{
   background:linear-gradient(180deg, rgba(53,40,33,.96), rgba(61,45,37,.98));
   border:1px solid var(--line);
@@ -296,7 +297,7 @@ a{text-decoration:none;color:inherit}
   margin:0;
   font-family:'Cormorant Garamond',serif;
   font-style:italic;
-  font-size:68px;
+  font-size:62px;
   line-height:1;
 }
 .section-title h2::after{
@@ -322,7 +323,7 @@ a{text-decoration:none;color:inherit}
 }
 .story-text .lead{
   font-family:'Cormorant Garamond',serif;
-  font-size:32px;
+  font-size:30px;
   font-style:italic;
   line-height:1.3;
 }
@@ -376,9 +377,7 @@ a{text-decoration:none;color:inherit}
   font-size:14px;
 }
 
-.menu{
-  padding:20px 0 24px;
-}
+.menu{padding:20px 0 24px}
 .menu-wrap{
   display:grid;
   gap:18px;
@@ -438,7 +437,7 @@ a{text-decoration:none;color:inherit}
 .best-card .price{
   color:var(--gold);
   font-weight:800;
-  margin-bottom:10px;
+  margin-bottom:12px;
   display:block;
 }
 
@@ -504,20 +503,198 @@ a{text-decoration:none;color:inherit}
   font-size:15px;
 }
 
-.order-btn{
-  display:inline-block;
+.product-actions{
   margin-top:10px;
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+}
+.order-btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
   padding:9px 14px;
   background:var(--gold);
   color:#1e1713;
+  border:none;
   border-radius:999px;
   font-size:13px;
   font-weight:800;
+  cursor:pointer;
   transition:.2s ease;
 }
 .order-btn:hover{
   transform:translateY(-2px);
   background:var(--gold3);
+}
+
+.cart-panel{
+  position:sticky;
+  top:92px;
+  background:linear-gradient(180deg, rgba(43,33,28,.98), rgba(52,40,33,.98));
+  border:1px solid var(--line);
+  border-radius:24px;
+  box-shadow:var(--shadow);
+  padding:22px;
+}
+.cart-panel h3{
+  margin:0 0 6px;
+  font-family:'Cormorant Garamond',serif;
+  font-size:36px;
+}
+.cart-sub{
+  color:var(--muted);
+  font-size:14px;
+  margin-bottom:18px;
+}
+.cart-list{
+  display:grid;
+  gap:10px;
+  margin-bottom:16px;
+}
+.cart-empty{
+  padding:16px;
+  border-radius:16px;
+  border:1px dashed rgba(239,227,214,.14);
+  color:var(--muted);
+  text-align:center;
+  font-size:14px;
+}
+.cart-item{
+  background:rgba(255,255,255,.03);
+  border:1px solid rgba(239,227,214,.08);
+  border-radius:16px;
+  padding:12px;
+}
+.cart-item-top{
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+  align-items:flex-start;
+}
+.cart-item-name{
+  font-weight:800;
+  font-size:14px;
+}
+.cart-item-price{
+  color:var(--gold);
+  font-weight:800;
+  white-space:nowrap;
+  font-size:14px;
+}
+.cart-controls{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  margin-top:10px;
+}
+.qty-wrap{
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+.qty-btn{
+  width:28px;
+  height:28px;
+  border-radius:999px;
+  border:none;
+  background:#111;
+  color:#f0e3d3;
+  font-weight:800;
+  cursor:pointer;
+}
+.qty-number{
+  min-width:20px;
+  text-align:center;
+  font-weight:800;
+}
+.remove-btn{
+  border:none;
+  background:transparent;
+  color:#f0a396;
+  font-weight:700;
+  cursor:pointer;
+  padding:0;
+}
+.cart-summary{
+  border-top:1px solid var(--line);
+  padding-top:14px;
+  display:grid;
+  gap:10px;
+}
+.cart-row{
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+  font-size:15px;
+}
+.cart-row.total{
+  font-size:18px;
+  font-weight:800;
+  color:var(--gold3);
+}
+.cart-note{
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.5;
+}
+.cart-buttons{
+  display:grid;
+  gap:10px;
+  margin-top:8px;
+}
+.clear-btn{
+  border:none;
+  border-radius:999px;
+  padding:12px 18px;
+  font-weight:800;
+  background:#1a1411;
+  color:#f0ddd1;
+  cursor:pointer;
+}
+.checkout-btn{
+  border:none;
+  border-radius:999px;
+  padding:14px 18px;
+  font-weight:900;
+  background:var(--whatsapp);
+  color:#0e1a12;
+  cursor:pointer;
+}
+.checkout-btn:disabled,
+.clear-btn:disabled{
+  opacity:.5;
+  cursor:not-allowed;
+}
+
+.cart-floating{
+  position:fixed;
+  right:14px;
+  bottom:14px;
+  z-index:96;
+  display:none;
+  border:none;
+  border-radius:999px;
+  padding:14px 18px;
+  font-weight:900;
+  background:linear-gradient(135deg,var(--gold),var(--gold2));
+  color:#2b1f18;
+  box-shadow:0 18px 36px rgba(0,0,0,.35);
+  cursor:pointer;
+}
+.cart-count{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-width:22px;
+  height:22px;
+  padding:0 6px;
+  margin-left:8px;
+  border-radius:999px;
+  background:#111;
+  color:#f8ead8;
+  font-size:12px;
 }
 
 .cta{
@@ -583,6 +760,10 @@ footer{
   white-space:nowrap;
 }
 
+@media (max-width: 1100px){
+  .layout{grid-template-columns:1fr}
+  .cart-panel{position:relative;top:auto}
+}
 @media (max-width: 980px){
   .hero-grid{grid-template-columns:1fr}
   .menu-grid{grid-template-columns:1fr}
@@ -608,6 +789,7 @@ footer{
     font-size:14px;
     max-width:none;
   }
+  .cart-floating{display:block}
 }
 </style>
 </head>
@@ -625,7 +807,7 @@ footer{
     </div>
     <div class="actions">
       <a class="btn btn-outline" href="tel:+34964828491">Llamar</a>
-      <a class="btn btn-whatsapp" href="https://wa.me/34621492566?text=Hola,%20quiero%20hacer%20un%20pedido">Pedir por WhatsApp</a>
+      <a class="btn btn-whatsapp" href="https://wa.me/34621492566?text=Hola,%20quiero%20hacer%20un%20pedido">WhatsApp directo</a>
     </div>
   </div>
 </div>
@@ -636,13 +818,13 @@ footer{
       <div class="hero-grid">
         <div>
           <div class="badge">Auténtica pizzería italiana · Desde 1982</div>
-          <h2>Pizzas buenísimas hechas con mucho cariño</h2>
-          <p><strong>Tradición italiana desde 1982</strong><br>Frente al mar en Vinaròs · Para llevar, en local y a domicilio</p>
-          <p class="sales-line">Recetas italianas desde 1982 · Pedido rápido por WhatsApp · Abiertos de miércoles a domingo</p>
+          <h2>Pide desde la web en pocos segundos</h2>
+          <p><strong>Elige tus platos, revisa el carrito y envía el pedido completo por WhatsApp.</strong><br>Frente al mar en Vinaròs · Para llevar, en local y a domicilio</p>
+          <p class="sales-line">Carrito visual · Total automático · Pedido rápido</p>
           <p class="confianza">Servicio a domicilio · Para llevar · En local · Desde 1982</p>
           <div class="actions">
-            <a class="btn btn-whatsapp" href="https://wa.me/34621492566?text=Hola,%20quiero%20hacer%20un%20pedido">📲 Pedir ahora por WhatsApp</a>
-            <a class="btn btn-outline" href="#pizzas">Ver pizzas</a>
+            <a class="btn btn-whatsapp" href="#carta">🍕 Empezar pedido</a>
+            <a class="btn btn-outline" href="#carrito">Ver carrito</a>
           </div>
         </div>
         <div class="info-card">
@@ -654,19 +836,19 @@ footer{
           <p>Sábado y domingo: 12:00–23:00</p>
           <p>Servicio a domicilio</p>
           <p>Pedido mínimo: 10,00€</p>
-          <p>Pedidos por teléfono o WhatsApp</p>
+          <p>Selecciona tus productos y envía el pedido completo por WhatsApp.</p>
         </div>
       </div>
     </div>
 
     <div class="promo-strip reveal">
       <div class="promo-card">
-        <strong>⭐ Pizzas más pedidas</strong>
-        <span>Te marcamos favoritas para decidir más rápido.</span>
+        <strong>🛒 Carrito pro</strong>
+        <span>Añade, quita y cambia cantidades sin salir de la web.</span>
       </div>
       <div class="promo-card">
-        <strong>📲 Pedido rápido</strong>
-        <span>WhatsApp visible siempre y botones directos en lo más importante.</span>
+        <strong>📲 Pedido final por WhatsApp</strong>
+        <span>El mensaje sale ya montado con todos los productos.</span>
       </div>
       <div class="promo-card">
         <strong>🚚 A domicilio</strong>
@@ -676,304 +858,261 @@ footer{
   </div>
 </section>
 
-<section class="story container" id="historia">
-  <div class="story-box reveal">
-    <div class="section-title">
-      <h2>La esencia de La Italiana</h2>
-      <p>Un estilo italiano elegante, clásico y acogedor</p>
-    </div>
-    <div class="story-text">
-      <p class="lead">Desde 1982, en La Italiana cuidamos cada detalle para ofrecer mucho más que una comida: una experiencia con auténtica esencia italiana.</p>
-      <p>Nuestra cocina nace del respeto por la tradición, los buenos ingredientes y el placer de disfrutar sin prisas. En un ambiente elegante, cálido y mediterráneo, frente al mar en Vinaròs, cada pizza y cada plato reflejan nuestra manera de entender la hostelería: cercanía, calidad y cariño por lo que hacemos.</p>
-      <p>Un estilo clásico que nunca pasa de moda, donde cada visita se convierte en un momento especial.</p>
-    </div>
-  </div>
-</section>
+<div class="container layout">
+  <main>
+    <section class="story" id="historia">
+      <div class="story-box reveal">
+        <div class="section-title">
+          <h2>La esencia de La Italiana</h2>
+          <p>Un estilo italiano elegante, clásico y acogedor</p>
+        </div>
+        <div class="story-text">
+          <p class="lead">Desde 1982, en La Italiana cuidamos cada detalle para ofrecer mucho más que una comida: una experiencia con auténtica esencia italiana.</p>
+          <p>Nuestra cocina nace del respeto por la tradición, los buenos ingredientes y el placer de disfrutar sin prisas. En un ambiente elegante, cálido y mediterráneo, frente al mar en Vinaròs, cada pizza y cada plato reflejan nuestra manera de entender la hostelería: cercanía, calidad y cariño por lo que hacemos.</p>
+        </div>
+      </div>
+    </section>
 
-<div class="container">
-  <div class="quicknav">
-    <a class="chip" href="#pizzas">Pizzas</a>
-    <a class="chip" href="#entrantes">Entrantes</a>
-    <a class="chip" href="#ensaladas">Ensaladas</a>
-    <a class="chip" href="#crostones">Crostones</a>
-    <a class="chip" href="#pasta">Pasta</a>
-    <a class="chip" href="#salsas">Salsas</a>
-    <a class="chip" href="#especialidades">Especialidades</a>
-    <a class="chip" href="#platos">Platos</a>
-    <a class="chip" href="#bebidas">Bebidas</a>
-    <a class="chip" href="#postres">Postres</a>
-    <a class="chip" href="#menujoven">Menú joven</a>
-  </div>
+    <div class="quicknav">
+      <a class="chip" href="#pizzas">Pizzas</a>
+      <a class="chip" href="#entrantes">Entrantes</a>
+      <a class="chip" href="#ensaladas">Ensaladas</a>
+      <a class="chip" href="#crostones">Crostones</a>
+      <a class="chip" href="#pasta">Pasta</a>
+      <a class="chip" href="#salsas">Salsas</a>
+      <a class="chip" href="#especialidades">Especialidades</a>
+      <a class="chip" href="#platos">Platos</a>
+      <a class="chip" href="#bebidas">Bebidas</a>
+      <a class="chip" href="#postres">Postres</a>
+      <a class="chip" href="#menujoven">Menú joven</a>
+    </div>
+
+    <section class="menu" id="carta">
+      <div class="section-title">
+        <h2>Nuestra carta</h2>
+        <p>Añade al carrito y finaliza por WhatsApp</p>
+      </div>
+
+      <div class="menu-wrap">
+
+        <div class="category reveal" id="pizzas">
+          <h3>Pizzas</h3>
+
+          <div class="best-sellers">
+            <div class="best-card">
+              <span class="tag">⭐ Más vendida</span>
+              <h4>Barbacoa</h4>
+              <p>Tomate, carne picada, bacon, salsa barbacoa y mozzarella.</p>
+              <span class="price">11,90€</span>
+              <button class="order-btn" onclick="addToCart('Pizza Barbacoa', 11.90)">Añadir al carrito</button>
+            </div>
+
+            <div class="best-card">
+              <span class="tag">🔥 Muy pedida</span>
+              <h4>Cuatro estaciones</h4>
+              <p>Tomate, jamón york, champiñones, alcachofas, aceitunas negras, anchoas y mozzarella.</p>
+              <span class="price">11,80€</span>
+              <button class="order-btn" onclick="addToCart('Pizza Cuatro estaciones', 11.80)">Añadir al carrito</button>
+            </div>
+
+            <div class="best-card">
+              <span class="tag">⭐ Favorita</span>
+              <h4>Griega</h4>
+              <p>Carne picada, pollo, bacon, cebolla, maíz, salsa yogurt, queso cabra y mozzarella.</p>
+              <span class="price">14,50€</span>
+              <button class="order-btn" onclick="addToCart('Pizza Griega', 14.50)">Añadir al carrito</button>
+            </div>
+          </div>
+
+          <div class="menu-grid">
+            <div class="item"><div class="item-text"><span class="name"><span class="badge-mini badge-ok">RECOMENDADA</span> Calzone</span><span class="desc">Tomate, mozzarella, requesón, jamón york y espinacas.</span><div class="product-actions"><button class="order-btn" onclick="addToCart('Pizza Calzone', 11.20)">Añadir</button></div></div><span class="price">11,20€</span></div>
+            <div class="item"><div class="item-text"><span class="name">Sencilla</span><span class="desc">Tomate y mozzarella.</span><div class="product-actions"><button class="order-btn" onclick="addToCart('Pizza Sencilla', 7.90)">Añadir</button></div></div><span class="price">7,90€</span></div>
+            <div class="item"><div class="item-text"><span class="name">Margarita</span><span class="desc">Tomate, jamón york y mozzarella.</span><div class="product-actions"><button class="order-btn" onclick="addToCart('Pizza Margarita', 8.50)">Añadir</button></div></div><span class="price">8,50€</span></div>
+            <div class="item"><div class="item-text"><span class="name">Bianca</span><span class="desc">Nata, bacon, champiñones y mozzarella.</span><div class="product-actions"><button class="order-btn" onclick="addToCart('Pizza Bianca', 11.20)">Añadir</button></div></div><span class="price">11,20€</span></div>
+            <div class="item"><div class="item-text"><span class="name">Sorrento</span><span class="desc">Tomate, jamón york, champiñones, alcachofas y mozzarella.</span><div class="product-actions"><button class="order-btn" onclick="addToCart('Pizza Sorrento', 10.90)">Añadir</button></div></div><span class="price">10,90€</span></div>
+            <div class="item"><div class="item-text"><span class="name">Savoia</span><span class="desc">Jamón york, tomate, champiñones y mozzarella.</span><div class="product-actions"><button class="order-btn" onclick="addToCart('Pizza Savoia', 10.70)">Añadir</button></div></div><span class="price">10,70€</span></div>
+            <div class="item"><div class="item-text"><span class="name">Cuatro estaciones</span><span class="desc">Tomate, jamón york, champiñones, alcachofas, aceitunas negras, anchoas y mozzarella.</span><div class="product-actions"><button class="order-btn" onclick="addToCart('Pizza Cuatro estaciones', 11.80)">Añadir</button></div></div><span class="price">11,80€</span></div>
+            <div class="item"><div class="item-text"><span class="name">Cuatro quesos</span><span class="desc">Tomate, quesos variados y mozzarella.</span><div class="product-actions"><button class="order-btn" onclick="addToCart('Pizza Cuatro quesos', 10.70)">Añadir</button></div></div><span class="price">10,70€</span></div>
+            <div class="item"><div class="item-text"><span class="name">Roquefort</span><span class="desc">Tomate, roquefort y mozzarella.</span><div class="product-actions"><button class="order-btn" onclick="addToCart('Pizza Roquefort', 10.30)">Añadir</button></div></div><span class="price">10,30€</span></div>
+            <div class="item"><div class="item-text"><span class="name">Gorgonzola</span><span class="desc">Tomate natural y gorgonzola.</span><div class="product-actions"><button class="order-btn" onclick="addToCart('Pizza Gorgonzola', 10.90)">Añadir</button></div></div><span class="price">10,90€</span></div>
+            <div class="item"><div class="item-text"><span class="name">Capriccio</span><span class="desc">Tomate, atún, champiñones y mozzarella.</span><div class="product-actions"><button class="order-btn" onclick="addToCart('Pizza Capriccio', 10.70)">Añadir</button></div></div><span class="price">10,70€</span></div>
+            <div class="item"><div class="item-text"><span class="name">Napoletana</span><span class="desc">Tomate, anchoas, aceitunas negras, alcaparras y mozzarella.</span><div class="product-actions"><button class="order-btn" onclick="addToCart('Pizza Napoletana', 10.70)">Añadir</button></div></div><span class="price">10,70€</span></div>
+            <div class="item"><div class="item-text"><span class="name">Marinera</span><span class="desc">Tomate, gambas, langostinos, mejillones, calamares y mozzarella.</span><div class="product-actions"><button class="order-btn" onclick="addToCart('Pizza Marinera', 13.00)">Añadir</button></div></div><span class="price">13,00€</span></div>
+            <div class="item"><div class="item-text"><span class="name">Terranova</span><span class="desc">Tomate, bacalao, pimientos, aceitunas negras y mozzarella.</span><div class="product-actions"><button class="order-btn" onclick="addToCart('Pizza Terranova', 13.50)">Añadir</button></div></div><span class="price">13,50€</span></div>
+            <div class="item"><div class="item-text"><span class="name">Salmón</span><span class="desc">Tomate, salmón, mozzarella o con piña.</span><div class="product-actions"><button class="order-btn" onclick="addToCart('Pizza Salmón', 13.00)">Añadir</button></div></div><span class="price">13,00€</span></div>
+            <div class="item"><div class="item-text"><span class="name">Bolognesa</span><span class="desc">Salsa boloñesa y mozzarella.</span><div class="product-actions"><button class="order-btn" onclick="addToCart('Pizza Bolognesa', 11.20)">Añadir</button></div></div><span class="price">11,20€</span></div>
+            <div class="item"><div class="item-text"><span class="name">Boscaiola</span><span class="desc">Tomate, ternera picada, pimientos y mozzarella.</span><div class="product-actions"><button class="order-btn" onclick="addToCart('Pizza Boscaiola', 11.20)">Añadir</button></div></div><span class="price">11,20€</span></div>
+            <div class="item"><div class="item-text"><span class="name">Toscana</span><span class="desc">Tomate, mozzarella bufala y albahaca.</span><div class="product-actions"><button class="order-btn" onclick="addToCart('Pizza Toscana', 11.90)">Añadir</button></div></div><span class="price">11,90€</span></div>
+            <div class="item"><div class="item-text"><span class="name"><span class="badge-mini badge-hot">PICANTE</span> Mexicana</span><span class="desc">Ternera picada, salsa chile, tomate, cebolla natural, maíz y mozzarella.</span><div class="product-actions"><button class="order-btn" onclick="addToCart('Pizza Mexicana', 11.90)">Añadir</button></div></div><span class="price">11,90€</span></div>
+            <div class="item"><div class="item-text"><span class="name">Americana</span><span class="desc">Tomate, ternera picada, mostaza y mozzarella.</span><div class="product-actions"><button class="order-btn" onclick="addToCart('Pizza Americana', 10.90)">Añadir</button></div></div><span class="price">10,90€</span></div>
+            <div class="item"><div class="item-text"><span class="name"><span class="badge-mini badge-hot">PICANTE</span> Chorizo picante</span><span class="desc">Tomate, chorizo picante y mozzarella.</span><div class="product-actions"><button class="order-btn" onclick="addToCart('Pizza Chorizo picante', 10.90)">Añadir</button></div></div><span class="price">10,90€</span></div>
+            <div class="item"><div class="item-text"><span class="name">Campesina</span><span class="desc">Tomate, mozzarella, jamón serrano o panceta, o salami.</span><div class="product-actions"><button class="order-btn" onclick="addToCart('Pizza Campesina', 10.90)">Añadir</button></div></div><span class="price">10,90€</span></div>
+            <div class="item"><div class="item-text"><span class="name">Frankfurt</span><span class="desc">Tomate, frankfurt y mozzarella.</span><div class="product-actions"><button class="order-btn" onclick="addToCart('Pizza Frankfurt', 8.50)">Añadir</button></div></div><span class="price">8,50€</span></div>
+            <div class="item"><div class="item-text"><span class="name">Mallorquina</span><span class="desc">Tomate, sobrasada, morcilla negra y mozzarella.</span><div class="product-actions"><button class="order-btn" onclick="addToCart('Pizza Mallorquina', 10.90)">Añadir</button></div></div><span class="price">10,90€</span></div>
+            <div class="item"><div class="item-text"><span class="name">Sobrasada</span><span class="desc">Tomate, sobrasada, brie, mozzarella y cebolla frita.</span><div class="product-actions"><button class="order-btn" onclick="addToCart('Pizza Sobrasada', 11.20)">Añadir</button></div></div><span class="price">11,20€</span></div>
+            <div class="item"><div class="item-text"><span class="name">Vegetal</span><span class="desc">Tomate, cebolla natural, ajo, calabacín, berenjena, mozzarella y olivas negras.</span><div class="product-actions"><button class="order-btn" onclick="addToCart('Pizza Vegetal', 10.70)">Añadir</button></div></div><span class="price">10,70€</span></div>
+            <div class="item"><div class="item-text"><span class="name">De la casa</span><span class="desc">Tomate, champiñones, mozzarella, parmesano y bresaola.</span><div class="product-actions"><button class="order-btn" onclick="addToCart('Pizza De la casa', 11.90)">Añadir</button></div></div><span class="price">11,90€</span></div>
+            <div class="item"><div class="item-text"><span class="name">Funghi</span><span class="desc">Mixto setas, tomate y mozzarella.</span><div class="product-actions"><button class="order-btn" onclick="addToCart('Pizza Funghi', 10.50)">Añadir</button></div></div><span class="price">10,50€</span></div>
+            <div class="item"><div class="item-text"><span class="name">Tropical</span><span class="desc">Tomate, jamón york, piña y mozzarella.</span><div class="product-actions"><button class="order-btn" onclick="addToCart('Pizza Tropical', 10.90)">Añadir</button></div></div><span class="price">10,90€</span></div>
+            <div class="item"><div class="item-text"><span class="name">Bambini</span><span class="desc">Tomate, patatas fritas, frankfurt y mozzarella.</span><div class="product-actions"><button class="order-btn" onclick="addToCart('Pizza Bambini', 9.50)">Añadir</button></div></div><span class="price">9,50€</span></div>
+            <div class="item"><div class="item-text"><span class="name">Queso de cabra</span><span class="desc">Jamón york, tomate, queso de cabra y mozzarella.</span><div class="product-actions"><button class="order-btn" onclick="addToCart('Pizza Queso de cabra', 10.90)">Añadir</button></div></div><span class="price">10,90€</span></div>
+            <div class="item"><div class="item-text"><span class="name"><span class="badge-mini badge-top">TOP</span> Barbacoa</span><span class="desc">Tomate, carne picada, bacon, salsa barbacoa y mozzarella.</span><div class="product-actions"><button class="order-btn" onclick="addToCart('Pizza Barbacoa', 11.90)">Añadir</button></div></div><span class="price">11,90€</span></div>
+            <div class="item"><div class="item-text"><span class="name">Curry</span><span class="desc">Tomate, pollo, piña, curry y mozzarella.</span><div class="product-actions"><button class="order-btn" onclick="addToCart('Pizza Curry', 11.70)">Añadir</button></div></div><span class="price">11,70€</span></div>
+            <div class="item"><div class="item-text"><span class="name">Rúcula</span><span class="desc">Tomate, champiñones, rúcula y parmesano.</span><div class="product-actions"><button class="order-btn" onclick="addToCart('Pizza Rúcula', 11.90)">Añadir</button></div></div><span class="price">11,90€</span></div>
+            <div class="item"><div class="item-text"><span class="name">Fiorentina</span><span class="desc">Tomate, mozzarella, berenjena, spek, tomate cherry y parmesano.</span><div class="product-actions"><button class="order-btn" onclick="addToCart('Pizza Fiorentina', 12.00)">Añadir</button></div></div><span class="price">12,00€</span></div>
+            <div class="item"><div class="item-text"><span class="name">Contadina</span><span class="desc">Tomate, mozzarella, mixto de setas, berenjena y calabacín.</span><div class="product-actions"><button class="order-btn" onclick="addToCart('Pizza Contadina', 10.90)">Añadir</button></div></div><span class="price">10,90€</span></div>
+            <div class="item"><div class="item-text"><span class="name">Milanese</span><span class="desc">Tomate, mozzarella, mixto de setas, spek y queso fontina.</span><div class="product-actions"><button class="order-btn" onclick="addToCart('Pizza Milanese', 11.90)">Añadir</button></div></div><span class="price">11,90€</span></div>
+            <div class="item"><div class="item-text"><span class="name"><span class="badge-mini badge-hot">PICANTE</span> Diavola</span><span class="desc">Tomate, mozzarella di bufala, tomate cherry y chorizo picante.</span><div class="product-actions"><button class="order-btn" onclick="addToCart('Pizza Diavola', 12.00)">Añadir</button></div></div><span class="price">12,00€</span></div>
+            <div class="item"><div class="item-text"><span class="name">Veneciana</span><span class="desc">Tomate, mozzarella, gorgonzola, espinacas y spek.</span><div class="product-actions"><button class="order-btn" onclick="addToCart('Pizza Veneciana', 12.00)">Añadir</button></div></div><span class="price">12,00€</span></div>
+            <div class="item"><div class="item-text"><span class="name">Seis quesos</span><span class="desc">Queso parmesano, cabra, gorgonzola, brie, fontina y mozzarella.</span><div class="product-actions"><button class="order-btn" onclick="addToCart('Pizza Seis quesos', 11.50)">Añadir</button></div></div><span class="price">11,50€</span></div>
+            <div class="item"><div class="item-text"><span class="name">Pollo</span><span class="desc">Tomate, mozzarella, pollo y champiñones.</span><div class="product-actions"><button class="order-btn" onclick="addToCart('Pizza Pollo', 11.70)">Añadir</button></div></div><span class="price">11,70€</span></div>
+            <div class="item"><div class="item-text"><span class="name"><span class="badge-mini badge-ok">RECOMENDADA</span> Griega</span><span class="desc">Carne picada, pollo, bacon, cebolla, maíz, salsa yogurt, queso cabra y mozzarella.</span><div class="product-actions"><button class="order-btn" onclick="addToCart('Pizza Griega', 14.50)">Añadir</button></div></div><span class="price">14,50€</span></div>
+            <div class="item"><div class="item-text"><span class="name">Stromboli</span><span class="desc">Tomate, salchicha, bacon, mozzarella, tomate cherry y parmesano.</span><div class="product-actions"><button class="order-btn" onclick="addToCart('Pizza Stromboli', 13.90)">Añadir</button></div></div><span class="price">13,90€</span></div>
+            <div class="item"><div class="item-text"><span class="name">Pizzaiola</span><span class="desc">Tomate, mozzarella di bufala, champiñones, jamón serrano, rúcula, tomate cherry y parmesano.</span><div class="product-actions"><button class="order-btn" onclick="addToCart('Pizza Pizzaiola', 14.50)">Añadir</button></div></div><span class="price">14,50€</span></div>
+            <div class="item"><div class="item-text"><span class="name">Livorno</span><span class="desc">Tomate, mozzarella, salchichas, patatas y huevo.</span><div class="product-actions"><button class="order-btn" onclick="addToCart('Pizza Livorno', 11.70)">Añadir</button></div></div><span class="price">11,70€</span></div>
+          </div>
+          <div class="note">Cada suplemento 1€ o 2€ · Consultar.</div>
+        </div>
+
+        <div class="category reveal" id="entrantes">
+          <h3>Entrantes</h3>
+          <div class="menu-grid">
+            <div class="item"><div class="item-text"><span class="name">Aceitunas</span><div class="product-actions"><button class="order-btn" onclick="addToCart('Aceitunas', 2.50)">Añadir</button></div></div><span class="price">2,50€</span></div>
+            <div class="item"><div class="item-text"><span class="name">Pan con alli oli</span><div class="product-actions"><button class="order-btn" onclick="addToCart('Pan con alli oli', 4.00)">Añadir</button></div></div><span class="price">4,00€</span></div>
+            <div class="item"><div class="item-text"><span class="name">Patatas fritas</span><div class="product-actions"><button class="order-btn" onclick="addToCart('Patatas fritas', 5.50)">Añadir</button></div></div><span class="price">5,50€</span></div>
+            <div class="item"><div class="item-text"><span class="name">Patatas bravas</span><div class="product-actions"><button class="order-btn" onclick="addToCart('Patatas bravas', 7.50)">Añadir</button></div></div><span class="price">7,50€ G.</span></div>
+            <div class="item"><div class="item-text"><span class="name">Patatas roquefort</span><div class="product-actions"><button class="order-btn" onclick="addToCart('Patatas roquefort', 8.00)">Añadir</button></div></div><span class="price">8,00€ G.</span></div>
+            <div class="item"><div class="item-text"><span class="name">Patatas gratinadas</span><div class="product-actions"><button class="order-btn" onclick="addToCart('Patatas gratinadas', 9.00)">Añadir</button></div></div><span class="price">9,00€</span></div>
+            <div class="item"><div class="item-text"><span class="name">Patatas cheddar y bacon</span><div class="product-actions"><button class="order-btn" onclick="addToCart('Patatas cheddar y bacon', 8.50)">Añadir</button></div></div><span class="price">8,50€</span></div>
+            <div class="item"><div class="item-text"><span class="name">Antipasto</span><div class="product-actions"><button class="order-btn" onclick="addToCart('Antipasto', 12.00)">Añadir</button></div></div><span class="price">12,00€</span></div>
+          </div>
+        </div>
+
+        <div class="category reveal" id="ensaladas">
+          <h3>Ensaladas</h3>
+          <div class="menu-grid">
+            <div class="item"><div class="item-text"><span class="name">Ensalada de pollo</span><div class="product-actions"><button class="order-btn" onclick="addToCart('Ensalada de pollo', 9.00)">Añadir</button></div></div><span class="price">9,00€</span></div>
+            <div class="item"><div class="item-text"><span class="name">Ensalada de manzana</span><div class="product-actions"><button class="order-btn" onclick="addToCart('Ensalada de manzana', 9.00)">Añadir</button></div></div><span class="price">9,00€</span></div>
+            <div class="item"><div class="item-text"><span class="name">Ensalada verde</span><div class="product-actions"><button class="order-btn" onclick="addToCart('Ensalada verde', 7.00)">Añadir</button></div></div><span class="price">7,00€</span></div>
+            <div class="item"><div class="item-text"><span class="name">Ensalada mixta</span><div class="product-actions"><button class="order-btn" onclick="addToCart('Ensalada mixta', 8.50)">Añadir</button></div></div><span class="price">8,50€</span></div>
+          </div>
+        </div>
+
+        <div class="category reveal" id="crostones">
+          <h3>Crostones</h3>
+          <div class="menu-grid">
+            <div class="item"><div class="item-text"><span class="name">Crostone serrano</span><div class="product-actions"><button class="order-btn" onclick="addToCart('Crostone serrano', 7.00)">Añadir</button></div></div><span class="price">7,00€</span></div>
+            <div class="item"><div class="item-text"><span class="name">Crostone bolognesa</span><div class="product-actions"><button class="order-btn" onclick="addToCart('Crostone bolognesa', 7.00)">Añadir</button></div></div><span class="price">7,00€</span></div>
+            <div class="item"><div class="item-text"><span class="name">Crostone salmón</span><div class="product-actions"><button class="order-btn" onclick="addToCart('Crostone salmón', 8.00)">Añadir</button></div></div><span class="price">8,00€</span></div>
+          </div>
+        </div>
+
+        <div class="category reveal" id="pasta">
+          <h3>Pasta</h3>
+          <div class="menu-grid">
+            <div class="item"><div class="item-text"><span class="name">Spaguetti + salsa</span><div class="product-actions"><button class="order-btn" onclick="addToCart('Spaguetti + salsa', 9.00)">Añadir</button></div></div><span class="price">desde 9,00€</span></div>
+            <div class="item"><div class="item-text"><span class="name">Tagliatelle + salsa</span><div class="product-actions"><button class="order-btn" onclick="addToCart('Tagliatelle + salsa', 9.00)">Añadir</button></div></div><span class="price">desde 9,00€</span></div>
+            <div class="item"><div class="item-text"><span class="name">Macarrones + salsa</span><div class="product-actions"><button class="order-btn" onclick="addToCart('Macarrones + salsa', 9.00)">Añadir</button></div></div><span class="price">desde 9,00€</span></div>
+            <div class="item"><div class="item-text"><span class="name">Gnocchi + salsa</span><div class="product-actions"><button class="order-btn" onclick="addToCart('Gnocchi + salsa', 9.00)">Añadir</button></div></div><span class="price">desde 9,00€</span></div>
+          </div>
+          <div class="note">En pasta conviene confirmar la salsa al finalizar el pedido por WhatsApp.</div>
+        </div>
+
+        <div class="category reveal" id="especialidades">
+          <h3>Especialidades de la casa</h3>
+          <div class="menu-grid">
+            <div class="item"><div class="item-text"><span class="name">Mixto pasta</span><div class="product-actions"><button class="order-btn" onclick="addToCart('Mixto pasta', 11.50)">Añadir</button></div></div><span class="price">11,50€</span></div>
+            <div class="item"><div class="item-text"><span class="name">Mixto ravioli</span><div class="product-actions"><button class="order-btn" onclick="addToCart('Mixto ravioli', 11.50)">Añadir</button></div></div><span class="price">11,50€</span></div>
+            <div class="item"><div class="item-text"><span class="name">Lasagna</span><div class="product-actions"><button class="order-btn" onclick="addToCart('Lasagna', 8.50)">Añadir</button></div></div><span class="price">8,50€</span></div>
+            <div class="item"><div class="item-text"><span class="name">Cannelloni</span><div class="product-actions"><button class="order-btn" onclick="addToCart('Cannelloni', 8.00)">Añadir</button></div></div><span class="price">8,00€</span></div>
+          </div>
+        </div>
+
+        <div class="category reveal" id="platos">
+          <h3>Platos combinados</h3>
+          <div class="menu-grid">
+            <div class="item"><div class="item-text"><span class="name">Pollo plancha o rebozado</span><div class="product-actions"><button class="order-btn" onclick="addToCart('Pollo plancha o rebozado', 11.50)">Añadir</button></div></div><span class="price">11,50€</span></div>
+            <div class="item"><div class="item-text"><span class="name">Escalopina</span><div class="product-actions"><button class="order-btn" onclick="addToCart('Escalopina', 11.50)">Añadir</button></div></div><span class="price">11,50€</span></div>
+            <div class="item"><div class="item-text"><span class="name">Escalopina napoletana</span><div class="product-actions"><button class="order-btn" onclick="addToCart('Escalopina napoletana', 14.00)">Añadir</button></div></div><span class="price">14,00€</span></div>
+            <div class="item"><div class="item-text"><span class="name">Hamburguesa italiana</span><div class="product-actions"><button class="order-btn" onclick="addToCart('Hamburguesa italiana', 12.50)">Añadir</button></div></div><span class="price">12,50€</span></div>
+          </div>
+        </div>
+
+        <div class="category reveal" id="bebidas">
+          <h3>Bebidas</h3>
+          <div class="menu-grid">
+            <div class="item"><div class="item-text"><span class="name">Refrescos</span><div class="product-actions"><button class="order-btn" onclick="addToCart('Refresco', 2.00)">Añadir</button></div></div><span class="price">2,00€</span></div>
+            <div class="item"><div class="item-text"><span class="name">Caña</span><div class="product-actions"><button class="order-btn" onclick="addToCart('Caña', 2.00)">Añadir</button></div></div><span class="price">2,00€</span></div>
+            <div class="item"><div class="item-text"><span class="name">Agua 0,33</span><div class="product-actions"><button class="order-btn" onclick="addToCart('Agua 0,33', 1.50)">Añadir</button></div></div><span class="price">1,50€</span></div>
+            <div class="item"><div class="item-text"><span class="name">Tercio tostada</span><div class="product-actions"><button class="order-btn" onclick="addToCart('Tercio tostada', 2.50)">Añadir</button></div></div><span class="price">2,50€</span></div>
+          </div>
+        </div>
+
+        <div class="category reveal" id="postres">
+          <h3>Postres</h3>
+          <div class="menu-grid">
+            <div class="item"><div class="item-text"><span class="name">Tiramisú</span><div class="product-actions"><button class="order-btn" onclick="addToCart('Tiramisú', 5.50)">Añadir</button></div></div><span class="price">5,50€</span></div>
+            <div class="item"><div class="item-text"><span class="name">Tarta de queso</span><div class="product-actions"><button class="order-btn" onclick="addToCart('Tarta de queso', 5.50)">Añadir</button></div></div><span class="price">5,50€</span></div>
+            <div class="item"><div class="item-text"><span class="name">Tarta de tres chocolates</span><div class="product-actions"><button class="order-btn" onclick="addToCart('Tarta de tres chocolates', 5.50)">Añadir</button></div></div><span class="price">5,50€</span></div>
+            <div class="item"><div class="item-text"><span class="name">Crep de Nutella</span><div class="product-actions"><button class="order-btn" onclick="addToCart('Crep de Nutella', 5.50)">Añadir</button></div></div><span class="price">5,50€</span></div>
+            <div class="item"><div class="item-text"><span class="name">Crep de dulce de leche</span><div class="product-actions"><button class="order-btn" onclick="addToCart('Crep de dulce de leche', 5.50)">Añadir</button></div></div><span class="price">5,50€</span></div>
+            <div class="item"><div class="item-text"><span class="name">Coulant de chocolate negro</span><div class="product-actions"><button class="order-btn" onclick="addToCart('Coulant de chocolate negro', 5.50)">Añadir</button></div></div><span class="price">5,50€</span></div>
+          </div>
+        </div>
+
+        <div class="category reveal" id="menujoven">
+          <h3>Menú joven y cocas</h3>
+          <div class="menu-grid">
+            <div class="item"><div class="item-text"><span class="name">Menú joven</span><div class="product-actions"><button class="order-btn" onclick="addToCart('Menú joven', 5.00)">Añadir</button></div></div><span class="price">5,00€</span></div>
+            <div class="item"><div class="item-text"><span class="name">Coca sal o azúcar</span><div class="product-actions"><button class="order-btn" onclick="addToCart('Coca sal o azúcar', 2.00)">Añadir</button></div></div><span class="price">2,00€</span></div>
+            <div class="item"><div class="item-text"><span class="name">Coca jamón o queso</span><div class="product-actions"><button class="order-btn" onclick="addToCart('Coca jamón o queso', 3.00)">Añadir</button></div></div><span class="price">3,00€</span></div>
+            <div class="item"><div class="item-text"><span class="name">Coca jamón y queso</span><div class="product-actions"><button class="order-btn" onclick="addToCart('Coca jamón y queso', 4.00)">Añadir</button></div></div><span class="price">4,00€</span></div>
+          </div>
+          <div class="note">Servicio a domicilio: 1,50€ o 2,50€ · Pedido mínimo: 10,00€.</div>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="container" style="padding:0">
+      <div class="cta reveal">
+        <div>
+          <h3>Finaliza tu pedido</h3>
+          <p>Cuando quieras, abre el carrito y envíalo completo por WhatsApp.</p>
+        </div>
+        <div class="actions">
+          <a class="btn btn-outline" href="#carrito">Ver carrito</a>
+          <button class="btn btn-whatsapp" onclick="sendOrder()">Enviar pedido</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <aside class="cart-panel reveal" id="carrito">
+    <h3>Tu carrito</h3>
+    <div class="cart-sub">Añade productos y envía el pedido completo por WhatsApp.</div>
+
+    <div id="cartList" class="cart-list"></div>
+
+    <div class="cart-summary">
+      <div class="cart-row">
+        <span>Productos</span>
+        <strong id="cartItemsCount">0</strong>
+      </div>
+      <div class="cart-row total">
+        <span>Total</span>
+        <span id="cartTotal">0,00€</span>
+      </div>
+      <div class="cart-note">
+        El pedido se enviará por WhatsApp al <strong>621 49 25 66</strong>. Luego podrás indicar si es para recoger o a domicilio.
+      </div>
+      <div class="cart-buttons">
+        <button id="clearCartBtn" class="clear-btn" onclick="clearCart()" disabled>Vaciar carrito</button>
+        <button id="sendCartBtn" class="checkout-btn" onclick="sendOrder()" disabled>Enviar pedido por WhatsApp</button>
+      </div>
+    </div>
+  </aside>
 </div>
-
-<section class="menu container" id="carta">
-  <div class="section-title">
-    <h2>Nuestra carta</h2>
-    <p>Carta completa · pedidos por WhatsApp y teléfono</p>
-  </div>
-
-  <div class="menu-wrap">
-
-    <div class="category reveal" id="pizzas">
-      <h3>Pizzas</h3>
-
-      <div class="best-sellers">
-        <div class="best-card">
-          <span class="tag">⭐ Más vendida</span>
-          <h4>Barbacoa</h4>
-          <p>Tomate, carne picada, bacon, salsa barbacoa y mozzarella.</p>
-          <span class="price">11,90€</span>
-          <a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20la%20pizza%20Barbacoa">Pedir esta pizza</a>
-        </div>
-
-        <div class="best-card">
-          <span class="tag">🔥 Muy pedida</span>
-          <h4>Cuatro estaciones</h4>
-          <p>Tomate, jamón york, champiñones, alcachofas, aceitunas negras, anchoas y mozzarella.</p>
-          <span class="price">11,80€</span>
-          <a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20la%20pizza%20Cuatro%20estaciones">Pedir esta pizza</a>
-        </div>
-
-        <div class="best-card">
-          <span class="tag">⭐ Favorita</span>
-          <h4>Griega</h4>
-          <p>Carne picada, pollo, bacon, cebolla, maíz, salsa yogurt, queso cabra y mozzarella.</p>
-          <span class="price">14,50€</span>
-          <a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20la%20pizza%20Griega">Pedir esta pizza</a>
-        </div>
-      </div>
-
-      <div class="menu-grid">
-        <div class="item"><div class="item-text"><span class="name"><span class="badge-mini badge-ok">RECOMENDADA</span> Calzone</span><span class="desc">Tomate, mozzarella, requesón, jamón york y espinacas.</span></div><span class="price">11,20€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Sencilla</span><span class="desc">Tomate y mozzarella.</span></div><span class="price">7,90€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Margarita</span><span class="desc">Tomate, jamón york y mozzarella.</span></div><span class="price">8,50€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Bianca</span><span class="desc">Nata, bacon, champiñones y mozzarella.</span></div><span class="price">11,20€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Sorrento</span><span class="desc">Tomate, jamón york, champiñones, alcachofas y mozzarella.</span></div><span class="price">10,90€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Savoia</span><span class="desc">Jamón york, tomate, champiñones y mozzarella.</span></div><span class="price">10,70€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Cuatro estaciones</span><span class="desc">Tomate, jamón york, champiñones, alcachofas, aceitunas negras, anchoas y mozzarella.</span></div><span class="price">11,80€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Cuatro quesos</span><span class="desc">Tomate, quesos variados y mozzarella.</span></div><span class="price">10,70€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Roquefort</span><span class="desc">Tomate, roquefort y mozzarella.</span></div><span class="price">10,30€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Gorgonzola</span><span class="desc">Tomate natural y gorgonzola.</span></div><span class="price">10,90€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Capriccio</span><span class="desc">Tomate, atún, champiñones y mozzarella.</span></div><span class="price">10,70€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Napoletana</span><span class="desc">Tomate, anchoas, aceitunas negras, alcaparras y mozzarella.</span></div><span class="price">10,70€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Marinera</span><span class="desc">Tomate, gambas, langostinos, mejillones, calamares y mozzarella.</span></div><span class="price">13,00€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Terranova</span><span class="desc">Tomate, bacalao, pimientos, aceitunas negras y mozzarella.</span></div><span class="price">13,50€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Salmón</span><span class="desc">Tomate, salmón, mozzarella o con piña.</span></div><span class="price">13,00€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Bolognesa</span><span class="desc">Salsa boloñesa y mozzarella.</span></div><span class="price">11,20€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Boscaiola</span><span class="desc">Tomate, ternera picada, pimientos y mozzarella.</span></div><span class="price">11,20€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Toscana</span><span class="desc">Tomate, mozzarella bufala y albahaca.</span></div><span class="price">11,90€</span></div>
-        <div class="item"><div class="item-text"><span class="name"><span class="badge-mini badge-hot">PICANTE</span> Mexicana</span><span class="desc">Ternera picada, salsa chile, tomate, cebolla natural, maíz y mozzarella.</span></div><span class="price">11,90€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Americana</span><span class="desc">Tomate, ternera picada, mostaza y mozzarella.</span></div><span class="price">10,90€</span></div>
-        <div class="item"><div class="item-text"><span class="name"><span class="badge-mini badge-hot">PICANTE</span> Chorizo picante</span><span class="desc">Tomate, chorizo picante y mozzarella.</span></div><span class="price">10,90€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Campesina</span><span class="desc">Tomate, mozzarella, jamón serrano o panceta, o salami.</span></div><span class="price">10,90€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Frankfurt</span><span class="desc">Tomate, frankfurt y mozzarella.</span></div><span class="price">8,50€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Mallorquina</span><span class="desc">Tomate, sobrasada, morcilla negra y mozzarella.</span></div><span class="price">10,90€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Sobrasada</span><span class="desc">Tomate, sobrasada, brie, mozzarella y cebolla frita.</span></div><span class="price">11,20€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Vegetal</span><span class="desc">Tomate, cebolla natural, ajo, calabacín, berenjena, mozzarella y olivas negras.</span></div><span class="price">10,70€</span></div>
-        <div class="item"><div class="item-text"><span class="name">De la casa</span><span class="desc">Tomate, champiñones, mozzarella, parmesano y bresaola.</span></div><span class="price">11,90€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Funghi</span><span class="desc">Mixto setas, tomate y mozzarella.</span></div><span class="price">10,50€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Tropical</span><span class="desc">Tomate, jamón york, piña y mozzarella.</span></div><span class="price">10,90€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Bambini</span><span class="desc">Tomate, patatas fritas, frankfurt y mozzarella.</span></div><span class="price">9,50€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Queso de cabra</span><span class="desc">Jamón york, tomate, queso de cabra y mozzarella.</span></div><span class="price">10,90€</span></div>
-        <div class="item"><div class="item-text"><span class="name"><span class="badge-mini badge-top">TOP</span> Barbacoa</span><span class="desc">Tomate, carne picada, bacon, salsa barbacoa y mozzarella.</span></div><span class="price">11,90€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Curry</span><span class="desc">Tomate, pollo, piña, curry y mozzarella.</span></div><span class="price">11,70€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Rúcula</span><span class="desc">Tomate, champiñones, rúcula y parmesano.</span></div><span class="price">11,90€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Fiorentina</span><span class="desc">Tomate, mozzarella, berenjena, spek, tomate cherry y parmesano.</span></div><span class="price">12,00€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Contadina</span><span class="desc">Tomate, mozzarella, mixto de setas, berenjena y calabacín.</span></div><span class="price">10,90€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Milanese</span><span class="desc">Tomate, mozzarella, mixto de setas, spek y queso fontina.</span></div><span class="price">11,90€</span></div>
-        <div class="item"><div class="item-text"><span class="name"><span class="badge-mini badge-hot">PICANTE</span> Diavola</span><span class="desc">Tomate, mozzarella di bufala, tomate cherry y chorizo picante.</span></div><span class="price">12,00€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Veneciana</span><span class="desc">Tomate, mozzarella, gorgonzola, espinacas y spek.</span></div><span class="price">12,00€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Seis quesos</span><span class="desc">Queso parmesano, cabra, gorgonzola, brie, fontina y mozzarella.</span></div><span class="price">11,50€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Pollo</span><span class="desc">Tomate, mozzarella, pollo y champiñones.</span></div><span class="price">11,70€</span></div>
-        <div class="item"><div class="item-text"><span class="name"><span class="badge-mini badge-ok">RECOMENDADA</span> Griega</span><span class="desc">Carne picada, pollo, bacon, cebolla, maíz, salsa yogurt, queso cabra y mozzarella.</span></div><span class="price">14,50€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Stromboli</span><span class="desc">Tomate, salchicha, bacon, mozzarella, tomate cherry y parmesano.</span></div><span class="price">13,90€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Pizzaiola</span><span class="desc">Tomate, mozzarella di bufala, champiñones, jamón serrano, rúcula, tomate cherry y parmesano.</span></div><span class="price">14,50€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Livorno</span><span class="desc">Tomate, mozzarella, salchichas, patatas y huevo.</span></div><span class="price">11,70€</span></div>
-      </div>
-      <div class="note">Cada suplemento 1€ o 2€ · Consultar.</div>
-    </div>
-
-    <div class="category reveal" id="entrantes">
-      <h3>Entrantes</h3>
-      <div class="menu-grid">
-        <div class="item"><div class="item-text"><span class="name">Aceitunas</span></div><span class="price">2,50€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Pan con alli oli</span></div><span class="price">4,00€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Patatas fritas</span></div><span class="price">5,50€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Patatas bravas</span></div><span class="price">7,50€ G. / 5,50€ P.</span></div>
-        <div class="item"><div class="item-text"><span class="name">Patatas roquefort</span></div><span class="price">8,00€ G. / 6,00€ P.</span></div>
-        <div class="item"><div class="item-text"><span class="name">Patatas gratinadas</span></div><span class="price">9,00€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Patatas gratinadas cuatro quesos</span></div><span class="price">9,00€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Patatas Vinya</span></div><span class="price">7,50€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Patatas cheddar y bacon</span></div><span class="price">8,50€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Plato parmesano</span></div><span class="price">7,00€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Antipasto</span><span class="desc">Surtido embutidos italianos y coca redonda.</span></div><span class="price">12,00€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Calamares a la romana</span></div><span class="price">9,00€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Finguers de pollo</span></div><span class="price">9,50€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Queso brie con mermelada</span></div><span class="price">8,50€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Verdura en tempura</span></div><span class="price">7,50€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Huevos rotos con jamón</span></div><span class="price">10,50€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Huevos rotos con gulas y foie</span></div><span class="price">11,50€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Sepia troceada</span></div><span class="price">9,50€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Pata de pulpo</span></div><span class="price">16,50€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Puntillas</span></div><span class="price">10,00€</span></div>
-      </div>
-    </div>
-
-    <div class="category reveal" id="ensaladas">
-      <h3>Ensaladas</h3>
-      <div class="menu-grid">
-        <div class="item"><div class="item-text"><span class="name">Ensalada de pollo</span><span class="desc">Mixto lechuga, pollo plancha, tomate cherry, parmesano.</span></div><span class="price">9,00€ G. / 7,50€ P.</span></div>
-        <div class="item"><div class="item-text"><span class="name">Ensalada de manzana</span><span class="desc">Manzana, lechuga, champiñones, nueces, salsa yogurt.</span></div><span class="price">9,00€ G. / 8,00€ P.</span></div>
-        <div class="item"><div class="item-text"><span class="name">Ensalada verde</span><span class="desc">Lechuga, tomate, pepino, cebolla, aceitunas.</span></div><span class="price">7,00€ G. / 6,00€ P.</span></div>
-        <div class="item"><div class="item-text"><span class="name">Ensalada mixta</span><span class="desc">Lechuga, tomate, cebolla, aceitunas, anchoas, atún.</span></div><span class="price">8,50€ G. / 7,00€ P.</span></div>
-        <div class="item"><div class="item-text"><span class="name">Endivias al roquefort</span><span class="desc">Con salmón.</span></div><span class="price">10,50€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Ensalada caprese</span><span class="desc">Mozzarella di bufala, tomate, aceite de albahaca.</span></div><span class="price">9,00€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Ensalada queso de cabra</span><span class="desc">Lechuga, pasas, nueces, tomate, vinagreta de frutos rojos y queso de cabra.</span></div><span class="price">10,50€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Ensalada de foie</span><span class="desc">Mixto lechuga, nueces, pasas, queso de cabra, foie, módena y cherry.</span></div><span class="price">13,50€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Carpaccio</span><span class="desc">Bresaola, queso parmesano, lechuga.</span></div><span class="price">10,00€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Ensalada Vinya d'alós</span><span class="desc">Mixto lechuga, maíz, cebolla, queso de cabra, bacon, pollo, parmesano y salsa yogurt.</span></div><span class="price">14,50€</span></div>
-      </div>
-    </div>
-
-    <div class="category reveal" id="crostones">
-      <h3>Crostones</h3>
-      <div class="menu-grid">
-        <div class="item"><div class="item-text"><span class="name">Crostone serrano</span><span class="desc">Jamón serrano, mozzarella.</span></div><span class="price">7,00€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Crostone bolognesa</span><span class="desc">Salsa boloñesa, mozzarella.</span></div><span class="price">7,00€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Crostone Savoia</span><span class="desc">Jamón york, champiñones, mozzarella.</span></div><span class="price">7,00€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Crostone picante</span><span class="desc">Chorizo picante, mozzarella.</span></div><span class="price">7,00€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Crostone salmón</span><span class="desc">Salmón, mozzarella.</span></div><span class="price">8,00€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Crostone mallorquín</span><span class="desc">Sobrasada, mozzarella, morcilla.</span></div><span class="price">7,00€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Crostone napoletano</span><span class="desc">Tomate, mozzarella, anchoas, alcaparras y olivas negras.</span></div><span class="price">7,00€</span></div>
-      </div>
-    </div>
-
-    <div class="category reveal" id="pasta">
-      <h3>Pasta</h3>
-      <div class="menu-grid">
-        <div class="item"><div class="item-text"><span class="name">Spaguetti</span></div><span class="price">Según salsa</span></div>
-        <div class="item"><div class="item-text"><span class="name">Tagliatelle</span></div><span class="price">Según salsa</span></div>
-        <div class="item"><div class="item-text"><span class="name">Macarrones</span></div><span class="price">Según salsa</span></div>
-        <div class="item"><div class="item-text"><span class="name">Gnocchi</span></div><span class="price">Según salsa</span></div>
-        <div class="item"><div class="item-text"><span class="name">Pasta rellena</span><span class="desc">Ravioli o tortellini según disposición. Carne, funghi, espinacas y requesón, y funghi con trufa.</span></div><span class="price">Suplemento 1€</span></div>
-      </div>
-      <div class="note">Escoge el tipo de pasta y combínalo con una de nuestras salsas.</div>
-    </div>
-
-    <div class="category reveal" id="salsas">
-      <h3>Salsas a elegir</h3>
-      <div class="menu-grid">
-        <div class="item"><div class="item-text"><span class="name">Amatriciana</span><span class="desc">Guanciale, parmesano, tomate y guindillas.</span></div><span class="price">9,50€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Carbonara</span></div><span class="price">9,00€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Pesto</span></div><span class="price">9,00€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Gorgonzola</span></div><span class="price">9,00€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Roquefort</span></div><span class="price">9,00€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Bolognesa</span></div><span class="price">9,50€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Marinera picante</span><span class="desc">Mejillones, calamares, gambas, almejas, langostinos.</span></div><span class="price">11,50€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Nata y jamón</span></div><span class="price">9,00€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Salmón</span><span class="desc">Calabacín, nata y salmón.</span></div><span class="price">9,50€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Siciliana</span><span class="desc">Ajos, olivas negras, anchoas, alcaparras, tomate.</span></div><span class="price">9,00€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Cuatro quesos</span></div><span class="price">9,00€</span></div>
-        <div class="item"><div class="item-text"><span class="name">De la casa</span><span class="desc">Espinacas, requesón, bolognesa.</span></div><span class="price">10,00€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Picante</span><span class="desc">Guindilla, ajo y aceite.</span></div><span class="price">8,00€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Tomate</span></div><span class="price">8,00€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Funghi</span><span class="desc">Salsa de champiñones.</span></div><span class="price">9,50€</span></div>
-      </div>
-    </div>
-
-    <div class="category reveal" id="especialidades">
-      <h3>Especialidades de la casa</h3>
-      <div class="menu-grid">
-        <div class="item"><div class="item-text"><span class="name">Mixto pasta</span><span class="desc">Mezcla de spaguetti, gnocchi, tortellini carne, ravioli funghi, con salsa de la casa.</span></div><span class="price">11,50€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Mixto ravioli</span><span class="desc">Pasta rellena de espinacas, requesón, bolognesa, con salsa de la casa.</span></div><span class="price">11,50€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Lasagna</span><span class="desc">Carne.</span></div><span class="price">8,50€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Lasagna verdura</span></div><span class="price">8,50€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Lasagna espinacas</span></div><span class="price">8,50€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Fiocchi pera y queso</span><span class="desc">Salsa cuatro quesos.</span></div><span class="price">9,00€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Cannelloni</span><span class="desc">Blanco.</span></div><span class="price">8,00€</span></div>
-      </div>
-    </div>
-
-    <div class="category reveal" id="platos">
-      <h3>Platos combinados</h3>
-      <div class="menu-grid">
-        <div class="item"><div class="item-text"><span class="name">Pollo plancha o rebozado</span></div><span class="price">11,50€ G. / 8,50€ P.</span></div>
-        <div class="item"><div class="item-text"><span class="name">Escalopina</span></div><span class="price">11,50€ G. / 8,50€ P.</span></div>
-        <div class="item"><div class="item-text"><span class="name">Escalopina napoletana</span><span class="desc">Carne rebozada, jamón york, queso, salsa tomate.</span></div><span class="price">14,00€ G. / 11,00€ P.</span></div>
-        <div class="item"><div class="item-text"><span class="name">Solomillo en salsa de champiñones</span></div><span class="price">14,50€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Hamburguesa italiana</span><span class="desc">Pan casero con masa de pizza, hamburguesa de carne, salsa cheddar, bacon, cebolla frita, tomate, lechuga y nuestra salsa casera.</span></div><span class="price">12,50€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Hamburguesa Giulia</span><span class="desc">Pan casero con masa de pizza, pollo rebozado, jamón serrano, queso fontina, lechuga y salsa de pimienta.</span></div><span class="price">12,50€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Enterita a la plancha</span></div><span class="price">12,50€</span></div>
-      </div>
-      <div class="note">G. = grande · P. = pequeño.</div>
-    </div>
-
-    <div class="category reveal" id="bebidas">
-      <h3>Bebidas</h3>
-      <div class="menu-grid">
-        <div class="item"><div class="item-text"><span class="name">Refrescos</span></div><span class="price">2,00€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Caña</span></div><span class="price">2,00€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Tanque</span></div><span class="price">3,50€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Champú</span></div><span class="price">2,00€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Champú tanque</span></div><span class="price">3,50€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Clara caña</span></div><span class="price">2,00€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Clara tanque</span></div><span class="price">3,50€</span></div>
-        <div class="item"><div class="item-text"><span class="name">1/3 l</span></div><span class="price">2,20€</span></div>
-        <div class="item"><div class="item-text"><span class="name">1/3 l sin alcohol</span></div><span class="price">2,20€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Tercio tostada</span></div><span class="price">2,50€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Agua con gas 0.33 cl</span></div><span class="price">2,00€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Agua con gas 0.75 cl</span></div><span class="price">3,50€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Agua 0.33 cl</span></div><span class="price">1,50€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Agua 1.0 l</span></div><span class="price">2,50€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Gaseosa 1/2 l</span></div><span class="price">2,00€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Gaseosa 1 l</span></div><span class="price">3,00€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Vino de la casa tinto 1 l</span></div><span class="price">6,50€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Vino de la casa tinto 1/2 l</span></div><span class="price">4,00€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Tinto de verano copa</span></div><span class="price">3,50€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Copa sangría</span></div><span class="price">3,50€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Copa de vino de la casa</span></div><span class="price">2,50€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Copa de vino Rioja o verdejo</span></div><span class="price">3,50€</span></div>
-      </div>
-    </div>
-
-    <div class="category reveal" id="postres">
-      <h3>Postres</h3>
-      <div class="menu-grid">
-        <div class="item"><div class="item-text"><span class="name">Tiramisú</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Tiramisú">Pedir este postre</a></div><span class="price">5,50€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Tarta de queso</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Tarta%20de%20queso">Pedir este postre</a></div><span class="price">5,50€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Tarta de tres chocolates</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Tarta%20de%20tres%20chocolates">Pedir este postre</a></div><span class="price">5,50€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Crep de Nutella</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Crep%20de%20Nutella">Pedir este postre</a></div><span class="price">5,50€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Crep de dulce de leche</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Crep%20de%20dulce%20de%20leche">Pedir este postre</a></div><span class="price">5,50€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Coulant de chocolate negro</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Coulant%20de%20chocolate%20negro">Pedir este postre</a></div><span class="price">5,50€</span></div>
-      </div>
-    </div>
-
-    <div class="category reveal" id="menujoven">
-      <h3>Menú joven y cocas</h3>
-      <div class="menu-grid">
-        <div class="item"><div class="item-text"><span class="name">Menú joven</span><span class="desc">Pizza sencilla, margarita, atún, frankfurt, bambini o Nutella + refresco Coca-Cola, Fanta naranja, Fanta limón o agua.</span></div><span class="price">5,00€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Coca sal o azúcar</span></div><span class="price">2,00€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Coca jamón o queso</span></div><span class="price">3,00€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Coca jamón y queso</span></div><span class="price">4,00€</span></div>
-      </div>
-      <div class="note">Servicio a domicilio: 1,50€ o 2,50€ · Pedido mínimo: 10,00€.</div>
-    </div>
-
-  </div>
-</section>
-
-<section class="container">
-  <div class="cta reveal">
-    <div>
-      <h3>Haz tu pedido ahora</h3>
-      <p>Pizzas, postres y carta completa por WhatsApp o teléfono.</p>
-    </div>
-    <div class="actions">
-      <a class="btn btn-outline" href="tel:+34964828491">Llamar</a>
-      <a class="btn btn-whatsapp" href="https://wa.me/34621492566?text=Hola,%20quiero%20hacer%20un%20pedido">Pedir por WhatsApp</a>
-    </div>
-  </div>
-</section>
 
 <footer>
   <div class="container footer-grid">
@@ -984,7 +1123,132 @@ footer{
   </div>
 </footer>
 
-<a class="sticky" href="https://wa.me/34621492566?text=Hola,%20quiero%20hacer%20un%20pedido">📲 Pedir por WhatsApp</a>
+<a class="sticky" href="https://wa.me/34621492566?text=Hola,%20quiero%20hacer%20un%20pedido">📲 WhatsApp directo</a>
+
+<button class="cart-floating" onclick="document.getElementById('carrito').scrollIntoView({behavior:'smooth'})">
+  🛒 Carrito <span class="cart-count" id="floatingCartCount">0</span>
+</button>
+
+<script>
+const cart = [];
+
+function formatPrice(value){
+  return value.toFixed(2).replace('.', ',') + '€';
+}
+
+function addToCart(name, price){
+  const found = cart.find(item => item.name === name);
+  if(found){
+    found.qty += 1;
+  } else {
+    cart.push({ name, price, qty: 1 });
+  }
+  renderCart();
+}
+
+function increaseQty(name){
+  const item = cart.find(p => p.name === name);
+  if(item){
+    item.qty += 1;
+    renderCart();
+  }
+}
+
+function decreaseQty(name){
+  const item = cart.find(p => p.name === name);
+  if(!item) return;
+  item.qty -= 1;
+  if(item.qty <= 0){
+    const index = cart.findIndex(p => p.name === name);
+    if(index > -1) cart.splice(index, 1);
+  }
+  renderCart();
+}
+
+function removeItem(name){
+  const index = cart.findIndex(p => p.name === name);
+  if(index > -1){
+    cart.splice(index, 1);
+    renderCart();
+  }
+}
+
+function clearCart(){
+  cart.length = 0;
+  renderCart();
+}
+
+function renderCart(){
+  const cartList = document.getElementById('cartList');
+  const cartTotal = document.getElementById('cartTotal');
+  const cartItemsCount = document.getElementById('cartItemsCount');
+  const sendBtn = document.getElementById('sendCartBtn');
+  const clearBtn = document.getElementById('clearCartBtn');
+  const floatingCount = document.getElementById('floatingCartCount');
+
+  cartList.innerHTML = '';
+
+  if(cart.length === 0){
+    cartList.innerHTML = '<div class="cart-empty">Tu carrito está vacío.<br>Añade productos de la carta.</div>';
+  } else {
+    cart.forEach(item => {
+      const totalItem = item.price * item.qty;
+      const div = document.createElement('div');
+      div.className = 'cart-item';
+      div.innerHTML = `
+        <div class="cart-item-top">
+          <div class="cart-item-name">${item.name}</div>
+          <div class="cart-item-price">${formatPrice(totalItem)}</div>
+        </div>
+        <div class="cart-controls">
+          <div class="qty-wrap">
+            <button class="qty-btn" onclick="decreaseQty(${JSON.stringify(item.name)})">−</button>
+            <div class="qty-number">${item.qty}</div>
+            <button class="qty-btn" onclick="increaseQty(${JSON.stringify(item.name)})">+</button>
+          </div>
+          <button class="remove-btn" onclick="removeItem(${JSON.stringify(item.name)})">Eliminar</button>
+        </div>
+      `;
+      cartList.appendChild(div);
+    });
+  }
+
+  const totalProducts = cart.reduce((sum, item) => sum + item.qty, 0);
+  const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+
+  cartItemsCount.textContent = totalProducts;
+  floatingCount.textContent = totalProducts;
+  cartTotal.textContent = formatPrice(totalPrice);
+
+  const disabled = cart.length === 0;
+  sendBtn.disabled = disabled;
+  clearBtn.disabled = disabled;
+}
+
+function sendOrder(){
+  if(cart.length === 0){
+    alert('Añade primero productos al carrito.');
+    return;
+  }
+
+  let message = 'Hola, quiero hacer este pedido en La Italiana:%0A%0A';
+  let total = 0;
+
+  cart.forEach(item => {
+    const subtotal = item.price * item.qty;
+    total += subtotal;
+    message += `- ${item.qty} x ${item.name} (${formatPrice(item.price)}) = ${formatPrice(subtotal)}%0A`;
+  });
+
+  message += `%0ATotal: ${formatPrice(total)}%0A`;
+  message += '%0A¿Es para recoger o a domicilio?';
+  const url = `https://wa.me/34621492566?text=${message}`;
+
+  window.open(url, '_blank');
+}
+
+renderCart();
+</script>
 
 </body>
 </html>
