@@ -31,10 +31,15 @@ body{
   font-family:'Inter',sans-serif;
   color:var(--text);
   background:
-    linear-gradient(rgba(17,13,10,.92), rgba(17,13,10,.96)),
-    radial-gradient(circle at bottom right, rgba(255,120,40,.10), transparent 30%),
-    linear-gradient(180deg, #1f1814 0%, #241b16 100%);
+    linear-gradient(rgba(15,10,8,.88), rgba(15,10,8,.94)),
+    url('https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=1600&q=80'),
+    url('https://images.unsplash.com/photo-1548365328-9f547fb0953c?auto=format&fit=crop&w=1600&q=80'),
+    url('https://images.unsplash.com/photo-1555992336-03a23c7b20ee?auto=format&fit=crop&w=1600&q=80');
+  background-size:cover;
+  background-position:center;
+  background-attachment:fixed;
 }
+
 a{text-decoration:none;color:inherit}
 .container{max-width:var(--max);margin:0 auto;padding:0 18px}
 
@@ -142,9 +147,10 @@ a{text-decoration:none;color:inherit}
   border:1px solid rgba(239,227,214,.10);
   box-shadow:var(--shadow);
   background:
-    linear-gradient(rgba(28,20,16,.80), rgba(28,20,16,.90)),
-    radial-gradient(circle at bottom right, rgba(255,120,40,.18), transparent 28%),
-    linear-gradient(120deg, rgba(80,55,36,.20), rgba(0,0,0,0));
+    linear-gradient(rgba(28,20,16,.82), rgba(28,20,16,.90)),
+    url('https://images.unsplash.com/photo-1594007654729-407eedc4be65?auto=format&fit=crop&w=1600&q=80');
+  background-size:cover;
+  background-position:center;
 }
 .hero-grid{
   display:grid;
@@ -178,10 +184,16 @@ a{text-decoration:none;color:inherit}
   line-height:1.6;
 }
 .hero .sales-line{
-  margin:0 0 26px;
+  margin:0 0 16px;
   color:var(--gold3);
   font-size:16px;
   font-weight:600;
+}
+.confianza{
+  margin:0 0 26px;
+  font-size:14px;
+  color:var(--gold3);
+  letter-spacing:.5px;
 }
 .info-card{
   background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
@@ -408,21 +420,17 @@ a{text-decoration:none;color:inherit}
   flex-wrap:wrap;
   margin-top:8px;
 }
-.mini-tag{
+.badge-mini{
   display:inline-block;
-  padding:5px 9px;
-  border-radius:999px;
-  font-size:12px;
+  padding:4px 8px;
+  border-radius:6px;
+  font-size:11px;
   font-weight:800;
 }
-.mini-tag.hot{
-  background:rgba(255,120,40,.12);
-  color:#ffbf8a;
-}
-.mini-tag.top{
-  background:rgba(212,177,131,.12);
-  color:var(--gold3);
-}
+.badge-top{background:#d4b183;color:#1f1814;}
+.badge-hot{background:#ff6a3d;color:white;}
+.badge-ok{background:#3a7f5d;color:white;}
+
 .item .price{
   color:var(--gold);
   font-weight:800;
@@ -585,6 +593,7 @@ footer{
           <h2>Pizzas buenísimas hechas con mucho cariño</h2>
           <p><strong>Tradición italiana desde 1982</strong><br>Frente al mar en Vinaròs · Para llevar, en local y a domicilio</p>
           <p class="sales-line">Recetas italianas desde 1982 · Pedido rápido por WhatsApp · Abiertos de miércoles a domingo</p>
+          <p class="confianza">Servicio a domicilio · Para llevar · En local · Desde 1982</p>
           <div class="actions">
             <a class="btn btn-whatsapp" href="https://wa.me/34621492566?text=Hola,%20quiero%20hacer%20un%20pedido">📲 Pedir ahora por WhatsApp</a>
             <a class="btn btn-outline" href="#pizzas">Ver pizzas</a>
@@ -690,13 +699,13 @@ footer{
       </div>
 
       <div class="menu-grid">
-        <div class="item"><div class="item-text"><span class="name">Calzone</span><span class="desc">Tomate, mozzarella, requesón, jamón york y espinacas.</span></div><span class="price">11,20€</span></div>
+        <div class="item"><div class="item-text"><span class="name"><span class="badge-mini badge-ok">RECOMENDADA</span> Calzone</span><span class="desc">Tomate, mozzarella, requesón, jamón york y espinacas.</span></div><span class="price">11,20€</span></div>
         <div class="item"><div class="item-text"><span class="name">Sencilla</span><span class="desc">Tomate y mozzarella.</span></div><span class="price">7,90€</span></div>
         <div class="item"><div class="item-text"><span class="name">Margarita</span><span class="desc">Tomate, jamón york y mozzarella.</span></div><span class="price">8,50€</span></div>
         <div class="item"><div class="item-text"><span class="name">Bianca</span><span class="desc">Nata, bacon, champiñones y mozzarella.</span></div><span class="price">11,20€</span></div>
         <div class="item"><div class="item-text"><span class="name">Sorrento</span><span class="desc">Tomate, jamón york, champiñones, alcachofas y mozzarella.</span></div><span class="price">10,90€</span></div>
         <div class="item"><div class="item-text"><span class="name">Savoia</span><span class="desc">Jamón york, tomate, champiñones y mozzarella.</span></div><span class="price">10,70€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Cuatro estaciones</span><span class="desc">Tomate, jamón york, champiñones, alcachofas, aceitunas negras, anchoas y mozzarella.</span><div class="mini-tags"><span class="mini-tag hot">🔥 Muy pedida hoy</span></div></div><span class="price">11,80€</span></div>
+        <div class="item"><div class="item-text"><span class="name"><span class="badge-mini badge-hot">PICANTE</span> Cuatro estaciones</span><span class="desc">Tomate, jamón york, champiñones, alcachofas, aceitunas negras, anchoas y mozzarella.</span></div><span class="price">11,80€</span></div>
         <div class="item"><div class="item-text"><span class="name">Cuatro quesos</span><span class="desc">Tomate, quesos variados y mozzarella.</span></div><span class="price">10,70€</span></div>
         <div class="item"><div class="item-text"><span class="name">Roquefort</span><span class="desc">Tomate, roquefort y mozzarella.</span></div><span class="price">10,30€</span></div>
         <div class="item"><div class="item-text"><span class="name">Gorgonzola</span><span class="desc">Tomate natural y gorgonzola.</span></div><span class="price">10,90€</span></div>
@@ -711,7 +720,7 @@ footer{
         <div class="item"><div class="item-text"><span class="name">Capri</span><span class="desc">Tomate, bacon, huevo y mozzarella.</span></div><span class="price">11,20€</span></div>
         <div class="item"><div class="item-text"><span class="name">Mexicana</span><span class="desc">Ternera picada, salsa chile, tomate, cebolla natural, maíz y mozzarella.</span></div><span class="price">11,90€</span></div>
         <div class="item"><div class="item-text"><span class="name">Americana</span><span class="desc">Tomate, ternera picada, mostaza y mozzarella.</span></div><span class="price">10,90€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Chorizo picante</span><span class="desc">Tomate, chorizo picante y mozzarella.</span></div><span class="price">10,90€</span></div>
+        <div class="item"><div class="item-text"><span class="name"><span class="badge-mini badge-hot">PICANTE</span> Chorizo picante</span><span class="desc">Tomate, chorizo picante y mozzarella.</span></div><span class="price">10,90€</span></div>
         <div class="item"><div class="item-text"><span class="name">Campesina</span><span class="desc">Tomate, mozzarella, jamón serrano o panceta, o salami.</span></div><span class="price">10,90€</span></div>
         <div class="item"><div class="item-text"><span class="name">Frankfurt</span><span class="desc">Tomate, frankfurt y mozzarella.</span></div><span class="price">8,50€</span></div>
         <div class="item"><div class="item-text"><span class="name">Mallorquina</span><span class="desc">Tomate, sobrasada, morcilla negra y mozzarella.</span></div><span class="price">10,90€</span></div>
@@ -722,17 +731,17 @@ footer{
         <div class="item"><div class="item-text"><span class="name">Tropical</span><span class="desc">Tomate, jamón york, piña y mozzarella.</span></div><span class="price">10,90€</span></div>
         <div class="item"><div class="item-text"><span class="name">Bambini</span><span class="desc">Tomate, patatas fritas, frankfurt y mozzarella.</span></div><span class="price">9,50€</span></div>
         <div class="item"><div class="item-text"><span class="name">Queso de cabra</span><span class="desc">Jamón york, tomate, queso de cabra y mozzarella.</span></div><span class="price">10,90€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Barbacoa</span><span class="desc">Tomate, carne picada, bacon, salsa barbacoa y mozzarella.</span><div class="mini-tags"><span class="mini-tag top">⭐ Más vendida</span><span class="mini-tag hot">🔥 Muy pedida hoy</span></div></div><span class="price">11,90€</span></div>
+        <div class="item"><div class="item-text"><span class="name"><span class="badge-mini badge-top">TOP</span> Barbacoa</span><span class="desc">Tomate, carne picada, bacon, salsa barbacoa y mozzarella.</span></div><span class="price">11,90€</span></div>
         <div class="item"><div class="item-text"><span class="name">Curry</span><span class="desc">Tomate, pollo, piña, curry y mozzarella.</span></div><span class="price">11,70€</span></div>
         <div class="item"><div class="item-text"><span class="name">Rúcula</span><span class="desc">Tomate, champiñones, rúcula y parmesano.</span></div><span class="price">11,90€</span></div>
         <div class="item"><div class="item-text"><span class="name">Fiorentina</span><span class="desc">Tomate, mozzarella, berenjena, spek, tomate cherry y parmesano.</span></div><span class="price">12,00€</span></div>
         <div class="item"><div class="item-text"><span class="name">Contadina</span><span class="desc">Tomate, mozzarella, mixto de setas, berenjena y calabacín.</span></div><span class="price">10,90€</span></div>
         <div class="item"><div class="item-text"><span class="name">Milanese</span><span class="desc">Tomate, mozzarella, mixto de setas, spek y queso fontina.</span></div><span class="price">11,90€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Diavola</span><span class="desc">Tomate, mozzarella di bufala, tomate cherry y chorizo picante.</span></div><span class="price">12,00€</span></div>
+        <div class="item"><div class="item-text"><span class="name"><span class="badge-mini badge-hot">PICANTE</span> Diavola</span><span class="desc">Tomate, mozzarella di bufala, tomate cherry y chorizo picante.</span></div><span class="price">12,00€</span></div>
         <div class="item"><div class="item-text"><span class="name">Veneciana</span><span class="desc">Tomate, mozzarella, gorgonzola, espinacas y spek.</span></div><span class="price">12,00€</span></div>
         <div class="item"><div class="item-text"><span class="name">Seis quesos</span><span class="desc">Queso parmesano, cabra, gorgonzola, brie, fontina y mozzarella.</span></div><span class="price">11,50€</span></div>
         <div class="item"><div class="item-text"><span class="name">Pollo</span><span class="desc">Tomate, mozzarella, pollo y champiñones.</span></div><span class="price">11,70€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Griega</span><span class="desc">Carne picada, pollo, bacon, cebolla, maíz, salsa yogurt, queso cabra y mozzarella.</span></div><span class="price">14,50€</span></div>
+        <div class="item"><div class="item-text"><span class="name"><span class="badge-mini badge-ok">RECOMENDADA</span> Griega</span><span class="desc">Carne picada, pollo, bacon, cebolla, maíz, salsa yogurt, queso cabra y mozzarella.</span></div><span class="price">14,50€</span></div>
         <div class="item"><div class="item-text"><span class="name">Stromboli</span><span class="desc">Tomate, salchicha, bacon, mozzarella, tomate cherry y parmesano.</span></div><span class="price">13,90€</span></div>
         <div class="item"><div class="item-text"><span class="name">Pizzaiola</span><span class="desc">Tomate, mozzarella di bufala, champiñones, jamón serrano, rúcula, tomate cherry y parmesano.</span></div><span class="price">14,50€</span></div>
         <div class="item"><div class="item-text"><span class="name">Livorno</span><span class="desc">Tomate, mozzarella, salchichas, patatas y huevo.</span></div><span class="price">11,70€</span></div>
