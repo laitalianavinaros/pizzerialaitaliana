@@ -1,4 +1,490 @@
-<!-- SOLO TE PONGO LA PARTE DE LA CARTA ACTUALIZADA (lo demás ya lo tienes bien) -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pizzería La Italiana Vinaròs</title>
+<meta name="description" content="Pizzería La Italiana en Vinaròs. Carta completa, pedidos por WhatsApp y tradición italiana desde 1982.">
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap');
+
+:root{
+  --bg:#1f1814;
+  --bg2:#2a201b;
+  --card:#352821;
+  --card2:#403029;
+  --text:#efe3d6;
+  --muted:#ccb7a0;
+  --gold:#d4b183;
+  --gold2:#b98c57;
+  --line:rgba(239,227,214,.10);
+  --shadow:0 20px 50px rgba(0,0,0,.28);
+  --max:1180px;
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:'Inter',sans-serif;
+  color:var(--text);
+  background:
+    linear-gradient(rgba(17,13,10,.92), rgba(17,13,10,.96)),
+    radial-gradient(circle at bottom right, rgba(255,120,40,.10), transparent 30%),
+    linear-gradient(180deg, #1f1814 0%, #241b16 100%);
+}
+
+a{text-decoration:none;color:inherit}
+.container{max-width:var(--max);margin:0 auto;padding:0 18px}
+
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(24px)}
+  to{opacity:1;transform:translateY(0)}
+}
+@keyframes glow{
+  0%,100%{box-shadow:0 14px 30px rgba(0,0,0,.28)}
+  50%{box-shadow:0 18px 38px rgba(212,177,131,.18)}
+}
+@keyframes smokeMove{
+  from{transform:translateY(0);opacity:.22}
+  to{transform:translateY(-45px);opacity:.08}
+}
+
+.reveal{animation:fadeUp .9s ease both}
+
+.topbar{
+  position:sticky;
+  top:0;
+  z-index:50;
+  background:linear-gradient(180deg, rgba(24,18,14,.96), rgba(24,18,14,.88));
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
+}
+.topbar-inner{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  padding:18px 0;
+}
+.brand h1{
+  margin:0;
+  font-family:'Cormorant Garamond',serif;
+  font-size:58px;
+  line-height:.95;
+  font-style:italic;
+  font-weight:600;
+  letter-spacing:.5px;
+}
+.brand .meta{
+  margin-top:4px;
+  color:var(--muted);
+  text-transform:uppercase;
+  letter-spacing:1.4px;
+  font-size:14px;
+}
+.brand .phone{
+  margin-top:8px;
+  font-size:18px;
+  font-weight:700;
+}
+
+.actions{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:13px 22px;
+  border-radius:999px;
+  font-weight:700;
+  transition:.25s ease;
+}
+.btn:hover{transform:translateY(-2px)}
+
+.btn-outline{
+  background:#111;
+  color:#eadfce;
+  border:1px solid #333;
+}
+
+.btn-gold{
+  background:#111;
+  color:#eadfce;
+  border:1px solid #333;
+  box-shadow:0 0 18px rgba(0,0,0,.18);
+}
+.btn-gold:hover{
+  box-shadow:0 0 24px rgba(212,177,131,.20);
+}
+
+.hero{
+  padding:34px 0 20px;
+}
+.hero-box{
+  position:relative;
+  overflow:hidden;
+  border-radius:32px;
+  border:1px solid rgba(239,227,214,.10);
+  box-shadow:var(--shadow);
+  background:
+    linear-gradient(rgba(28,20,16,.78), rgba(28,20,16,.90)),
+    radial-gradient(circle at bottom right, rgba(255,120,40,.18), transparent 28%),
+    linear-gradient(120deg, rgba(80,55,36,.20), rgba(0,0,0,0));
+}
+.hero-grid{
+  display:grid;
+  grid-template-columns:1.1fr .9fr;
+  gap:28px;
+  padding:52px 38px;
+}
+.badge{
+  display:inline-block;
+  padding:8px 14px;
+  border-radius:999px;
+  border:1px solid rgba(239,227,214,.16);
+  background:rgba(255,255,255,.03);
+  color:var(--text);
+  font-size:12px;
+  letter-spacing:1.6px;
+  text-transform:uppercase;
+  margin-bottom:18px;
+}
+.hero h2{
+  margin:0 0 18px;
+  font-family:'Cormorant Garamond',serif;
+  font-size:76px;
+  line-height:1;
+  font-weight:600;
+}
+.hero p{
+  margin:0 0 22px;
+  max-width:650px;
+  color:var(--muted);
+  font-size:20px;
+  line-height:1.6;
+}
+.info-card{
+  background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+  border:1px solid rgba(239,227,214,.12);
+  border-radius:24px;
+  padding:26px;
+}
+.info-card h3{
+  margin:0 0 14px;
+  font-family:'Cormorant Garamond',serif;
+  font-size:30px;
+}
+.info-card p{
+  margin:8px 0;
+  color:var(--text);
+  font-size:17px;
+}
+
+.story{
+  margin-top:18px;
+}
+.story-box{
+  background:linear-gradient(180deg, rgba(53,40,33,.96), rgba(61,45,37,.98));
+  border:1px solid var(--line);
+  border-radius:24px;
+  box-shadow:var(--shadow);
+  padding:34px 28px;
+}
+.section-title{
+  text-align:center;
+  margin-bottom:24px;
+}
+.section-title h2{
+  margin:0;
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic;
+  font-size:68px;
+  line-height:1;
+}
+.section-title h2::after{
+  content:"";
+  display:block;
+  width:120px;
+  height:2px;
+  margin:14px auto 0;
+  background:linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+.section-title p{
+  margin:10px 0 0;
+  color:var(--muted);
+  letter-spacing:1px;
+  text-transform:uppercase;
+  font-size:14px;
+}
+.story-text{
+  max-width:920px;
+  margin:0 auto;
+  color:var(--text);
+  line-height:1.8;
+  font-size:18px;
+}
+.story-text .lead{
+  font-family:'Cormorant Garamond',serif;
+  font-size:32px;
+  font-style:italic;
+  line-height:1.3;
+}
+
+.quicknav{
+  display:flex;
+  gap:10px;
+  overflow:auto;
+  padding:18px 0 8px;
+  scrollbar-width:none;
+}
+.quicknav::-webkit-scrollbar{display:none}
+.chip{
+  white-space:nowrap;
+  padding:11px 18px;
+  border-radius:999px;
+  background:rgba(53,40,33,.92);
+  border:1px solid var(--line);
+  color:var(--text);
+  font-size:14px;
+  font-weight:600;
+  transition:.25s ease;
+}
+.chip:hover{
+  transform:translateY(-2px);
+  border-color:rgba(212,177,131,.28);
+  box-shadow:0 8px 20px rgba(0,0,0,.22);
+}
+
+.menu{
+  padding:8px 0 24px;
+}
+.menu-wrap{
+  display:grid;
+  gap:18px;
+}
+.category{
+  background:linear-gradient(180deg, rgba(53,40,33,.98), rgba(64,48,41,.98));
+  border:1px solid var(--line);
+  border-radius:24px;
+  box-shadow:var(--shadow);
+  padding:28px;
+  transition:.25s ease;
+}
+.category:hover{
+  transform:translateY(-5px);
+  border-color:rgba(212,177,131,.22);
+}
+.category h3{
+  margin:0 0 18px;
+  font-family:'Cormorant Garamond',serif;
+  font-size:42px;
+  border-bottom:1px solid var(--line);
+  padding-bottom:12px;
+}
+.menu-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:0 24px;
+}
+.item{
+  display:flex;
+  justify-content:space-between;
+  gap:16px;
+  padding:12px 10px;
+  border-bottom:1px dashed rgba(239,227,214,.10);
+  border-radius:12px;
+  transition:.2s ease;
+}
+.item:hover{
+  background:rgba(212,177,131,.06);
+  transform:translateX(4px);
+}
+.item .name{
+  font-weight:600;
+}
+.item .price{
+  color:var(--gold);
+  font-weight:700;
+  white-space:nowrap;
+}
+.note{
+  margin-top:14px;
+  padding:14px 16px;
+  border-radius:14px;
+  background:rgba(255,255,255,.03);
+  border:1px solid var(--line);
+  color:var(--muted);
+  font-size:15px;
+}
+
+.cta{
+  margin:28px 0 24px;
+  background:linear-gradient(135deg,var(--gold),var(--gold2));
+  color:#2b1f18;
+  border-radius:28px;
+  padding:30px;
+  box-shadow:var(--shadow);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:18px;
+  flex-wrap:wrap;
+}
+.cta h3{
+  margin:0;
+  font-family:'Cormorant Garamond',serif;
+  font-size:46px;
+}
+.cta p{
+  margin:8px 0 0;
+  font-size:18px;
+  color:#4a3529;
+}
+
+footer{
+  padding:18px 0 95px;
+  border-top:1px solid var(--line);
+}
+.footer-grid{
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:20px;
+  align-items:center;
+}
+.footer-grid h3{
+  margin:0 0 6px;
+  font-family:'Cormorant Garamond',serif;
+  font-size:32px;
+}
+.footer-grid p{
+  margin:0;
+  color:var(--muted);
+}
+
+.sticky{
+  position:fixed;
+  left:14px;
+  right:14px;
+  bottom:14px;
+  z-index:70;
+  text-align:center;
+  padding:16px 20px;
+  border-radius:999px;
+  font-weight:800;
+  background:linear-gradient(135deg,var(--gold),var(--gold2));
+  color:#2b1f18;
+  animation:glow 2.8s ease-in-out infinite;
+  box-shadow:0 18px 36px rgba(0,0,0,.35);
+}
+
+.smoke{
+  position:fixed;
+  left:0;
+  right:0;
+  bottom:0;
+  height:180px;
+  pointer-events:none;
+  background:radial-gradient(circle, rgba(255,255,255,.08), transparent 70%);
+  filter:blur(40px);
+  animation:smokeMove 8s infinite alternate ease-in-out;
+}
+
+@media (max-width: 980px){
+  .hero-grid,.footer-grid,.cta{grid-template-columns:1fr}
+  .hero-grid{grid-template-columns:1fr}
+  .menu-grid{grid-template-columns:1fr}
+  .hero h2{font-size:48px}
+}
+
+@media (max-width: 560px){
+  .brand h1{font-size:40px}
+  .hero-grid{padding:32px 20px}
+  .hero h2{font-size:42px}
+  .section-title h2{font-size:46px}
+  .btn{width:100%}
+  .actions{width:100%}
+  .actions .btn{flex:1}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="container topbar-inner">
+    <div class="brand reveal">
+      <h1>Pizzería La Italiana</h1>
+      <div class="meta">Desde 1982 · Vinaròs · Frente al mar</div>
+      <div class="phone">📞 +34 621 49 25 66</div>
+    </div>
+    <div class="actions">
+      <a class="btn btn-outline" href="tel:+34621492566">Llamar</a>
+      <a class="btn btn-gold" href="https://wa.me/34621492566?text=Hola,%20quiero%20hacer%20un%20pedido">Pedir por WhatsApp</a>
+    </div>
+  </div>
+</div>
+
+<section class="hero">
+  <div class="container">
+    <div class="hero-box reveal">
+      <div class="hero-grid">
+        <div>
+          <div class="badge">Auténtica pizzería italiana · Desde 1982</div>
+          <h2>Pizzería desde 1982, pizzas buenísimas hechas con mucho cariño</h2>
+          <p><strong>Tradición italiana desde 1982</strong><br>Frente al mar en Vinaròs · Para llevar, en local y a domicilio</p>
+          <div class="actions">
+            <a class="btn btn-gold" href="https://wa.me/34621492566?text=Hola,%20quiero%20hacer%20un%20pedido">Pedir ahora</a>
+            <a class="btn btn-outline" href="#historia">Nuestra historia</a>
+          </div>
+        </div>
+        <div class="info-card">
+          <h3>Información del local</h3>
+          <p>Paseo Blasco Ibáñez 13, Vinaròs</p>
+          <p>+34 621 49 25 66</p>
+          <p>Miércoles a viernes: 17:00–23:00</p>
+          <p>Sábado y domingo: 12:00–23:00</p>
+          <p>Servicio a domicilio</p>
+          <p>Pedido mínimo: 10,00€</p>
+          <p>Pedidos por teléfono o WhatsApp</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="story container" id="historia">
+  <div class="story-box reveal">
+    <div class="section-title">
+      <h2>La esencia de La Italiana</h2>
+      <p>Un estilo italiano elegante, clásico y acogedor</p>
+    </div>
+    <div class="story-text">
+      <p class="lead">Desde 1982, en La Italiana cuidamos cada detalle para ofrecer mucho más que una comida: una experiencia con auténtica esencia italiana.</p>
+      <p>Nuestra cocina nace del respeto por la tradición, los buenos ingredientes y el placer de disfrutar sin prisas. En un ambiente elegante, cálido y mediterráneo, frente al mar en Vinaròs, cada pizza y cada plato reflejan nuestra manera de entender la hostelería: cercanía, calidad y cariño por lo que hacemos.</p>
+      <p>Un estilo clásico que nunca pasa de moda, donde cada visita se convierte en un momento especial.</p>
+    </div>
+  </div>
+</section>
+
+<div class="container">
+  <div class="quicknav">
+    <a class="chip" href="#pizzas">Pizzas</a>
+    <a class="chip" href="#entrantes">Entrantes</a>
+    <a class="chip" href="#ensaladas">Ensaladas</a>
+    <a class="chip" href="#crostones">Crostones</a>
+    <a class="chip" href="#pasta">Pasta</a>
+    <a class="chip" href="#salsas">Salsas</a>
+    <a class="chip" href="#especialidades">Especialidades</a>
+    <a class="chip" href="#platos">Platos</a>
+    <a class="chip" href="#bebidas">Bebidas</a>
+    <a class="chip" href="#postres">Postres</a>
+    <a class="chip" href="#menujoven">Menú joven</a>
+  </div>
+</div>
 
 <section class="menu container" id="carta">
   <div class="section-title">
@@ -7,282 +493,251 @@
 
   <div class="menu-wrap">
 
-    <!-- PIZZAS -->
-    <div class="category" id="pizzas">
+    <div class="category reveal" id="pizzas">
       <h3>Pizzas</h3>
       <div class="menu-grid">
-
-        <div class="item">
-          <div class="item-text">
-            <span class="name">Calzone</span>
-            <span class="desc">Tomate, mozzarella, requesón, jamón york y espinacas.</span>
-          </div>
-          <span class="price">11,20€</span>
-        </div>
-
-        <div class="item">
-          <div class="item-text">
-            <span class="name">Sencilla</span>
-            <span class="desc">Tomate y mozzarella.</span>
-          </div>
-          <span class="price">7,90€</span>
-        </div>
-
-        <div class="item">
-          <div class="item-text">
-            <span class="name">Margarita</span>
-            <span class="desc">Tomate, jamón york y mozzarella.</span>
-          </div>
-          <span class="price">8,50€</span>
-        </div>
-
-        <div class="item">
-          <div class="item-text">
-            <span class="name">Bianca</span>
-            <span class="desc">Nata, bacon, champiñones y mozzarella.</span>
-          </div>
-          <span class="price">11,20€</span>
-        </div>
-
-        <div class="item">
-          <div class="item-text">
-            <span class="name">Sorrento</span>
-            <span class="desc">Tomate, jamón york, champiñones, alcachofas y mozzarella.</span>
-          </div>
-          <span class="price">10,90€</span>
-        </div>
-
-        <div class="item">
-          <div class="item-text">
-            <span class="name">Cuatro estaciones</span>
-            <span class="desc">Tomate, jamón york, champiñones, alcachofas, aceitunas negras, anchoas y mozzarella.</span>
-          </div>
-          <span class="price">11,80€</span>
-        </div>
-
-        <div class="item">
-          <div class="item-text">
-            <span class="name">Barbacoa</span>
-            <span class="desc">Tomate, carne picada, bacon, salsa barbacoa y mozzarella.</span>
-          </div>
-          <span class="price">11,90€</span>
-        </div>
-
-        <div class="item">
-          <div class="item-text">
-            <span class="name">Carbonara pizza (tipo blanca)</span>
-            <span class="desc">Base crema, bacon, mozzarella.</span>
-          </div>
-          <span class="price">—</span>
-        </div>
-
-        <!-- puedes seguir añadiendo si quieres destacar más -->
-        
+        <div class="item"><span class="name">Calzone</span><span class="price">11,20€</span></div>
+        <div class="item"><span class="name">Sencilla</span><span class="price">7,90€</span></div>
+        <div class="item"><span class="name">Margarita</span><span class="price">8,50€</span></div>
+        <div class="item"><span class="name">Bianca</span><span class="price">11,20€</span></div>
+        <div class="item"><span class="name">Sorrento</span><span class="price">10,90€</span></div>
+        <div class="item"><span class="name">Savoia</span><span class="price">10,70€</span></div>
+        <div class="item"><span class="name">Cuatro Estaciones</span><span class="price">11,80€</span></div>
+        <div class="item"><span class="name">Cuatro Quesos</span><span class="price">10,70€</span></div>
+        <div class="item"><span class="name">Roquefort</span><span class="price">10,30€</span></div>
+        <div class="item"><span class="name">Gorgonzola</span><span class="price">10,90€</span></div>
+        <div class="item"><span class="name">Capriccio</span><span class="price">10,70€</span></div>
+        <div class="item"><span class="name">Napoletana</span><span class="price">10,70€</span></div>
+        <div class="item"><span class="name">Marinera</span><span class="price">13,00€</span></div>
+        <div class="item"><span class="name">Terranova</span><span class="price">13,50€</span></div>
+        <div class="item"><span class="name">Salmón</span><span class="price">13,00€</span></div>
+        <div class="item"><span class="name">Bolognesa</span><span class="price">11,20€</span></div>
+        <div class="item"><span class="name">Boscaiola</span><span class="price">11,20€</span></div>
+        <div class="item"><span class="name">Toscana</span><span class="price">11,90€</span></div>
+        <div class="item"><span class="name">Capri</span><span class="price">11,20€</span></div>
+        <div class="item"><span class="name">Mexicana</span><span class="price">11,90€</span></div>
+        <div class="item"><span class="name">Americana</span><span class="price">10,90€</span></div>
+        <div class="item"><span class="name">Chorizo Picante</span><span class="price">10,90€</span></div>
+        <div class="item"><span class="name">Campesina</span><span class="price">10,90€</span></div>
+        <div class="item"><span class="name">Frankfurt</span><span class="price">8,50€</span></div>
+        <div class="item"><span class="name">Mallorquina</span><span class="price">10,90€</span></div>
+        <div class="item"><span class="name">Sobrasada</span><span class="price">11,20€</span></div>
+        <div class="item"><span class="name">Vegetal</span><span class="price">10,70€</span></div>
+        <div class="item"><span class="name">De la Casa</span><span class="price">11,90€</span></div>
+        <div class="item"><span class="name">Funghi</span><span class="price">10,50€</span></div>
+        <div class="item"><span class="name">Tropical</span><span class="price">10,90€</span></div>
+        <div class="item"><span class="name">Bambini</span><span class="price">9,50€</span></div>
+        <div class="item"><span class="name">Queso de Cabra</span><span class="price">10,90€</span></div>
+        <div class="item"><span class="name">Barbacoa</span><span class="price">11,90€</span></div>
+        <div class="item"><span class="name">Curry</span><span class="price">11,70€</span></div>
+        <div class="item"><span class="name">Rúcula</span><span class="price">11,90€</span></div>
+        <div class="item"><span class="name">Fiorentina</span><span class="price">12,00€</span></div>
+        <div class="item"><span class="name">Contadina</span><span class="price">10,90€</span></div>
+        <div class="item"><span class="name">Milanese</span><span class="price">11,90€</span></div>
+        <div class="item"><span class="name">Diavola</span><span class="price">12,00€</span></div>
+        <div class="item"><span class="name">Veneciana</span><span class="price">12,00€</span></div>
+        <div class="item"><span class="name">Seis Quesos</span><span class="price">11,50€</span></div>
+        <div class="item"><span class="name">Pollo</span><span class="price">11,70€</span></div>
+        <div class="item"><span class="name">Griega</span><span class="price">14,50€</span></div>
+        <div class="item"><span class="name">Stromboli</span><span class="price">13,90€</span></div>
+        <div class="item"><span class="name">Pizzaiola</span><span class="price">14,50€</span></div>
+        <div class="item"><span class="name">Livorno</span><span class="price">11,70€</span></div>
       </div>
     </div>
 
-    <!-- ENTRANTES -->
-    <div class="category" id="entrantes">
+    <div class="category reveal" id="entrantes">
       <h3>Entrantes</h3>
       <div class="menu-grid">
-
-        <div class="item">
-          <div class="item-text">
-            <span class="name">Patatas cheddar y bacon</span>
-            <span class="desc">Patatas con queso cheddar y bacon.</span>
-          </div>
-          <span class="price">8,50€</span>
-        </div>
-
-        <div class="item">
-          <div class="item-text">
-            <span class="name">Huevos rotos con jamón</span>
-            <span class="desc">Huevos, patatas y jamón.</span>
-          </div>
-          <span class="price">10,50€</span>
-        </div>
-
-        <div class="item">
-          <div class="item-text">
-            <span class="name">Huevos rotos con gulas y foie</span>
-            <span class="desc">Huevos, patatas, gulas y foie.</span>
-          </div>
-          <span class="price">11,50€</span>
-        </div>
-
-        <div class="item">
-          <div class="item-text">
-            <span class="name">Calamares a la romana</span>
-            <span class="desc">Calamares rebozados.</span>
-          </div>
-          <span class="price">9,00€</span>
-        </div>
-
+        <div class="item"><span class="name">Aceitunas</span><span class="price">2,50€</span></div>
+        <div class="item"><span class="name">Pan con alli oli</span><span class="price">4,00€</span></div>
+        <div class="item"><span class="name">Patatas fritas</span><span class="price">5,50€</span></div>
+        <div class="item"><span class="name">Patatas bravas</span><span class="price">7,50€ G. / 5,50€ P.</span></div>
+        <div class="item"><span class="name">Patatas roquefort</span><span class="price">8,00€ G. / 6,00€ P.</span></div>
+        <div class="item"><span class="name">Patatas gratinadas</span><span class="price">9,00€</span></div>
+        <div class="item"><span class="name">Patatas gratinadas cuatro quesos</span><span class="price">9,00€</span></div>
+        <div class="item"><span class="name">Patatas Vinya</span><span class="price">7,50€</span></div>
+        <div class="item"><span class="name">Patatas cheddar y bacon</span><span class="price">8,50€</span></div>
+        <div class="item"><span class="name">Plato parmesano</span><span class="price">7,00€</span></div>
+        <div class="item"><span class="name">Antipasto</span><span class="price">12,00€</span></div>
+        <div class="item"><span class="name">Calamares a la romana</span><span class="price">9,00€</span></div>
+        <div class="item"><span class="name">Finguers de pollo</span><span class="price">9,50€</span></div>
+        <div class="item"><span class="name">Queso brie con mermelada</span><span class="price">8,50€</span></div>
+        <div class="item"><span class="name">Verdura en tempura</span><span class="price">7,50€</span></div>
+        <div class="item"><span class="name">Huevos rotos con jamón</span><span class="price">10,50€</span></div>
+        <div class="item"><span class="name">Huevos rotos con gulas y foie</span><span class="price">11,50€</span></div>
+        <div class="item"><span class="name">Sepia troceada</span><span class="price">9,50€</span></div>
+        <div class="item"><span class="name">Pata de pulpo</span><span class="price">16,50€</span></div>
+        <div class="item"><span class="name">Puntillas</span><span class="price">10,00€</span></div>
       </div>
     </div>
 
-    <!-- ENSALADAS -->
-    <div class="category" id="ensaladas">
+    <div class="category reveal" id="ensaladas">
       <h3>Ensaladas</h3>
       <div class="menu-grid">
-
-        <div class="item">
-          <div class="item-text">
-            <span class="name">Ensalada de pollo</span>
-            <span class="desc">Lechuga, pollo plancha, tomate cherry y parmesano.</span>
-          </div>
-          <span class="price">9,00€ / 7,50€</span>
-        </div>
-
-        <div class="item">
-          <div class="item-text">
-            <span class="name">Ensalada caprese</span>
-            <span class="desc">Mozzarella di bufala, tomate y aceite de albahaca.</span>
-          </div>
-          <span class="price">9,00€</span>
-        </div>
-
-        <div class="item">
-          <div class="item-text">
-            <span class="name">Ensalada queso de cabra</span>
-            <span class="desc">Lechuga, pasas, nueces, tomate y queso de cabra.</span>
-          </div>
-          <span class="price">10,50€</span>
-        </div>
-
+        <div class="item"><span class="name">Ensalada de pollo</span><span class="price">9,00€ G. / 7,50€ P.</span></div>
+        <div class="item"><span class="name">Ensalada de manzana</span><span class="price">9,00€ G. / 8,00€ P.</span></div>
+        <div class="item"><span class="name">Ensalada verde</span><span class="price">7,00€ G. / 6,00€ P.</span></div>
+        <div class="item"><span class="name">Ensalada mixta</span><span class="price">8,50€ G. / 7,00€ P.</span></div>
+        <div class="item"><span class="name">Endivias al roquefort</span><span class="price">10,50€</span></div>
+        <div class="item"><span class="name">Ensalada caprese</span><span class="price">9,00€</span></div>
+        <div class="item"><span class="name">Ensalada queso de cabra</span><span class="price">10,50€</span></div>
+        <div class="item"><span class="name">Ensalada de foie</span><span class="price">13,50€</span></div>
+        <div class="item"><span class="name">Carpaccio</span><span class="price">10,00€</span></div>
+        <div class="item"><span class="name">Ensalada Vinya d'alós</span><span class="price">14,50€</span></div>
       </div>
     </div>
 
-    <!-- CROSTONES -->
-    <div class="category" id="crostones">
+    <div class="category reveal" id="crostones">
       <h3>Crostones</h3>
       <div class="menu-grid">
-
-        <div class="item">
-          <div class="item-text">
-            <span class="name">Crostone serrano</span>
-            <span class="desc">Jamón serrano y mozzarella.</span>
-          </div>
-          <span class="price">7,00€</span>
-        </div>
-
-        <div class="item">
-          <div class="item-text">
-            <span class="name">Crostone bolognesa</span>
-            <span class="desc">Salsa boloñesa y mozzarella.</span>
-          </div>
-          <span class="price">7,00€</span>
-        </div>
-
-        <div class="item">
-          <div class="item-text">
-            <span class="name">Crostone salmón</span>
-            <span class="desc">Salmón y mozzarella.</span>
-          </div>
-          <span class="price">8,00€</span>
-        </div>
-
+        <div class="item"><span class="name">Crostone Serrano</span><span class="price">7,00€</span></div>
+        <div class="item"><span class="name">Crostone Bolognesa</span><span class="price">7,00€</span></div>
+        <div class="item"><span class="name">Crostone Savoia</span><span class="price">7,00€</span></div>
+        <div class="item"><span class="name">Crostone Picante</span><span class="price">7,00€</span></div>
+        <div class="item"><span class="name">Crostone Salmón</span><span class="price">8,00€</span></div>
+        <div class="item"><span class="name">Crostone Mallorquín</span><span class="price">7,00€</span></div>
+        <div class="item"><span class="name">Crostone Napoletano</span><span class="price">7,00€</span></div>
       </div>
     </div>
 
-    <!-- PASTA -->
-    <div class="category" id="pasta">
+    <div class="category reveal" id="pasta">
       <h3>Pasta</h3>
       <div class="menu-grid">
-        <div class="item">
-          <div class="item-text">
-            <span class="name">Pasta a elegir</span>
-            <span class="desc">Spaguetti, tagliatelle, macarrones o gnocchi + salsa.</span>
-          </div>
-          <span class="price">Desde 8€</span>
-        </div>
+        <div class="item"><span class="name">Spaguetti</span><span class="price"></span></div>
+        <div class="item"><span class="name">Tagliatelle</span><span class="price"></span></div>
+        <div class="item"><span class="name">Macarrones</span><span class="price"></span></div>
+        <div class="item"><span class="name">Gnocchi</span><span class="price"></span></div>
+        <div class="item"><span class="name">Pasta rellena</span><span class="price">Suplemento 1€</span></div>
       </div>
     </div>
 
-    <!-- ESPECIALIDADES -->
-    <div class="category" id="especialidades">
-      <h3>Especialidades</h3>
+    <div class="category reveal" id="salsas">
+      <h3>Salsas a elegir</h3>
       <div class="menu-grid">
-
-        <div class="item">
-          <div class="item-text">
-            <span class="name">Lasagna</span>
-            <span class="desc">Lasaña casera de carne.</span>
-          </div>
-          <span class="price">8,50€</span>
-        </div>
-
-        <div class="item">
-          <div class="item-text">
-            <span class="name">Fiocchi pera y queso</span>
-            <span class="desc">Pasta rellena con salsa de cuatro quesos.</span>
-          </div>
-          <span class="price">9,00€</span>
-        </div>
-
+        <div class="item"><span class="name">Amatriciana</span><span class="price">9,50€</span></div>
+        <div class="item"><span class="name">Carbonara</span><span class="price">9,00€</span></div>
+        <div class="item"><span class="name">Pesto</span><span class="price">9,00€</span></div>
+        <div class="item"><span class="name">Gorgonzola</span><span class="price">9,00€</span></div>
+        <div class="item"><span class="name">Roquefort</span><span class="price">9,00€</span></div>
+        <div class="item"><span class="name">Bolognesa</span><span class="price">9,50€</span></div>
+        <div class="item"><span class="name">Marinera picante</span><span class="price">11,50€</span></div>
+        <div class="item"><span class="name">Nata y jamón</span><span class="price">9,00€</span></div>
+        <div class="item"><span class="name">Salmón</span><span class="price">9,50€</span></div>
+        <div class="item"><span class="name">Siciliana</span><span class="price">9,00€</span></div>
+        <div class="item"><span class="name">Cuatro quesos</span><span class="price">9,00€</span></div>
+        <div class="item"><span class="name">De la casa</span><span class="price">10,00€</span></div>
+        <div class="item"><span class="name">Picante</span><span class="price">8,00€</span></div>
+        <div class="item"><span class="name">Tomate</span><span class="price">8,00€</span></div>
+        <div class="item"><span class="name">Funghi</span><span class="price">9,50€</span></div>
       </div>
     </div>
 
-    <!-- PLATOS -->
-    <div class="category" id="platos">
+    <div class="category reveal" id="especialidades">
+      <h3>Especialidades de la casa</h3>
+      <div class="menu-grid">
+        <div class="item"><span class="name">Mixto Pasta</span><span class="price">11,50€</span></div>
+        <div class="item"><span class="name">Mixto Ravioli</span><span class="price">11,50€</span></div>
+        <div class="item"><span class="name">Lasagna</span><span class="price">8,50€</span></div>
+        <div class="item"><span class="name">Lasagna Verdura</span><span class="price">8,50€</span></div>
+        <div class="item"><span class="name">Lasagna Espinacas</span><span class="price">8,50€</span></div>
+        <div class="item"><span class="name">Fiocchi Pera y Queso</span><span class="price">9,00€</span></div>
+        <div class="item"><span class="name">Cannelloni</span><span class="price">8,00€</span></div>
+      </div>
+    </div>
+
+    <div class="category reveal" id="platos">
       <h3>Platos combinados</h3>
       <div class="menu-grid">
-
-        <div class="item">
-          <div class="item-text">
-            <span class="name">Hamburguesa italiana</span>
-            <span class="desc">Pan pizza, carne, cheddar, bacon, cebolla, tomate y salsa.</span>
-          </div>
-          <span class="price">12,50€</span>
-        </div>
-
-        <div class="item">
-          <div class="item-text">
-            <span class="name">Hamburguesa Giulia</span>
-            <span class="desc">Pan pizza, pollo, jamón serrano, fontina y salsa pimienta.</span>
-          </div>
-          <span class="price">12,50€</span>
-        </div>
-
+        <div class="item"><span class="name">Pollo plancha o rebozado</span><span class="price">11,50€ G. / 8,50€ P.</span></div>
+        <div class="item"><span class="name">Escalopina</span><span class="price">11,50€ G. / 8,50€ P.</span></div>
+        <div class="item"><span class="name">Escalopina napoletana</span><span class="price">14,00€ G. / 11,00€ P.</span></div>
+        <div class="item"><span class="name">Solomillo en salsa de champiñones</span><span class="price">14,50€</span></div>
+        <div class="item"><span class="name">Hamburguesa italiana</span><span class="price">12,50€</span></div>
+        <div class="item"><span class="name">Hamburguesa Giulia</span><span class="price">12,50€</span></div>
+        <div class="item"><span class="name">Enterita a la plancha</span><span class="price">12,50€</span></div>
       </div>
+      <div class="note">G. = grande · P. = pequeño.</div>
     </div>
 
-    <!-- BEBIDAS -->
-    <div class="category" id="bebidas">
+    <div class="category reveal" id="bebidas">
       <h3>Bebidas</h3>
       <div class="menu-grid">
-
-        <div class="item">
-          <div class="item-text">
-            <span class="name">Refrescos</span>
-            <span class="desc">Coca-Cola, Fanta, etc.</span>
-          </div>
-          <span class="price">2,00€</span>
-        </div>
-
-        <div class="item">
-          <div class="item-text">
-            <span class="name">Caña</span>
-          </div>
-          <span class="price">2,00€</span>
-        </div>
-
+        <div class="item"><span class="name">Refrescos</span><span class="price">2,00€</span></div>
+        <div class="item"><span class="name">Caña</span><span class="price">2,00€</span></div>
+        <div class="item"><span class="name">Tanque</span><span class="price">3,50€</span></div>
+        <div class="item"><span class="name">Champú</span><span class="price">2,00€</span></div>
+        <div class="item"><span class="name">Champú tanque</span><span class="price">3,50€</span></div>
+        <div class="item"><span class="name">Clara caña</span><span class="price">2,00€</span></div>
+        <div class="item"><span class="name">Clara tanque</span><span class="price">3,50€</span></div>
+        <div class="item"><span class="name">1/3 l</span><span class="price">2,20€</span></div>
+        <div class="item"><span class="name">1/3 l sin alcohol</span><span class="price">2,20€</span></div>
+        <div class="item"><span class="name">Tercio tostada</span><span class="price">2,50€</span></div>
+        <div class="item"><span class="name">Agua con gas 0,33 cl</span><span class="price">2,00€</span></div>
+        <div class="item"><span class="name">Agua con gas 0,75 cl</span><span class="price">3,50€</span></div>
+        <div class="item"><span class="name">Agua 0,33 cl</span><span class="price">1,50€</span></div>
+        <div class="item"><span class="name">Agua 1,0 l</span><span class="price">2,50€</span></div>
+        <div class="item"><span class="name">Gaseosa 1/2 l</span><span class="price">2,00€</span></div>
+        <div class="item"><span class="name">Gaseosa 1 l</span><span class="price">3,00€</span></div>
+        <div class="item"><span class="name">Vino de la casa tinto 1 l</span><span class="price">6,50€</span></div>
+        <div class="item"><span class="name">Vino de la casa tinto 1/2 l</span><span class="price">4,00€</span></div>
+        <div class="item"><span class="name">Tinto de verano copa</span><span class="price">3,50€</span></div>
+        <div class="item"><span class="name">Copa sangría</span><span class="price">3,50€</span></div>
+        <div class="item"><span class="name">Copa de vino de la casa</span><span class="price">2,50€</span></div>
+        <div class="item"><span class="name">Copa de vino Rioja o verdejo</span><span class="price">3,50€</span></div>
       </div>
     </div>
 
-    <!-- POSTRES -->
-    <div class="category" id="postres">
+    <div class="category reveal" id="postres">
       <h3>Postres</h3>
       <div class="menu-grid">
-        <div class="item">
-          <div class="item-text">
-            <span class="name">Postres caseros del día</span>
-            <span class="desc">Consultar disponibilidad.</span>
-          </div>
-          <span class="price">—</span>
-        </div>
+        <div class="item"><span class="name">Tiramisú</span><span class="price">5,50€</span></div>
+        <div class="item"><span class="name">Tarta de tres chocolates</span><span class="price">5,50€</span></div>
+        <div class="item"><span class="name">Tarta de queso</span><span class="price">5,50€</span></div>
+        <div class="item"><span class="name">Crep Nutella</span><span class="price">5,50€</span></div>
+        <div class="item"><span class="name">Crep dulce de leche</span><span class="price">5,50€</span></div>
+        <div class="item"><span class="name">Coulant de chocolate negro</span><span class="price">5,50€</span></div>
       </div>
+    </div>
+
+    <div class="category reveal" id="menujoven">
+      <h3>Menú joven y cocas</h3>
+      <div class="menu-grid">
+        <div class="item"><span class="name">Menú joven</span><span class="price">5,00€</span></div>
+        <div class="item"><span class="name">Coca sal o azúcar</span><span class="price">2,00€</span></div>
+        <div class="item"><span class="name">Coca jamón o queso</span><span class="price">3,00€</span></div>
+        <div class="item"><span class="name">Coca jamón y queso</span><span class="price">4,00€</span></div>
+      </div>
+      <div class="note">Servicio a domicilio: 1,50€ o 2,50€ · Pedido mínimo: 10,00€ · Suplementos: 1€ o 2€ consultar.</div>
     </div>
 
   </div>
 </section>
+
+<section class="container">
+  <div class="cta reveal">
+    <div>
+      <h3>Haz tu pedido ahora</h3>
+      <p>Pizzas, entrantes, pasta, crostones, bebidas y postres en un solo clic.</p>
+    </div>
+    <div class="actions">
+      <a class="btn btn-outline" href="tel:+34621492566">Llamar</a>
+      <a class="btn btn-gold" href="https://wa.me/34621492566?text=Hola,%20quiero%20hacer%20un%20pedido">Pedir por WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container footer-grid">
+    <div>
+      <h3>Pizzería La Italiana</h3>
+      <p>Paseo Blasco Ibáñez 13, Vinaròs · Desde 1982 · Pizza a domicilio, para llevar y en local.</p>
+    </div>
+  </div>
+</footer>
+
+<div class="smoke"></div>
+
+<a class="sticky" href="https://wa.me/34621492566?text=Hola,%20quiero%20hacer%20un%20pedido">PEDIR AHORA</a>
+
+</body>
+</html>
