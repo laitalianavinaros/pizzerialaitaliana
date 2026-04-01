@@ -23,7 +23,6 @@
   --shadow:0 20px 50px rgba(0,0,0,.28);
   --max:1180px;
   --whatsapp:#25D366;
-  --dark:#111;
 }
 
 *{box-sizing:border-box}
@@ -52,10 +51,6 @@ a{text-decoration:none;color:inherit}
 @keyframes smokeMove{
   from{transform:translateY(0);opacity:.22}
   to{transform:translateY(-45px);opacity:.08}
-}
-@keyframes pulse{
-  0%,100%{transform:scale(1)}
-  50%{transform:scale(1.03)}
 }
 
 .reveal{animation:fadeUp .9s ease both}
@@ -120,15 +115,6 @@ a{text-decoration:none;color:inherit}
   color:#eadfce;
   border:1px solid #333;
 }
-.btn-gold{
-  background:#111;
-  color:#eadfce;
-  border:1px solid #333;
-  box-shadow:0 0 18px rgba(0,0,0,.18);
-}
-.btn-gold:hover{
-  box-shadow:0 0 24px rgba(212,177,131,.20);
-}
 .btn-whatsapp{
   background:var(--whatsapp);
   color:#0e1a12;
@@ -140,7 +126,7 @@ a{text-decoration:none;color:inherit}
 }
 
 .hero{
-  padding:30px 0 20px;
+  padding:20px 0 28px;
 }
 .hero-box{
   position:relative;
@@ -313,7 +299,7 @@ a{text-decoration:none;color:inherit}
 }
 
 .menu{
-  padding:8px 0 24px;
+  padding:20px 0 24px;
 }
 .menu-wrap{
   display:grid;
@@ -515,18 +501,21 @@ footer{
 
 .sticky{
   position:fixed;
-  left:14px;
-  right:14px;
-  bottom:14px;
+  left:50%;
+  transform:translateX(-50%);
+  bottom:12px;
   z-index:95;
   text-align:center;
-  padding:16px 20px;
+  padding:13px 22px;
   border-radius:999px;
   font-weight:900;
   background:linear-gradient(135deg,var(--gold),var(--gold2));
   color:#2b1f18;
   animation:glow 2.8s ease-in-out infinite;
   box-shadow:0 18px 36px rgba(0,0,0,.35);
+  width:auto;
+  max-width:calc(100% - 24px);
+  white-space:nowrap;
 }
 .smoke{
   position:fixed;
@@ -559,9 +548,11 @@ footer{
   .sticky{
     left:10px;
     right:10px;
+    transform:none;
     bottom:10px;
     padding:14px 14px;
     font-size:14px;
+    max-width:none;
   }
 }
 </style>
@@ -605,7 +596,7 @@ footer{
           <p>Servicio a domicilio</p>
           <p>Pedido mínimo: 10,00€</p>
           <p>Pedidos por teléfono o WhatsApp</p>
-          <p class="small">Haz clic en cualquier botón de pedido y el mensaje te saldrá ya preparado.</p>
+          <p class="small">Pulsa en cualquier artículo y el mensaje sale ya preparado en WhatsApp.</p>
         </div>
       </div>
     </div>
@@ -613,11 +604,11 @@ footer{
     <div class="promo-strip reveal">
       <div class="promo-card">
         <strong>⭐ Pizzas más pedidas</strong>
-        <span>Te marcamos las favoritas para que el cliente decida más rápido.</span>
+        <span>Te marcamos favoritas para decidir más rápido.</span>
       </div>
       <div class="promo-card">
-        <strong>📲 Pedido rápido</strong>
-        <span>Botones directos para pedir las pizzas estrella por WhatsApp.</span>
+        <strong>📲 Toda la carta pedible</strong>
+        <span>Cada artículo lleva su propio botón de pedido.</span>
       </div>
       <div class="promo-card">
         <strong>🚚 A domicilio</strong>
@@ -660,7 +651,7 @@ footer{
 <section class="menu container" id="carta">
   <div class="section-title">
     <h2>Nuestra carta</h2>
-    <p>Haz clic en las pizzas destacadas para pedirlas al instante</p>
+    <p>Toda la carta se puede pedir directamente por WhatsApp</p>
   </div>
 
   <div class="menu-wrap">
@@ -687,96 +678,60 @@ footer{
 
         <div class="best-card">
           <span class="tag">⭐ Favorita</span>
-          <h4>Calzone</h4>
-          <p>Tomate, mozzarella, requesón, jamón york y espinacas.</p>
-          <span class="price">11,20€</span>
-          <a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20la%20pizza%20Calzone">Pedir esta pizza</a>
+          <h4>Griega</h4>
+          <p>Carne picada, pollo, bacon, cebolla, maíz, salsa yogurt, queso cabra y mozzarella.</p>
+          <span class="price">14,50€</span>
+          <a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20la%20pizza%20Griega">Pedir esta pizza</a>
         </div>
       </div>
 
       <div class="menu-grid">
-        <div class="item">
-          <div class="item-text">
-            <span class="name">Calzone</span>
-            <span class="desc">Tomate, mozzarella, requesón, jamón york y espinacas.</span>
-            <div class="mini-tags"><span class="mini-tag top">⭐ Más vendida</span></div>
-            <a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20la%20pizza%20Calzone">Pedir esta pizza</a>
-          </div>
-          <span class="price">11,20€</span>
-        </div>
-
-        <div class="item"><div class="item-text"><span class="name">Sencilla</span><span class="desc">Tomate y mozzarella.</span></div><span class="price">7,90€</span></div>
-
-        <div class="item"><div class="item-text"><span class="name">Margarita</span><span class="desc">Tomate, jamón york y mozzarella.</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20la%20pizza%20Margarita">Pedir esta pizza</a></div><span class="price">8,50€</span></div>
-
-        <div class="item"><div class="item-text"><span class="name">Bianca</span><span class="desc">Nata, bacon, champiñones y mozzarella.</span></div><span class="price">11,20€</span></div>
-
-        <div class="item"><div class="item-text"><span class="name">Sorrento</span><span class="desc">Tomate, jamón york, champiñones, alcachofas y mozzarella.</span></div><span class="price">10,90€</span></div>
-
-        <div class="item"><div class="item-text"><span class="name">Savoia</span><span class="desc">Jamón york, tomate, champiñones y mozzarella.</span></div><span class="price">10,70€</span></div>
-
-        <div class="item">
-          <div class="item-text">
-            <span class="name">Cuatro estaciones</span>
-            <span class="desc">Tomate, jamón york, champiñones, alcachofas, aceitunas negras, anchoas y mozzarella.</span>
-            <div class="mini-tags"><span class="mini-tag hot">🔥 Muy pedida hoy</span></div>
-            <a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20la%20pizza%20Cuatro%20estaciones">Pedir esta pizza</a>
-          </div>
-          <span class="price">11,80€</span>
-        </div>
-
-        <div class="item"><div class="item-text"><span class="name">Cuatro quesos</span><span class="desc">Tomate, quesos variados y mozzarella.</span></div><span class="price">10,70€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Roquefort</span><span class="desc">Tomate, roquefort y mozzarella.</span></div><span class="price">10,30€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Gorgonzola</span><span class="desc">Tomate natural y gorgonzola.</span></div><span class="price">10,90€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Capriccio</span><span class="desc">Tomate, atún, champiñones y mozzarella.</span></div><span class="price">10,70€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Napoletana</span><span class="desc">Tomate, anchoas, aceitunas negras, alcaparras y mozzarella.</span></div><span class="price">10,70€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Marinera</span><span class="desc">Tomate, gambas, langostinos, mejillones, calamares y mozzarella.</span></div><span class="price">13,00€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Terranova</span><span class="desc">Tomate, bacalao, pimientos, aceitunas negras y mozzarella.</span></div><span class="price">13,50€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Salmón</span><span class="desc">Tomate, salmón, mozzarella o con piña.</span></div><span class="price">13,00€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Bolognesa</span><span class="desc">Salsa boloñesa y mozzarella.</span></div><span class="price">11,20€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Boscaiola</span><span class="desc">Tomate, ternera picada, pimientos y mozzarella.</span></div><span class="price">11,20€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Toscana</span><span class="desc">Tomate, mozzarella bufala y albahaca.</span></div><span class="price">11,90€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Capri</span><span class="desc">Tomate, bacon, huevo y mozzarella.</span></div><span class="price">11,20€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Mexicana</span><span class="desc">Ternera picada, salsa chile, tomate, cebolla natural, maíz y mozzarella.</span></div><span class="price">11,90€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Americana</span><span class="desc">Tomate, ternera picada, mostaza y mozzarella.</span></div><span class="price">10,90€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Chorizo picante</span><span class="desc">Tomate, chorizo picante y mozzarella.</span></div><span class="price">10,90€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Campesina</span><span class="desc">Tomate, mozzarella, jamón serrano o panceta, o salami.</span></div><span class="price">10,90€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Frankfurt</span><span class="desc">Tomate, frankfurt y mozzarella.</span></div><span class="price">8,50€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Mallorquina</span><span class="desc">Tomate, sobrasada, morcilla negra y mozzarella.</span></div><span class="price">10,90€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Sobrasada</span><span class="desc">Tomate, sobrasada, brie, mozzarella y cebolla frita.</span></div><span class="price">11,20€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Vegetal</span><span class="desc">Tomate, cebolla natural, ajo, calabacín, berenjena, mozzarella y olivas negras.</span></div><span class="price">10,70€</span></div>
-        <div class="item"><div class="item-text"><span class="name">De la casa</span><span class="desc">Tomate, champiñones, mozzarella, parmesano y bresaola.</span></div><span class="price">11,90€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Funghi</span><span class="desc">Mixto setas, tomate y mozzarella.</span></div><span class="price">10,50€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Tropical</span><span class="desc">Tomate, jamón york, piña y mozzarella.</span></div><span class="price">10,90€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Bambini</span><span class="desc">Tomate, patatas fritas, frankfurt y mozzarella.</span></div><span class="price">9,50€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Queso de cabra</span><span class="desc">Jamón york, tomate, queso de cabra y mozzarella.</span></div><span class="price">10,90€</span></div>
-
-        <div class="item">
-          <div class="item-text">
-            <span class="name">Barbacoa</span>
-            <span class="desc">Tomate, carne picada, bacon, salsa barbacoa y mozzarella.</span>
-            <div class="mini-tags">
-              <span class="mini-tag top">⭐ Más vendida</span>
-              <span class="mini-tag hot">🔥 Muy pedida hoy</span>
-            </div>
-            <a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20la%20pizza%20Barbacoa">Pedir esta pizza</a>
-          </div>
-          <span class="price">11,90€</span>
-        </div>
-
-        <div class="item"><div class="item-text"><span class="name">Curry</span><span class="desc">Tomate, pollo, piña, curry y mozzarella.</span></div><span class="price">11,70€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Rúcula</span><span class="desc">Tomate, champiñones, rúcula y parmesano.</span></div><span class="price">11,90€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Fiorentina</span><span class="desc">Tomate, mozzarella, berenjena, spek, tomate cherry y parmesano.</span></div><span class="price">12,00€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Contadina</span><span class="desc">Tomate, mozzarella, mixto de setas, berenjena y calabacín.</span></div><span class="price">10,90€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Milanese</span><span class="desc">Tomate, mozzarella, mixto de setas, spek y queso fontina.</span></div><span class="price">11,90€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Diavola</span><span class="desc">Tomate, mozzarella di bufala, tomate cherry y chorizo picante.</span></div><span class="price">12,00€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Veneciana</span><span class="desc">Tomate, mozzarella, gorgonzola, espinacas y spek.</span></div><span class="price">12,00€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Seis quesos</span><span class="desc">Queso parmesano, cabra, gorgonzola, brie, fontina y mozzarella.</span></div><span class="price">11,50€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Pollo</span><span class="desc">Tomate, mozzarella, pollo y champiñones.</span></div><span class="price">11,70€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Griega</span><span class="desc">Carne picada, pollo, bacon, cebolla, maíz, salsa yogurt, queso cabra y mozzarella.</span></div><span class="price">14,50€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Stromboli</span><span class="desc">Tomate, salchicha, bacon, mozzarella, tomate cherry y parmesano.</span></div><span class="price">13,90€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Pizzaiola</span><span class="desc">Tomate, mozzarella di bufala, champiñones, jamón serrano, rúcula, tomate cherry y parmesano.</span></div><span class="price">14,50€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Livorno</span><span class="desc">Tomate, mozzarella, salchichas, patatas y huevo.</span></div><span class="price">11,70€</span></div>
+        <div class="item"><div class="item-text"><span class="name">Calzone</span><span class="desc">Tomate, mozzarella, requesón, jamón york y espinacas.</span><div class="mini-tags"><span class="mini-tag top">⭐ Más vendida</span></div><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Calzone">Pedir esta pizza</a></div><span class="price">11,20€</span></div>
+        <div class="item"><div class="item-text"><span class="name">Sencilla</span><span class="desc">Tomate y mozzarella.</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Sencilla">Pedir esta pizza</a></div><span class="price">7,90€</span></div>
+        <div class="item"><div class="item-text"><span class="name">Margarita</span><span class="desc">Tomate, jamón york y mozzarella.</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Margarita">Pedir esta pizza</a></div><span class="price">8,50€</span></div>
+        <div class="item"><div class="item-text"><span class="name">Bianca</span><span class="desc">Nata, bacon, champiñones y mozzarella.</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Bianca">Pedir esta pizza</a></div><span class="price">11,20€</span></div>
+        <div class="item"><div class="item-text"><span class="name">Sorrento</span><span class="desc">Tomate, jamón york, champiñones, alcachofas y mozzarella.</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Sorrento">Pedir esta pizza</a></div><span class="price">10,90€</span></div>
+        <div class="item"><div class="item-text"><span class="name">Savoia</span><span class="desc">Jamón york, tomate, champiñones y mozzarella.</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Savoia">Pedir esta pizza</a></div><span class="price">10,70€</span></div>
+        <div class="item"><div class="item-text"><span class="name">Cuatro estaciones</span><span class="desc">Tomate, jamón york, champiñones, alcachofas, aceitunas negras, anchoas y mozzarella.</span><div class="mini-tags"><span class="mini-tag hot">🔥 Muy pedida hoy</span></div><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Cuatro%20estaciones">Pedir esta pizza</a></div><span class="price">11,80€</span></div>
+        <div class="item"><div class="item-text"><span class="name">Cuatro quesos</span><span class="desc">Tomate, quesos variados y mozzarella.</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Cuatro%20quesos">Pedir esta pizza</a></div><span class="price">10,70€</span></div>
+        <div class="item"><div class="item-text"><span class="name">Roquefort</span><span class="desc">Tomate, roquefort y mozzarella.</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Roquefort">Pedir esta pizza</a></div><span class="price">10,30€</span></div>
+        <div class="item"><div class="item-text"><span class="name">Gorgonzola</span><span class="desc">Tomate natural y gorgonzola.</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Gorgonzola">Pedir esta pizza</a></div><span class="price">10,90€</span></div>
+        <div class="item"><div class="item-text"><span class="name">Capriccio</span><span class="desc">Tomate, atún, champiñones y mozzarella.</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Capriccio">Pedir esta pizza</a></div><span class="price">10,70€</span></div>
+        <div class="item"><div class="item-text"><span class="name">Napoletana</span><span class="desc">Tomate, anchoas, aceitunas negras, alcaparras y mozzarella.</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Napoletana">Pedir esta pizza</a></div><span class="price">10,70€</span></div>
+        <div class="item"><div class="item-text"><span class="name">Marinera</span><span class="desc">Tomate, gambas, langostinos, mejillones, calamares y mozzarella.</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Marinera">Pedir esta pizza</a></div><span class="price">13,00€</span></div>
+        <div class="item"><div class="item-text"><span class="name">Terranova</span><span class="desc">Tomate, bacalao, pimientos, aceitunas negras y mozzarella.</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Terranova">Pedir esta pizza</a></div><span class="price">13,50€</span></div>
+        <div class="item"><div class="item-text"><span class="name">Salmón</span><span class="desc">Tomate, salmón, mozzarella o con piña.</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Salmón">Pedir esta pizza</a></div><span class="price">13,00€</span></div>
+        <div class="item"><div class="item-text"><span class="name">Bolognesa</span><span class="desc">Salsa boloñesa y mozzarella.</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Bolognesa">Pedir esta pizza</a></div><span class="price">11,20€</span></div>
+        <div class="item"><div class="item-text"><span class="name">Boscaiola</span><span class="desc">Tomate, ternera picada, pimientos y mozzarella.</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Boscaiola">Pedir esta pizza</a></div><span class="price">11,20€</span></div>
+        <div class="item"><div class="item-text"><span class="name">Toscana</span><span class="desc">Tomate, mozzarella bufala y albahaca.</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Toscana">Pedir esta pizza</a></div><span class="price">11,90€</span></div>
+        <div class="item"><div class="item-text"><span class="name">Capri</span><span class="desc">Tomate, bacon, huevo y mozzarella.</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Capri">Pedir esta pizza</a></div><span class="price">11,20€</span></div>
+        <div class="item"><div class="item-text"><span class="name">Mexicana</span><span class="desc">Ternera picada, salsa chile, tomate, cebolla natural, maíz y mozzarella.</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Mexicana">Pedir esta pizza</a></div><span class="price">11,90€</span></div>
+        <div class="item"><div class="item-text"><span class="name">Americana</span><span class="desc">Tomate, ternera picada, mostaza y mozzarella.</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Americana">Pedir esta pizza</a></div><span class="price">10,90€</span></div>
+        <div class="item"><div class="item-text"><span class="name">Chorizo picante</span><span class="desc">Tomate, chorizo picante y mozzarella.</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Chorizo%20picante">Pedir esta pizza</a></div><span class="price">10,90€</span></div>
+        <div class="item"><div class="item-text"><span class="name">Campesina</span><span class="desc">Tomate, mozzarella, jamón serrano o panceta, o salami.</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Campesina">Pedir esta pizza</a></div><span class="price">10,90€</span></div>
+        <div class="item"><div class="item-text"><span class="name">Frankfurt</span><span class="desc">Tomate, frankfurt y mozzarella.</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Frankfurt">Pedir esta pizza</a></div><span class="price">8,50€</span></div>
+        <div class="item"><div class="item-text"><span class="name">Mallorquina</span><span class="desc">Tomate, sobrasada, morcilla negra y mozzarella.</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Mallorquina">Pedir esta pizza</a></div><span class="price">10,90€</span></div>
+        <div class="item"><div class="item-text"><span class="name">Sobrasada</span><span class="desc">Tomate, sobrasada, brie, mozzarella y cebolla frita.</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Sobrasada">Pedir esta pizza</a></div><span class="price">11,20€</span></div>
+        <div class="item"><div class="item-text"><span class="name">Vegetal</span><span class="desc">Tomate, cebolla natural, ajo, calabacín, berenjena, mozzarella y olivas negras.</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Vegetal">Pedir esta pizza</a></div><span class="price">10,70€</span></div>
+        <div class="item"><div class="item-text"><span class="name">De la casa</span><span class="desc">Tomate, champiñones, mozzarella, parmesano y bresaola.</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20De%20la%20casa">Pedir esta pizza</a></div><span class="price">11,90€</span></div>
+        <div class="item"><div class="item-text"><span class="name">Funghi</span><span class="desc">Mixto setas, tomate y mozzarella.</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Funghi">Pedir esta pizza</a></div><span class="price">10,50€</span></div>
+        <div class="item"><div class="item-text"><span class="name">Tropical</span><span class="desc">Tomate, jamón york, piña y mozzarella.</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Tropical">Pedir esta pizza</a></div><span class="price">10,90€</span></div>
+        <div class="item"><div class="item-text"><span class="name">Bambini</span><span class="desc">Tomate, patatas fritas, frankfurt y mozzarella.</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Bambini">Pedir esta pizza</a></div><span class="price">9,50€</span></div>
+        <div class="item"><div class="item-text"><span class="name">Queso de cabra</span><span class="desc">Jamón york, tomate, queso de cabra y mozzarella.</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Queso%20de%20cabra">Pedir esta pizza</a></div><span class="price">10,90€</span></div>
+        <div class="item"><div class="item-text"><span class="name">Barbacoa</span><span class="desc">Tomate, carne picada, bacon, salsa barbacoa y mozzarella.</span><div class="mini-tags"><span class="mini-tag top">⭐ Más vendida</span><span class="mini-tag hot">🔥 Muy pedida hoy</span></div><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Barbacoa">Pedir esta pizza</a></div><span class="price">11,90€</span></div>
+        <div class="item"><div class="item-text"><span class="name">Curry</span><span class="desc">Tomate, pollo, piña, curry y mozzarella.</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Curry">Pedir esta pizza</a></div><span class="price">11,70€</span></div>
+        <div class="item"><div class="item-text"><span class="name">Rúcula</span><span class="desc">Tomate, champiñones, rúcula y parmesano.</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Rúcula">Pedir esta pizza</a></div><span class="price">11,90€</span></div>
+        <div class="item"><div class="item-text"><span class="name">Fiorentina</span><span class="desc">Tomate, mozzarella, berenjena, spek, tomate cherry y parmesano.</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Fiorentina">Pedir esta pizza</a></div><span class="price">12,00€</span></div>
+        <div class="item"><div class="item-text"><span class="name">Contadina</span><span class="desc">Tomate, mozzarella, mixto de setas, berenjena y calabacín.</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Contadina">Pedir esta pizza</a></div><span class="price">10,90€</span></div>
+        <div class="item"><div class="item-text"><span class="name">Milanese</span><span class="desc">Tomate, mozzarella, mixto de setas, spek y queso fontina.</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Milanese">Pedir esta pizza</a></div><span class="price">11,90€</span></div>
+        <div class="item"><div class="item-text"><span class="name">Diavola</span><span class="desc">Tomate, mozzarella di bufala, tomate cherry y chorizo picante.</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Diavola">Pedir esta pizza</a></div><span class="price">12,00€</span></div>
+        <div class="item"><div class="item-text"><span class="name">Veneciana</span><span class="desc">Tomate, mozzarella, gorgonzola, espinacas y spek.</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Veneciana">Pedir esta pizza</a></div><span class="price">12,00€</span></div>
+        <div class="item"><div class="item-text"><span class="name">Seis quesos</span><span class="desc">Queso parmesano, cabra, gorgonzola, brie, fontina y mozzarella.</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Seis%20quesos">Pedir esta pizza</a></div><span class="price">11,50€</span></div>
+        <div class="item"><div class="item-text"><span class="name">Pollo</span><span class="desc">Tomate, mozzarella, pollo y champiñones.</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Pollo">Pedir esta pizza</a></div><span class="price">11,70€</span></div>
+        <div class="item"><div class="item-text"><span class="name">Griega</span><span class="desc">Carne picada, pollo, bacon, cebolla, maíz, salsa yogurt, queso cabra y mozzarella.</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Griega">Pedir esta pizza</a></div><span class="price">14,50€</span></div>
+        <div class="item"><div class="item-text"><span class="name">Stromboli</span><span class="desc">Tomate, salchicha, bacon, mozzarella, tomate cherry y parmesano.</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Stromboli">Pedir esta pizza</a></div><span class="price">13,90€</span></div>
+        <div class="item"><div class="item-text"><span class="name">Pizzaiola</span><span class="desc">Tomate, mozzarella di bufala, champiñones, jamón serrano, rúcula, tomate cherry y parmesano.</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Pizzaiola">Pedir esta pizza</a></div><span class="price">14,50€</span></div>
+        <div class="item"><div class="item-text"><span class="name">Livorno</span><span class="desc">Tomate, mozzarella, salchichas, patatas y huevo.</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Livorno">Pedir esta pizza</a></div><span class="price">11,70€</span></div>
       </div>
       <div class="note">Cada suplemento 1€ o 2€ · Consultar.</div>
     </div>
@@ -784,66 +739,66 @@ footer{
     <div class="category reveal" id="entrantes">
       <h3>Entrantes</h3>
       <div class="menu-grid">
-        <div class="item"><div class="item-text"><span class="name">Aceitunas</span></div><span class="price">2,50€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Pan con alli oli</span></div><span class="price">4,00€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Patatas fritas</span></div><span class="price">5,50€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Patatas bravas</span></div><span class="price">7,50€ G. / 5,50€ P.</span></div>
-        <div class="item"><div class="item-text"><span class="name">Patatas roquefort</span></div><span class="price">8,00€ G. / 6,00€ P.</span></div>
-        <div class="item"><div class="item-text"><span class="name">Patatas gratinadas</span></div><span class="price">9,00€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Patatas gratinadas cuatro quesos</span></div><span class="price">9,00€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Patatas Vinya</span></div><span class="price">7,50€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Patatas cheddar y bacon</span></div><span class="price">8,50€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Plato parmesano</span></div><span class="price">7,00€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Antipasto</span><span class="desc">Surtido embutidos italianos y coca redonda.</span></div><span class="price">12,00€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Calamares a la romana</span></div><span class="price">9,00€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Finguers de pollo</span></div><span class="price">9,50€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Queso brie con mermelada</span></div><span class="price">8,50€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Verdura en tempura</span></div><span class="price">7,50€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Huevos rotos con jamón</span></div><span class="price">10,50€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Huevos rotos con gulas y foie</span></div><span class="price">11,50€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Sepia troceada</span></div><span class="price">9,50€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Pata de pulpo</span></div><span class="price">16,50€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Puntillas</span></div><span class="price">10,00€</span></div>
+        <div class="item"><div class="item-text"><span class="name">Aceitunas</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Aceitunas">Pedir este plato</a></div><span class="price">2,50€</span></div>
+        <div class="item"><div class="item-text"><span class="name">Pan con alli oli</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Pan%20con%20alli%20oli">Pedir este plato</a></div><span class="price">4,00€</span></div>
+        <div class="item"><div class="item-text"><span class="name">Patatas fritas</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Patatas%20fritas">Pedir este plato</a></div><span class="price">5,50€</span></div>
+        <div class="item"><div class="item-text"><span class="name">Patatas bravas</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Patatas%20bravas">Pedir este plato</a></div><span class="price">7,50€ G. / 5,50€ P.</span></div>
+        <div class="item"><div class="item-text"><span class="name">Patatas roquefort</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Patatas%20roquefort">Pedir este plato</a></div><span class="price">8,00€ G. / 6,00€ P.</span></div>
+        <div class="item"><div class="item-text"><span class="name">Patatas gratinadas</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Patatas%20gratinadas">Pedir este plato</a></div><span class="price">9,00€</span></div>
+        <div class="item"><div class="item-text"><span class="name">Patatas gratinadas cuatro quesos</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Patatas%20gratinadas%20cuatro%20quesos">Pedir este plato</a></div><span class="price">9,00€</span></div>
+        <div class="item"><div class="item-text"><span class="name">Patatas Vinya</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Patatas%20Vinya">Pedir este plato</a></div><span class="price">7,50€</span></div>
+        <div class="item"><div class="item-text"><span class="name">Patatas cheddar y bacon</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Patatas%20cheddar%20y%20bacon">Pedir este plato</a></div><span class="price">8,50€</span></div>
+        <div class="item"><div class="item-text"><span class="name">Plato parmesano</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Plato%20parmesano">Pedir este plato</a></div><span class="price">7,00€</span></div>
+        <div class="item"><div class="item-text"><span class="name">Antipasto</span><span class="desc">Surtido embutidos italianos y coca redonda.</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Antipasto">Pedir este plato</a></div><span class="price">12,00€</span></div>
+        <div class="item"><div class="item-text"><span class="name">Calamares a la romana</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Calamares%20a%20la%20romana">Pedir este plato</a></div><span class="price">9,00€</span></div>
+        <div class="item"><div class="item-text"><span class="name">Finguers de pollo</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Finguers%20de%20pollo">Pedir este plato</a></div><span class="price">9,50€</span></div>
+        <div class="item"><div class="item-text"><span class="name">Queso brie con mermelada</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Queso%20brie%20con%20mermelada">Pedir este plato</a></div><span class="price">8,50€</span></div>
+        <div class="item"><div class="item-text"><span class="name">Verdura en tempura</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Verdura%20en%20tempura">Pedir este plato</a></div><span class="price">7,50€</span></div>
+        <div class="item"><div class="item-text"><span class="name">Huevos rotos con jamón</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Huevos%20rotos%20con%20jamón">Pedir este plato</a></div><span class="price">10,50€</span></div>
+        <div class="item"><div class="item-text"><span class="name">Huevos rotos con gulas y foie</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Huevos%20rotos%20con%20gulas%20y%20foie">Pedir este plato</a></div><span class="price">11,50€</span></div>
+        <div class="item"><div class="item-text"><span class="name">Sepia troceada</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Sepia%20troceada">Pedir este plato</a></div><span class="price">9,50€</span></div>
+        <div class="item"><div class="item-text"><span class="name">Pata de pulpo</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Pata%20de%20pulpo">Pedir este plato</a></div><span class="price">16,50€</span></div>
+        <div class="item"><div class="item-text"><span class="name">Puntillas</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Puntillas">Pedir este plato</a></div><span class="price">10,00€</span></div>
       </div>
     </div>
 
     <div class="category reveal" id="ensaladas">
       <h3>Ensaladas</h3>
       <div class="menu-grid">
-        <div class="item"><div class="item-text"><span class="name">Ensalada de pollo</span><span class="desc">Mixto lechuga, pollo plancha, tomate cherry, parmesano.</span></div><span class="price">9,00€ G. / 7,50€ P.</span></div>
-        <div class="item"><div class="item-text"><span class="name">Ensalada de manzana</span><span class="desc">Manzana, lechuga, champiñones, nueces, salsa yogurt.</span></div><span class="price">9,00€ G. / 8,00€ P.</span></div>
-        <div class="item"><div class="item-text"><span class="name">Ensalada verde</span><span class="desc">Lechuga, tomate, pepino, cebolla, aceitunas.</span></div><span class="price">7,00€ G. / 6,00€ P.</span></div>
-        <div class="item"><div class="item-text"><span class="name">Ensalada mixta</span><span class="desc">Lechuga, tomate, cebolla, aceitunas, anchoas, atún.</span></div><span class="price">8,50€ G. / 7,00€ P.</span></div>
-        <div class="item"><div class="item-text"><span class="name">Endivias al roquefort</span><span class="desc">Con salmón.</span></div><span class="price">10,50€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Ensalada caprese</span><span class="desc">Mozzarella di bufala, tomate, aceite de albahaca.</span></div><span class="price">9,00€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Ensalada queso de cabra</span><span class="desc">Lechuga, pasas, nueces, tomate, vinagreta de frutos rojos y queso de cabra.</span></div><span class="price">10,50€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Ensalada de foie</span><span class="desc">Mixto lechuga, nueces, pasas, queso de cabra, foie, módena y cherry.</span></div><span class="price">13,50€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Carpaccio</span><span class="desc">Bresaola, queso parmesano, lechuga.</span></div><span class="price">10,00€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Ensalada Vinya d'alós</span><span class="desc">Mixto lechuga, maíz, cebolla, queso de cabra, bacon, pollo, parmesano y salsa yogurt.</span></div><span class="price">14,50€</span></div>
+        <div class="item"><div class="item-text"><span class="name">Ensalada de pollo</span><span class="desc">Mixto lechuga, pollo plancha, tomate cherry, parmesano.</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Ensalada%20de%20pollo">Pedir este plato</a></div><span class="price">9,00€ G. / 7,50€ P.</span></div>
+        <div class="item"><div class="item-text"><span class="name">Ensalada de manzana</span><span class="desc">Manzana, lechuga, champiñones, nueces, salsa yogurt.</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Ensalada%20de%20manzana">Pedir este plato</a></div><span class="price">9,00€ G. / 8,00€ P.</span></div>
+        <div class="item"><div class="item-text"><span class="name">Ensalada verde</span><span class="desc">Lechuga, tomate, pepino, cebolla, aceitunas.</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Ensalada%20verde">Pedir este plato</a></div><span class="price">7,00€ G. / 6,00€ P.</span></div>
+        <div class="item"><div class="item-text"><span class="name">Ensalada mixta</span><span class="desc">Lechuga, tomate, cebolla, aceitunas, anchoas, atún.</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Ensalada%20mixta">Pedir este plato</a></div><span class="price">8,50€ G. / 7,00€ P.</span></div>
+        <div class="item"><div class="item-text"><span class="name">Endivias al roquefort</span><span class="desc">Con salmón.</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Endivias%20al%20roquefort">Pedir este plato</a></div><span class="price">10,50€</span></div>
+        <div class="item"><div class="item-text"><span class="name">Ensalada caprese</span><span class="desc">Mozzarella di bufala, tomate, aceite de albahaca.</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Ensalada%20caprese">Pedir este plato</a></div><span class="price">9,00€</span></div>
+        <div class="item"><div class="item-text"><span class="name">Ensalada queso de cabra</span><span class="desc">Lechuga, pasas, nueces, tomate, vinagreta de frutos rojos y queso de cabra.</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Ensalada%20queso%20de%20cabra">Pedir este plato</a></div><span class="price">10,50€</span></div>
+        <div class="item"><div class="item-text"><span class="name">Ensalada de foie</span><span class="desc">Mixto lechuga, nueces, pasas, queso de cabra, foie, módena y cherry.</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Ensalada%20de%20foie">Pedir este plato</a></div><span class="price">13,50€</span></div>
+        <div class="item"><div class="item-text"><span class="name">Carpaccio</span><span class="desc">Bresaola, queso parmesano, lechuga.</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Carpaccio">Pedir este plato</a></div><span class="price">10,00€</span></div>
+        <div class="item"><div class="item-text"><span class="name">Ensalada Vinya d'alós</span><span class="desc">Mixto lechuga, maíz, cebolla, queso de cabra, bacon, pollo, parmesano y salsa yogurt.</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Ensalada%20Vinya%20d'alós">Pedir este plato</a></div><span class="price">14,50€</span></div>
       </div>
     </div>
 
     <div class="category reveal" id="crostones">
       <h3>Crostones</h3>
       <div class="menu-grid">
-        <div class="item"><div class="item-text"><span class="name">Crostone serrano</span><span class="desc">Jamón serrano, mozzarella.</span></div><span class="price">7,00€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Crostone bolognesa</span><span class="desc">Salsa boloñesa, mozzarella.</span></div><span class="price">7,00€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Crostone Savoia</span><span class="desc">Jamón york, champiñones, mozzarella.</span></div><span class="price">7,00€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Crostone picante</span><span class="desc">Chorizo picante, mozzarella.</span></div><span class="price">7,00€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Crostone salmón</span><span class="desc">Salmón, mozzarella.</span></div><span class="price">8,00€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Crostone mallorquín</span><span class="desc">Sobrasada, mozzarella, morcilla.</span></div><span class="price">7,00€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Crostone napoletano</span><span class="desc">Tomate, mozzarella, anchoas, alcaparras y olivas negras.</span></div><span class="price">7,00€</span></div>
+        <div class="item"><div class="item-text"><span class="name">Crostone serrano</span><span class="desc">Jamón serrano, mozzarella.</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Crostone%20serrano">Pedir este plato</a></div><span class="price">7,00€</span></div>
+        <div class="item"><div class="item-text"><span class="name">Crostone bolognesa</span><span class="desc">Salsa boloñesa, mozzarella.</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Crostone%20bolognesa">Pedir este plato</a></div><span class="price">7,00€</span></div>
+        <div class="item"><div class="item-text"><span class="name">Crostone Savoia</span><span class="desc">Jamón york, champiñones, mozzarella.</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Crostone%20Savoia">Pedir este plato</a></div><span class="price">7,00€</span></div>
+        <div class="item"><div class="item-text"><span class="name">Crostone picante</span><span class="desc">Chorizo picante, mozzarella.</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Crostone%20picante">Pedir este plato</a></div><span class="price">7,00€</span></div>
+        <div class="item"><div class="item-text"><span class="name">Crostone salmón</span><span class="desc">Salmón, mozzarella.</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Crostone%20salmón">Pedir este plato</a></div><span class="price">8,00€</span></div>
+        <div class="item"><div class="item-text"><span class="name">Crostone mallorquín</span><span class="desc">Sobrasada, mozzarella, morcilla.</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Crostone%20mallorquín">Pedir este plato</a></div><span class="price">7,00€</span></div>
+        <div class="item"><div class="item-text"><span class="name">Crostone napoletano</span><span class="desc">Tomate, mozzarella, anchoas, alcaparras y olivas negras.</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Crostone%20napoletano">Pedir este plato</a></div><span class="price">7,00€</span></div>
       </div>
     </div>
 
     <div class="category reveal" id="pasta">
       <h3>Pasta</h3>
       <div class="menu-grid">
-        <div class="item"><div class="item-text"><span class="name">Spaguetti</span></div><span class="price">Según salsa</span></div>
-        <div class="item"><div class="item-text"><span class="name">Tagliatelle</span></div><span class="price">Según salsa</span></div>
-        <div class="item"><div class="item-text"><span class="name">Macarrones</span></div><span class="price">Según salsa</span></div>
-        <div class="item"><div class="item-text"><span class="name">Gnocchi</span></div><span class="price">Según salsa</span></div>
-        <div class="item"><div class="item-text"><span class="name">Pasta rellena</span><span class="desc">Ravioli o tortellini según disposición. Carne, funghi, espinacas y requesón, y funghi con trufa.</span></div><span class="price">Suplemento 1€</span></div>
+        <div class="item"><div class="item-text"><span class="name">Spaguetti</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Spaguetti">Pedir este plato</a></div><span class="price">Según salsa</span></div>
+        <div class="item"><div class="item-text"><span class="name">Tagliatelle</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Tagliatelle">Pedir este plato</a></div><span class="price">Según salsa</span></div>
+        <div class="item"><div class="item-text"><span class="name">Macarrones</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Macarrones">Pedir este plato</a></div><span class="price">Según salsa</span></div>
+        <div class="item"><div class="item-text"><span class="name">Gnocchi</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Gnocchi">Pedir este plato</a></div><span class="price">Según salsa</span></div>
+        <div class="item"><div class="item-text"><span class="name">Pasta rellena</span><span class="desc">Ravioli o tortellini según disposición. Carne, funghi, espinacas y requesón, y funghi con trufa.</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Pasta%20rellena">Pedir este plato</a></div><span class="price">Suplemento 1€</span></div>
       </div>
       <div class="note">Escoge el tipo de pasta y combínalo con una de nuestras salsas.</div>
     </div>
@@ -851,47 +806,47 @@ footer{
     <div class="category reveal" id="salsas">
       <h3>Salsas a elegir</h3>
       <div class="menu-grid">
-        <div class="item"><div class="item-text"><span class="name">Amatriciana</span><span class="desc">Guanciale, parmesano, tomate y guindillas.</span></div><span class="price">9,50€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Carbonara</span></div><span class="price">9,00€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Pesto</span></div><span class="price">9,00€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Gorgonzola</span></div><span class="price">9,00€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Roquefort</span></div><span class="price">9,00€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Bolognesa</span></div><span class="price">9,50€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Marinera picante</span><span class="desc">Mejillones, calamares, gambas, almejas, langostinos.</span></div><span class="price">11,50€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Nata y jamón</span></div><span class="price">9,00€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Salmón</span><span class="desc">Calabacín, nata y salmón.</span></div><span class="price">9,50€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Siciliana</span><span class="desc">Ajos, olivas negras, anchoas, alcaparras, tomate.</span></div><span class="price">9,00€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Cuatro quesos</span></div><span class="price">9,00€</span></div>
-        <div class="item"><div class="item-text"><span class="name">De la casa</span><span class="desc">Espinacas, requesón, bolognesa.</span></div><span class="price">10,00€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Picante</span><span class="desc">Guindilla, ajo y aceite.</span></div><span class="price">8,00€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Tomate</span></div><span class="price">8,00€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Funghi</span><span class="desc">Salsa de champiñones.</span></div><span class="price">9,50€</span></div>
+        <div class="item"><div class="item-text"><span class="name">Amatriciana</span><span class="desc">Guanciale, parmesano, tomate y guindillas.</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Amatriciana">Pedir esta salsa</a></div><span class="price">9,50€</span></div>
+        <div class="item"><div class="item-text"><span class="name">Carbonara</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Carbonara">Pedir esta salsa</a></div><span class="price">9,00€</span></div>
+        <div class="item"><div class="item-text"><span class="name">Pesto</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Pesto">Pedir esta salsa</a></div><span class="price">9,00€</span></div>
+        <div class="item"><div class="item-text"><span class="name">Gorgonzola</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Gorgonzola">Pedir esta salsa</a></div><span class="price">9,00€</span></div>
+        <div class="item"><div class="item-text"><span class="name">Roquefort</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Roquefort">Pedir esta salsa</a></div><span class="price">9,00€</span></div>
+        <div class="item"><div class="item-text"><span class="name">Bolognesa</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Bolognesa">Pedir esta salsa</a></div><span class="price">9,50€</span></div>
+        <div class="item"><div class="item-text"><span class="name">Marinera picante</span><span class="desc">Mejillones, calamares, gambas, almejas, langostinos.</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Marinera%20picante">Pedir esta salsa</a></div><span class="price">11,50€</span></div>
+        <div class="item"><div class="item-text"><span class="name">Nata y jamón</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Nata%20y%20jamón">Pedir esta salsa</a></div><span class="price">9,00€</span></div>
+        <div class="item"><div class="item-text"><span class="name">Salmón</span><span class="desc">Calabacín, nata y salmón.</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Salmón">Pedir esta salsa</a></div><span class="price">9,50€</span></div>
+        <div class="item"><div class="item-text"><span class="name">Siciliana</span><span class="desc">Ajos, olivas negras, anchoas, alcaparras, tomate.</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Siciliana">Pedir esta salsa</a></div><span class="price">9,00€</span></div>
+        <div class="item"><div class="item-text"><span class="name">Cuatro quesos</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Cuatro%20quesos">Pedir esta salsa</a></div><span class="price">9,00€</span></div>
+        <div class="item"><div class="item-text"><span class="name">De la casa</span><span class="desc">Espinacas, requesón, bolognesa.</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20De%20la%20casa">Pedir esta salsa</a></div><span class="price">10,00€</span></div>
+        <div class="item"><div class="item-text"><span class="name">Picante</span><span class="desc">Guindilla, ajo y aceite.</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Picante">Pedir esta salsa</a></div><span class="price">8,00€</span></div>
+        <div class="item"><div class="item-text"><span class="name">Tomate</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Tomate">Pedir esta salsa</a></div><span class="price">8,00€</span></div>
+        <div class="item"><div class="item-text"><span class="name">Funghi</span><span class="desc">Salsa de champiñones.</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Funghi">Pedir esta salsa</a></div><span class="price">9,50€</span></div>
       </div>
     </div>
 
     <div class="category reveal" id="especialidades">
       <h3>Especialidades de la casa</h3>
       <div class="menu-grid">
-        <div class="item"><div class="item-text"><span class="name">Mixto pasta</span><span class="desc">Mezcla de spaguetti, gnocchi, tortellini carne, ravioli funghi, con salsa de la casa.</span></div><span class="price">11,50€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Mixto ravioli</span><span class="desc">Pasta rellena de espinacas, requesón, bolognesa, con salsa de la casa.</span></div><span class="price">11,50€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Lasagna</span><span class="desc">Carne.</span></div><span class="price">8,50€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Lasagna verdura</span></div><span class="price">8,50€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Lasagna espinacas</span></div><span class="price">8,50€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Fiocchi pera y queso</span><span class="desc">Salsa cuatro quesos.</span></div><span class="price">9,00€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Cannelloni</span><span class="desc">Blanco.</span></div><span class="price">8,00€</span></div>
+        <div class="item"><div class="item-text"><span class="name">Mixto pasta</span><span class="desc">Mezcla de spaguetti, gnocchi, tortellini carne, ravioli funghi, con salsa de la casa.</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Mixto%20pasta">Pedir este plato</a></div><span class="price">11,50€</span></div>
+        <div class="item"><div class="item-text"><span class="name">Mixto ravioli</span><span class="desc">Pasta rellena de espinacas, requesón, bolognesa, con salsa de la casa.</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Mixto%20ravioli">Pedir este plato</a></div><span class="price">11,50€</span></div>
+        <div class="item"><div class="item-text"><span class="name">Lasagna</span><span class="desc">Carne.</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Lasagna">Pedir este plato</a></div><span class="price">8,50€</span></div>
+        <div class="item"><div class="item-text"><span class="name">Lasagna verdura</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Lasagna%20verdura">Pedir este plato</a></div><span class="price">8,50€</span></div>
+        <div class="item"><div class="item-text"><span class="name">Lasagna espinacas</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Lasagna%20espinacas">Pedir este plato</a></div><span class="price">8,50€</span></div>
+        <div class="item"><div class="item-text"><span class="name">Fiocchi pera y queso</span><span class="desc">Salsa cuatro quesos.</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Fiocchi%20pera%20y%20queso">Pedir este plato</a></div><span class="price">9,00€</span></div>
+        <div class="item"><div class="item-text"><span class="name">Cannelloni</span><span class="desc">Blanco.</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Cannelloni">Pedir este plato</a></div><span class="price">8,00€</span></div>
       </div>
     </div>
 
     <div class="category reveal" id="platos">
       <h3>Platos combinados</h3>
       <div class="menu-grid">
-        <div class="item"><div class="item-text"><span class="name">Pollo plancha o rebozado</span></div><span class="price">11,50€ G. / 8,50€ P.</span></div>
-        <div class="item"><div class="item-text"><span class="name">Escalopina</span></div><span class="price">11,50€ G. / 8,50€ P.</span></div>
-        <div class="item"><div class="item-text"><span class="name">Escalopina napoletana</span><span class="desc">Carne rebozada, jamón york, queso, salsa tomate.</span></div><span class="price">14,00€ G. / 11,00€ P.</span></div>
-        <div class="item"><div class="item-text"><span class="name">Solomillo en salsa de champiñones</span></div><span class="price">14,50€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Hamburguesa italiana</span><span class="desc">Pan casero con masa de pizza, hamburguesa de carne, salsa cheddar, bacon, cebolla frita, tomate, lechuga y nuestra salsa casera.</span></div><span class="price">12,50€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Hamburguesa Giulia</span><span class="desc">Pan casero con masa de pizza, pollo rebozado, jamón serrano, queso fontina, lechuga y salsa de pimienta.</span></div><span class="price">12,50€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Enterita a la plancha</span></div><span class="price">12,50€</span></div>
+        <div class="item"><div class="item-text"><span class="name">Pollo plancha o rebozado</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Pollo%20plancha%20o%20rebozado">Pedir este plato</a></div><span class="price">11,50€ G. / 8,50€ P.</span></div>
+        <div class="item"><div class="item-text"><span class="name">Escalopina</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Escalopina">Pedir este plato</a></div><span class="price">11,50€ G. / 8,50€ P.</span></div>
+        <div class="item"><div class="item-text"><span class="name">Escalopina napoletana</span><span class="desc">Carne rebozada, jamón york, queso, salsa tomate.</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Escalopina%20napoletana">Pedir este plato</a></div><span class="price">14,00€ G. / 11,00€ P.</span></div>
+        <div class="item"><div class="item-text"><span class="name">Solomillo en salsa de champiñones</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Solomillo%20en%20salsa%20de%20champiñones">Pedir este plato</a></div><span class="price">14,50€</span></div>
+        <div class="item"><div class="item-text"><span class="name">Hamburguesa italiana</span><span class="desc">Pan casero con masa de pizza, hamburguesa de carne, salsa cheddar, bacon, cebolla frita, tomate, lechuga y nuestra salsa casera.</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Hamburguesa%20italiana">Pedir este plato</a></div><span class="price">12,50€</span></div>
+        <div class="item"><div class="item-text"><span class="name">Hamburguesa Giulia</span><span class="desc">Pan casero con masa de pizza, pollo rebozado, jamón serrano, queso fontina, lechuga y salsa de pimienta.</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Hamburguesa%20Giulia">Pedir este plato</a></div><span class="price">12,50€</span></div>
+        <div class="item"><div class="item-text"><span class="name">Enterita a la plancha</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Enterita%20a%20la%20plancha">Pedir este plato</a></div><span class="price">12,50€</span></div>
       </div>
       <div class="note">G. = grande · P. = pequeño.</div>
     </div>
@@ -899,45 +854,50 @@ footer{
     <div class="category reveal" id="bebidas">
       <h3>Bebidas</h3>
       <div class="menu-grid">
-        <div class="item"><div class="item-text"><span class="name">Refrescos</span></div><span class="price">2,00€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Caña</span></div><span class="price">2,00€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Tanque</span></div><span class="price">3,50€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Champú</span></div><span class="price">2,00€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Champú tanque</span></div><span class="price">3,50€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Clara caña</span></div><span class="price">2,00€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Clara tanque</span></div><span class="price">3,50€</span></div>
-        <div class="item"><div class="item-text"><span class="name">1/3 l</span></div><span class="price">2,20€</span></div>
-        <div class="item"><div class="item-text"><span class="name">1/3 l sin alcohol</span></div><span class="price">2,20€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Tercio tostada</span></div><span class="price">2,50€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Agua con gas 0.33 cl</span></div><span class="price">2,00€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Agua con gas 0.75 cl</span></div><span class="price">3,50€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Agua 0.33 cl</span></div><span class="price">1,50€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Agua 1.0 l</span></div><span class="price">2,50€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Gaseosa 1/2 l</span></div><span class="price">2,00€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Gaseosa 1 l</span></div><span class="price">3,00€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Vino de la casa tinto 1 l</span></div><span class="price">6,50€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Vino de la casa tinto 1/2 l</span></div><span class="price">4,00€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Tinto de verano copa</span></div><span class="price">3,50€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Copa sangría</span></div><span class="price">3,50€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Copa de vino de la casa</span></div><span class="price">2,50€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Copa de vino Rioja o verdejo</span></div><span class="price">3,50€</span></div>
+        <div class="item"><div class="item-text"><span class="name">Refrescos</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Refrescos">Pedir esta bebida</a></div><span class="price">2,00€</span></div>
+        <div class="item"><div class="item-text"><span class="name">Caña</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Caña">Pedir esta bebida</a></div><span class="price">2,00€</span></div>
+        <div class="item"><div class="item-text"><span class="name">Tanque</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Tanque">Pedir esta bebida</a></div><span class="price">3,50€</span></div>
+        <div class="item"><div class="item-text"><span class="name">Champú</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Champú">Pedir esta bebida</a></div><span class="price">2,00€</span></div>
+        <div class="item"><div class="item-text"><span class="name">Champú tanque</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Champú%20tanque">Pedir esta bebida</a></div><span class="price">3,50€</span></div>
+        <div class="item"><div class="item-text"><span class="name">Clara caña</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Clara%20caña">Pedir esta bebida</a></div><span class="price">2,00€</span></div>
+        <div class="item"><div class="item-text"><span class="name">Clara tanque</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Clara%20tanque">Pedir esta bebida</a></div><span class="price">3,50€</span></div>
+        <div class="item"><div class="item-text"><span class="name">1/3 l</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%201%2F3%20l">Pedir esta bebida</a></div><span class="price">2,20€</span></div>
+        <div class="item"><div class="item-text"><span class="name">1/3 l sin alcohol</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%201%2F3%20l%20sin%20alcohol">Pedir esta bebida</a></div><span class="price">2,20€</span></div>
+        <div class="item"><div class="item-text"><span class="name">Tercio tostada</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Tercio%20tostada">Pedir esta bebida</a></div><span class="price">2,50€</span></div>
+        <div class="item"><div class="item-text"><span class="name">Agua con gas 0.33 cl</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Agua%20con%20gas%200.33%20cl">Pedir esta bebida</a></div><span class="price">2,00€</span></div>
+        <div class="item"><div class="item-text"><span class="name">Agua con gas 0.75 cl</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Agua%20con%20gas%200.75%20cl">Pedir esta bebida</a></div><span class="price">3,50€</span></div>
+        <div class="item"><div class="item-text"><span class="name">Agua 0.33 cl</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Agua%200.33%20cl">Pedir esta bebida</a></div><span class="price">1,50€</span></div>
+        <div class="item"><div class="item-text"><span class="name">Agua 1.0 l</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Agua%201.0%20l">Pedir esta bebida</a></div><span class="price">2,50€</span></div>
+        <div class="item"><div class="item-text"><span class="name">Gaseosa 1/2 l</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Gaseosa%201%2F2%20l">Pedir esta bebida</a></div><span class="price">2,00€</span></div>
+        <div class="item"><div class="item-text"><span class="name">Gaseosa 1 l</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Gaseosa%201%20l">Pedir esta bebida</a></div><span class="price">3,00€</span></div>
+        <div class="item"><div class="item-text"><span class="name">Vino de la casa tinto 1 l</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Vino%20de%20la%20casa%20tinto%201%20l">Pedir esta bebida</a></div><span class="price">6,50€</span></div>
+        <div class="item"><div class="item-text"><span class="name">Vino de la casa tinto 1/2 l</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Vino%20de%20la%20casa%20tinto%201%2F2%20l">Pedir esta bebida</a></div><span class="price">4,00€</span></div>
+        <div class="item"><div class="item-text"><span class="name">Tinto de verano copa</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Tinto%20de%20verano%20copa">Pedir esta bebida</a></div><span class="price">3,50€</span></div>
+        <div class="item"><div class="item-text"><span class="name">Copa sangría</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Copa%20sangría">Pedir esta bebida</a></div><span class="price">3,50€</span></div>
+        <div class="item"><div class="item-text"><span class="name">Copa de vino de la casa</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Copa%20de%20vino%20de%20la%20casa">Pedir esta bebida</a></div><span class="price">2,50€</span></div>
+        <div class="item"><div class="item-text"><span class="name">Copa de vino Rioja o verdejo</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Copa%20de%20vino%20Rioja%20o%20verdejo">Pedir esta bebida</a></div><span class="price">3,50€</span></div>
       </div>
     </div>
 
     <div class="category reveal" id="postres">
       <h3>Postres</h3>
       <div class="menu-grid">
-        <div class="item"><div class="item-text"><span class="name">Postres caseros del día</span></div><span class="price">Consultar</span></div>
+        <div class="item"><div class="item-text"><span class="name">Tiramisú</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Tiramisú">Pedir este postre</a></div><span class="price">5,50€</span></div>
+        <div class="item"><div class="item-text"><span class="name">Tarta de queso</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Tarta%20de%20queso">Pedir este postre</a></div><span class="price">5,50€</span></div>
+        <div class="item"><div class="item-text"><span class="name">Tarta de tres chocolates</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Tarta%20de%20tres%20chocolates">Pedir este postre</a></div><span class="price">5,50€</span></div>
+        <div class="item"><div class="item-text"><span class="name">Crep de Nutella</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Crep%20de%20Nutella">Pedir este postre</a></div><span class="price">5,50€</span></div>
+        <div class="item"><div class="item-text"><span class="name">Crep de dulce de leche</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Crep%20de%20dulce%20de%20leche">Pedir este postre</a></div><span class="price">5,50€</span></div>
+        <div class="item"><div class="item-text"><span class="name">Coulant de chocolate negro</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Coulant%20de%20chocolate%20negro">Pedir este postre</a></div><span class="price">5,50€</span></div>
       </div>
     </div>
 
     <div class="category reveal" id="menujoven">
       <h3>Menú joven y cocas</h3>
       <div class="menu-grid">
-        <div class="item"><div class="item-text"><span class="name">Menú joven</span><span class="desc">Pizza sencilla, margarita, atún, frankfurt, bambini o Nutella + refresco Coca-Cola, Fanta naranja, Fanta limón o agua.</span></div><span class="price">5,00€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Coca sal o azúcar</span></div><span class="price">2,00€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Coca jamón o queso</span></div><span class="price">3,00€</span></div>
-        <div class="item"><div class="item-text"><span class="name">Coca jamón y queso</span></div><span class="price">4,00€</span></div>
+        <div class="item"><div class="item-text"><span class="name">Menú joven</span><span class="desc">Pizza sencilla, margarita, atún, frankfurt, bambini o Nutella + refresco Coca-Cola, Fanta naranja, Fanta limón o agua.</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Menú%20joven">Pedir este menú</a></div><span class="price">5,00€</span></div>
+        <div class="item"><div class="item-text"><span class="name">Coca sal o azúcar</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Coca%20sal%20o%20azúcar">Pedir esta coca</a></div><span class="price">2,00€</span></div>
+        <div class="item"><div class="item-text"><span class="name">Coca jamón o queso</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Coca%20jamón%20o%20queso">Pedir esta coca</a></div><span class="price">3,00€</span></div>
+        <div class="item"><div class="item-text"><span class="name">Coca jamón y queso</span><a class="order-btn" href="https://wa.me/34621492566?text=Hola,%20quiero%20pedir%20Coca%20jamón%20y%20queso">Pedir esta coca</a></div><span class="price">4,00€</span></div>
       </div>
       <div class="note">Servicio a domicilio: 1,50€ o 2,50€ · Pedido mínimo: 10,00€.</div>
     </div>
@@ -949,7 +909,7 @@ footer{
   <div class="cta reveal">
     <div>
       <h3>Haz tu pedido ahora</h3>
-      <p>Pizzas, entrantes, pasta, crostones, bebidas y postres en un solo clic.</p>
+      <p>Toda la carta se puede pedir por WhatsApp con un solo toque.</p>
     </div>
     <div class="actions">
       <a class="btn btn-outline" href="tel:+34621492566">Llamar</a>
@@ -969,7 +929,7 @@ footer{
 
 <div class="smoke"></div>
 
-<a class="sticky" href="https://wa.me/34621492566?text=Hola,%20quiero%20hacer%20un%20pedido">📲 PEDIR AHORA POR WHATSAPP</a>
+<a class="sticky" href="https://wa.me/34621492566?text=Hola,%20quiero%20hacer%20un%20pedido">📲 Pedir por WhatsApp</a>
 
 </body>
 </html>
