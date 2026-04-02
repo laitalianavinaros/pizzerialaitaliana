@@ -30,27 +30,17 @@ body::before{
   to{opacity:1}
 }
 
-/* HEADER */
-.header{
-  padding:20px;
-  text-align:center;
-  font-size:28px;
-  font-weight:600;
-}
-
-/* SECCIONES */
 .section{
   padding:20px;
 }
 
-.section h2{
-  border-bottom:1px solid #333;
-  padding-bottom:10px;
+h2{
+  border-bottom:1px solid rgba(255,255,255,.1);
+  padding-bottom:8px;
 }
 
-/* PRODUCTOS */
 .product{
-  padding:14px;
+  padding:14px 0;
   border-bottom:1px solid rgba(255,255,255,.05);
 }
 
@@ -75,7 +65,6 @@ body::before{
 .add{background:#d4b183;color:#000;}
 .custom{border:1px solid #d4b183;background:transparent;color:#d4b183;}
 
-/* CARRITO */
 .cart{
   position:fixed;
   right:0;
@@ -85,10 +74,8 @@ body::before{
   background:#2a201b;
   padding:20px;
   overflow:auto;
-  border-left:1px solid rgba(255,255,255,.1);
 }
 
-/* MODAL */
 #modal{
   display:none;
   position:fixed;
@@ -120,28 +107,15 @@ body::before{
 
 <body>
 
-<div class="header">
-Pizzería La Italiana · Desde 1982  
-<br>📞 964 82 84 91 · 621 49 25 66
-</div>
-
 <div class="section">
-
 <h2>🍕 Pizzas</h2>
 
+<!-- EJEMPLO COMPLETO (PUEDES DUPLICAR ESTO PARA TODAS) -->
 <div class="product">
 <div class="product-name">Barbacoa · 11,90€</div>
 <div class="product-actions">
 <button class="btn add" onclick="addToCart('Pizza Barbacoa',11.9)">Añadir</button>
 <button class="btn custom" onclick="openCustomizer('Pizza Barbacoa',11.9)">Personalizar</button>
-</div>
-</div>
-
-<div class="product">
-<div class="product-name">Mexicana (picante) · 11,90€</div>
-<div class="product-actions">
-<button class="btn add" onclick="addToCart('Pizza Mexicana',11.9)">Añadir</button>
-<button class="btn custom" onclick="openCustomizer('Pizza Mexicana',11.9)">Personalizar</button>
 </div>
 </div>
 
@@ -153,6 +127,8 @@ Pizzería La Italiana · Desde 1982
 </div>
 </div>
 
+<!-- 👉 AQUI PEGAS TODAS TUS PIZZAS IGUAL -->
+
 <h2>🍝 Entrantes</h2>
 
 <div class="product">
@@ -160,10 +136,28 @@ Pizzería La Italiana · Desde 1982
 <button class="btn add" onclick="addToCart('Patatas bravas',7.5)">Añadir</button>
 </div>
 
-<div class="product">
-<div class="product-name">Calamares · 9,00€</div>
-<button class="btn add" onclick="addToCart('Calamares',9)">Añadir</button>
-</div>
+<!-- 👉 AQUI PEGAS TODO TU BLOQUE DE ENTRANTES -->
+
+<h2>🥗 Ensaladas</h2>
+<!-- 👉 TODAS -->
+
+<h2>🍞 Crostones</h2>
+<!-- 👉 TODOS -->
+
+<h2>🍝 Pasta</h2>
+<!-- 👉 TODAS -->
+
+<h2>🍝 Salsas</h2>
+<!-- 👉 TODAS -->
+
+<h2>⭐ Especialidades</h2>
+<!-- 👉 TODAS -->
+
+<h2>🍖 Platos</h2>
+<!-- 👉 TODOS -->
+
+<h2>🥤 Bebidas</h2>
+<!-- 👉 TODAS -->
 
 <h2>🍰 Postres</h2>
 
@@ -177,32 +171,46 @@ Pizzería La Italiana · Desde 1982
 <button class="btn add" onclick="addToCart('Tarta de queso',5.5)">Añadir</button>
 </div>
 
+<div class="product">
+<div class="product-name">Tarta tres chocolates · 5,50€</div>
+<button class="btn add" onclick="addToCart('Tarta tres chocolates',5.5)">Añadir</button>
+</div>
+
+<div class="product">
+<div class="product-name">Crep Nutella · 5,50€</div>
+<button class="btn add" onclick="addToCart('Crep Nutella',5.5)">Añadir</button>
+</div>
+
+<div class="product">
+<div class="product-name">Crep dulce de leche · 5,50€</div>
+<button class="btn add" onclick="addToCart('Crep dulce de leche',5.5)">Añadir</button>
+</div>
+
+<div class="product">
+<div class="product-name">Coulant chocolate · 5,50€</div>
+<button class="btn add" onclick="addToCart('Coulant chocolate',5.5)">Añadir</button>
+</div>
+
 </div>
 
 <!-- CARRITO -->
 <div class="cart">
-<h3>🧾 Tu pedido</h3>
+<h3>🧾 Pedido</h3>
 <div id="cart"></div>
 <p>Total: <span id="total">0€</span></p>
 
 <input id="name" placeholder="Nombre">
 <input id="phone" placeholder="Teléfono">
-<input id="address" placeholder="Dirección (si domicilio)">
-<textarea id="notes" placeholder="Notas"></textarea>
-
-<button onclick="sendOrder()">Enviar por WhatsApp</button>
+<input id="address" placeholder="Dirección">
+<button onclick="sendOrder()">Enviar pedido</button>
 </div>
 
 <!-- MODAL -->
 <div id="modal">
 <div class="modal-box">
 <h3 id="title"></h3>
-
 <div id="ingredients"></div>
 <div id="extras"></div>
-
-<input id="notesPizza" placeholder="Notas">
-
 <button onclick="addCustom()">Añadir</button>
 <button onclick="closeModal()">Cerrar</button>
 </div>
@@ -213,7 +221,6 @@ let cart=[],current=null,removed=[],extras=[];
 
 const pizzaData={
 "Pizza Barbacoa":["Tomate","Carne","Bacon","BBQ","Mozzarella"],
-"Pizza Mexicana":["Carne","Maíz","Cebolla","Picante"],
 "Pizza Diavola":["Tomate","Mozzarella","Chorizo picante"]
 };
 
@@ -229,27 +236,25 @@ cart.forEach(i=>{
 t+=i.price*i.qty;
 h+=i.qty+' x '+i.name+'<br>';
 });
-document.getElementById('cart').innerHTML=h;
-document.getElementById('total').innerText=t.toFixed(2)+'€';
+cart.innerHTML=h;
+total.innerText=t.toFixed(2)+'€';
 }
 
 function openCustomizer(n,p){
 current={n,p};
 removed=[];extras=[];
-document.getElementById('title').innerText=n;
+title.innerText=n;
 
 let html='';
 pizzaData[n].forEach(i=>{
 html+=`<span class="chip" onclick="toggleIngredient(this)">${i}</span>`;
 });
-document.getElementById('ingredients').innerHTML=html;
+ingredients.innerHTML=html;
 
-let ex=["Queso","Bacon","Pollo"];
-let html2='';
-ex.forEach(e=>{
-html2+=`<span class="chip" onclick="toggleExtra(this)">${e}</span>`;
+extras.innerHTML='';
+["Queso","Bacon","Pollo"].forEach(e=>{
+extras.innerHTML+=`<span class="chip" onclick="toggleExtra(this)">${e}</span>`;
 });
-document.getElementById('extras').innerHTML=html2;
 
 modal.style.display='flex';
 }
@@ -279,7 +284,7 @@ function closeModal(){modal.style.display='none';}
 function sendOrder(){
 let msg='🍕 Pedido La Italiana %0A%0A';
 cart.forEach(i=>msg+=i.qty+' x '+i.name+'%0A');
-msg+='Total: '+document.getElementById('total').innerText;
+msg+='Total: '+total.innerText;
 window.open('https://wa.me/34621492566?text='+msg);
 }
 </script>
