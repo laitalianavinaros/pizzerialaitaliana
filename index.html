@@ -13,30 +13,67 @@ body{
   color:#efe3d6;
 }
 
-/* FUEGO + HUMO */
+/* FONDO PREMIUM */
 body::before{
   content:"";
   position:fixed;
   inset:0;
-  background:radial-gradient(circle at bottom, rgba(255,120,40,.25), transparent);
-  animation:fuego 5s infinite alternate;
-  pointer-events:none;
+  background:
+    radial-gradient(circle at bottom, rgba(255,120,40,.25), transparent),
+    linear-gradient(180deg,#1f1814,#2a201b);
+  animation:fuego 6s infinite alternate;
+  z-index:-1;
 }
+
 @keyframes fuego{
-  from{opacity:.6}
+  from{opacity:.7}
   to{opacity:1}
 }
 
-/* BOTONES */
-.order-btn{
-  margin-top:6px;
-  padding:8px 14px;
+/* HEADER */
+.header{
+  padding:20px;
+  text-align:center;
+  font-size:28px;
+  font-weight:600;
+}
+
+/* SECCIONES */
+.section{
+  padding:20px;
+}
+
+.section h2{
+  border-bottom:1px solid #333;
+  padding-bottom:10px;
+}
+
+/* PRODUCTOS */
+.product{
+  padding:14px;
+  border-bottom:1px solid rgba(255,255,255,.05);
+}
+
+.product-name{
+  font-weight:600;
+}
+
+.product-actions{
+  display:flex;
+  gap:8px;
+  margin-top:8px;
+}
+
+.btn{
+  flex:1;
+  padding:10px;
   border-radius:999px;
   border:none;
-  background:#d4b183;
-  font-weight:600;
   cursor:pointer;
 }
+
+.add{background:#d4b183;color:#000;}
+.custom{border:1px solid #d4b183;background:transparent;color:#d4b183;}
 
 /* CARRITO */
 .cart{
@@ -48,19 +85,11 @@ body::before{
   background:#2a201b;
   padding:20px;
   overflow:auto;
-  border-left:1px solid #444;
-}
-
-input,select,textarea{
-  width:100%;
-  padding:8px;
-  margin-top:6px;
-  border-radius:6px;
-  border:none;
+  border-left:1px solid rgba(255,255,255,.1);
 }
 
 /* MODAL */
-#customModal{
+#modal{
   display:none;
   position:fixed;
   inset:0;
@@ -75,112 +104,104 @@ input,select,textarea{
   border-radius:16px;
 }
 
-.extras button{
-  margin:4px;
+.chip{
   padding:6px 10px;
-  border-radius:999px;
   border:1px solid #555;
-  background:#1a1411;
-  color:#fff;
+  margin:4px;
+  border-radius:999px;
+  display:inline-block;
+  cursor:pointer;
 }
 
-.extras button.active{
-  background:#d4b183;
-  color:#1a1411;
-}
+.removed{background:#7a2b2b;text-decoration:line-through;}
+.active{background:#d4b183;color:#000;}
 </style>
 </head>
 
 <body>
 
-<h1 style="padding:20px">Pizzería La Italiana</h1>
-
-<div style="padding:20px">
-
-<h2>Pizzas</h2>
-
-<div>Barbacoa 11.90€
-<button class="order-btn" onclick="addToCart('Barbacoa',11.9)">Añadir</button>
+<div class="header">
+Pizzería La Italiana · Desde 1982  
+<br>📞 964 82 84 91 · 621 49 25 66
 </div>
 
-<div>Carbonara 11.50€
-<button class="order-btn" onclick="addToCart('Carbonara',11.5)">Añadir</button>
+<div class="section">
+
+<h2>🍕 Pizzas</h2>
+
+<div class="product">
+<div class="product-name">Barbacoa · 11,90€</div>
+<div class="product-actions">
+<button class="btn add" onclick="addToCart('Pizza Barbacoa',11.9)">Añadir</button>
+<button class="btn custom" onclick="openCustomizer('Pizza Barbacoa',11.9)">Personalizar</button>
+</div>
 </div>
 
-<div>Diavola (picante) 12.00€
-<button class="order-btn" onclick="addToCart('Diavola',12)">Añadir</button>
+<div class="product">
+<div class="product-name">Mexicana (picante) · 11,90€</div>
+<div class="product-actions">
+<button class="btn add" onclick="addToCart('Pizza Mexicana',11.9)">Añadir</button>
+<button class="btn custom" onclick="openCustomizer('Pizza Mexicana',11.9)">Personalizar</button>
+</div>
 </div>
 
-<div>Mexicana (picante) 11.90€
-<button class="order-btn" onclick="addToCart('Mexicana',11.9)">Añadir</button>
+<div class="product">
+<div class="product-name">Diavola (picante) · 12,00€</div>
+<div class="product-actions">
+<button class="btn add" onclick="addToCart('Pizza Diavola',12)">Añadir</button>
+<button class="btn custom" onclick="openCustomizer('Pizza Diavola',12)">Personalizar</button>
+</div>
 </div>
 
-<div>Chorizo picante 10.90€
-<button class="order-btn" onclick="addToCart('Chorizo picante',10.9)">Añadir</button>
+<h2>🍝 Entrantes</h2>
+
+<div class="product">
+<div class="product-name">Patatas bravas · 7,50€</div>
+<button class="btn add" onclick="addToCart('Patatas bravas',7.5)">Añadir</button>
 </div>
 
-<h2>Postres</h2>
-
-<div>Tiramisú 5.50€
-<button class="order-btn" onclick="addToCart('Tiramisú',5.5)">Añadir</button>
+<div class="product">
+<div class="product-name">Calamares · 9,00€</div>
+<button class="btn add" onclick="addToCart('Calamares',9)">Añadir</button>
 </div>
 
-<div>Tarta de queso 5.50€
-<button class="order-btn" onclick="addToCart('Tarta de queso',5.5)">Añadir</button>
+<h2>🍰 Postres</h2>
+
+<div class="product">
+<div class="product-name">Tiramisú · 5,50€</div>
+<button class="btn add" onclick="addToCart('Tiramisú',5.5)">Añadir</button>
 </div>
 
-<div>Tarta tres chocolates 5.50€
-<button class="order-btn" onclick="addToCart('Tarta tres chocolates',5.5)">Añadir</button>
-</div>
-
-<div>Crep Nutella 5.50€
-<button class="order-btn" onclick="addToCart('Crep Nutella',5.5)">Añadir</button>
-</div>
-
-<div>Crep dulce de leche 5.50€
-<button class="order-btn" onclick="addToCart('Crep dulce de leche',5.5)">Añadir</button>
-</div>
-
-<div>Coulant chocolate 5.50€
-<button class="order-btn" onclick="addToCart('Coulant',5.5)">Añadir</button>
+<div class="product">
+<div class="product-name">Tarta de queso · 5,50€</div>
+<button class="btn add" onclick="addToCart('Tarta de queso',5.5)">Añadir</button>
 </div>
 
 </div>
 
 <!-- CARRITO -->
 <div class="cart">
-<h2>Tu pedido</h2>
+<h3>🧾 Tu pedido</h3>
 <div id="cart"></div>
 <p>Total: <span id="total">0€</span></p>
 
 <input id="name" placeholder="Nombre">
 <input id="phone" placeholder="Teléfono">
-
-<select id="type">
-<option value="recoger">Recoger</option>
-<option value="domicilio">Domicilio</option>
-</select>
-
-<input id="address" placeholder="Dirección">
-
+<input id="address" placeholder="Dirección (si domicilio)">
 <textarea id="notes" placeholder="Notas"></textarea>
 
-<button onclick="sendOrder()">Enviar pedido</button>
+<button onclick="sendOrder()">Enviar por WhatsApp</button>
 </div>
 
 <!-- MODAL -->
-<div id="customModal">
+<div id="modal">
 <div class="modal-box">
-<h3 id="pizzaName"></h3>
+<h3 id="title"></h3>
 
-<div class="extras">
-<button onclick="toggleExtra(this)">Queso</button>
-<button onclick="toggleExtra(this)">Bacon</button>
-<button onclick="toggleExtra(this)">Pollo</button>
-</div>
+<div id="ingredients"></div>
+<div id="extras"></div>
 
-<input id="remove" placeholder="Quitar ingredientes">
-<input id="note" placeholder="Notas">
+<input id="notesPizza" placeholder="Notas">
 
 <button onclick="addCustom()">Añadir</button>
 <button onclick="closeModal()">Cerrar</button>
@@ -188,83 +209,79 @@ input,select,textarea{
 </div>
 
 <script>
-let cart=[];
-let extras=[];
-let current=null;
+let cart=[],current=null,removed=[],extras=[];
 
-function addToCart(name,price){
-let item=cart.find(i=>i.name===name);
-if(item){item.qty++}else{cart.push({name,price,qty:1})}
+const pizzaData={
+"Pizza Barbacoa":["Tomate","Carne","Bacon","BBQ","Mozzarella"],
+"Pizza Mexicana":["Carne","Maíz","Cebolla","Picante"],
+"Pizza Diavola":["Tomate","Mozzarella","Chorizo picante"]
+};
+
+function addToCart(n,p){
+let f=cart.find(i=>i.name==n);
+f?f.qty++:cart.push({name:n,price:p,qty:1});
 render();
 }
 
 function render(){
-let html='';
-let total=0;
+let h='',t=0;
 cart.forEach(i=>{
-total+=i.price*i.qty;
-html+=`${i.qty} x ${i.name}<br>`;
+t+=i.price*i.qty;
+h+=i.qty+' x '+i.name+'<br>';
 });
-document.getElementById('cart').innerHTML=html;
-document.getElementById('total').innerText=total.toFixed(2)+'€';
+document.getElementById('cart').innerHTML=h;
+document.getElementById('total').innerText=t.toFixed(2)+'€';
 }
 
-function openCustomizer(name,price){
-current={name,price};
-extras=[];
-document.getElementById('pizzaName').innerText=name;
-document.getElementById('customModal').style.display='flex';
+function openCustomizer(n,p){
+current={n,p};
+removed=[];extras=[];
+document.getElementById('title').innerText=n;
+
+let html='';
+pizzaData[n].forEach(i=>{
+html+=`<span class="chip" onclick="toggleIngredient(this)">${i}</span>`;
+});
+document.getElementById('ingredients').innerHTML=html;
+
+let ex=["Queso","Bacon","Pollo"];
+let html2='';
+ex.forEach(e=>{
+html2+=`<span class="chip" onclick="toggleExtra(this)">${e}</span>`;
+});
+document.getElementById('extras').innerHTML=html2;
+
+modal.style.display='flex';
 }
 
-function closeModal(){
-document.getElementById('customModal').style.display='none';
+function toggleIngredient(el){
+el.classList.toggle('removed');
+let v=el.innerText;
+removed.includes(v)?removed=removed.filter(i=>i!=v):removed.push(v);
 }
 
-function toggleExtra(btn){
-btn.classList.toggle('active');
-let val=btn.innerText;
-if(extras.includes(val)){
-extras=extras.filter(e=>e!==val);
-}else{
-extras.push(val);
-}
+function toggleExtra(el){
+el.classList.toggle('active');
+let v=el.innerText;
+extras.includes(v)?extras=extras.filter(i=>i!=v):extras.push(v);
 }
 
 function addCustom(){
-let name=current.name;
-if(extras.length) name+=' + '+extras.join(',');
-let remove=document.getElementById('remove').value;
-let note=document.getElementById('note').value;
-if(remove) name+=' ('+remove+')';
-if(note) name+=' ['+note+']';
-addToCart(name,current.price+extras.length);
+let n=current.n;
+if(removed.length)n+=' (sin '+removed.join(',')+')';
+if(extras.length)n+=' + '+extras.join(',');
+addToCart(n,current.p+extras.length);
 closeModal();
 }
 
+function closeModal(){modal.style.display='none';}
+
 function sendOrder(){
 let msg='🍕 Pedido La Italiana %0A%0A';
-cart.forEach(i=>{
-msg+=i.qty+' x '+i.name+'%0A';
-});
-msg+='%0ATotal: '+document.getElementById('total').innerText;
-msg+='%0A📍 Indica recoger o domicilio';
+cart.forEach(i=>msg+=i.qty+' x '+i.name+'%0A');
+msg+='Total: '+document.getElementById('total').innerText;
 window.open('https://wa.me/34621492566?text='+msg);
 }
-
-/* AUTO PERSONALIZAR */
-document.querySelectorAll('.order-btn').forEach(btn=>{
-let onclick=btn.getAttribute('onclick');
-let match=onclick.match(/'(.+?)',(\d+)/);
-if(match){
-let name=match[1];
-let price=match[2];
-let b=document.createElement('button');
-b.innerText='Personalizar';
-b.className='order-btn';
-b.onclick=()=>openCustomizer(name,parseFloat(price));
-btn.after(b);
-}
-});
 </script>
 
 </body>
