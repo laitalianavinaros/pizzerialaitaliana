@@ -19,8 +19,6 @@
   --shadow:0 20px 50px rgba(0,0,0,.28);
   --max:1280px;
   --whatsapp:#25D366;
-  --panel:#2b211c;
-  --panel2:#342821;
 }
 
 *{box-sizing:border-box}
@@ -960,7 +958,6 @@ footer{
       <a class="chip" href="#platos">Platos</a>
       <a class="chip" href="#bebidas">Bebidas</a>
       <a class="chip" href="#postres">Postres</a>
-      <a class="chip" href="#menujoven">Menú joven</a>
     </div>
 
     <section class="menu" id="carta">
@@ -970,7 +967,7 @@ footer{
       </div>
 
       <div class="menu-wrap">
-
+        <!-- PIZZAS -->
         <div class="category reveal" id="pizzas">
           <h3>Pizzas</h3>
 
@@ -1056,6 +1053,7 @@ footer{
           <div class="note">Cada suplemento 1€ o 2€ · Consultar.</div>
         </div>
 
+        <!-- ENTRANTES -->
         <div class="category reveal" id="entrantes">
           <h3>Entrantes</h3>
           <div class="menu-grid">
@@ -1082,6 +1080,7 @@ footer{
           </div>
         </div>
 
+        <!-- ENSALADAS -->
         <div class="category reveal" id="ensaladas">
           <h3>Ensaladas</h3>
           <div class="menu-grid">
@@ -1096,6 +1095,7 @@ footer{
           </div>
         </div>
 
+        <!-- CROSTONES -->
         <div class="category reveal" id="crostones">
           <h3>Crostones</h3>
           <div class="menu-grid">
@@ -1109,6 +1109,7 @@ footer{
           </div>
         </div>
 
+        <!-- PASTA -->
         <div class="category reveal" id="pasta">
           <h3>Pasta</h3>
           <div class="menu-grid">
@@ -1121,6 +1122,7 @@ footer{
           <div class="note">En pasta conviene confirmar la salsa al finalizar el pedido por WhatsApp.</div>
         </div>
 
+        <!-- ESPECIALIDADES -->
         <div class="category reveal" id="especialidades">
           <h3>Especialidades de la casa</h3>
           <div class="menu-grid">
@@ -1134,6 +1136,7 @@ footer{
           </div>
         </div>
 
+        <!-- PLATOS -->
         <div class="category reveal" id="platos">
           <h3>Platos combinados</h3>
           <div class="menu-grid">
@@ -1147,6 +1150,7 @@ footer{
           </div>
         </div>
 
+        <!-- BEBIDAS -->
         <div class="category reveal" id="bebidas">
           <h3>Bebidas</h3>
           <div class="menu-grid">
@@ -1161,6 +1165,7 @@ footer{
           </div>
         </div>
 
+        <!-- POSTRES -->
         <div class="category reveal" id="postres">
           <h3>Postres</h3>
           <div class="menu-grid">
@@ -1172,18 +1177,6 @@ footer{
             <div class="item"><div class="item-text"><span class="name">Coulant de chocolate negro</span><div class="product-actions"><button class="order-btn" onclick="addToCart('Coulant de chocolate negro', 5.50)">Añadir</button></div></div><span class="price">5,50€</span></div>
           </div>
         </div>
-
-        <div class="category reveal" id="menujoven">
-          <h3>Menú joven y cocas</h3>
-          <div class="menu-grid">
-            <div class="item"><div class="item-text"><span class="name">Menú joven</span><div class="product-actions"><button class="order-btn" onclick="addToCart('Menú joven', 5.00)">Añadir</button></div></div><span class="price">5,00€</span></div>
-            <div class="item"><div class="item-text"><span class="name">Coca sal o azúcar</span><div class="product-actions"><button class="order-btn" onclick="addToCart('Coca sal o azúcar', 2.00)">Añadir</button></div></div><span class="price">2,00€</span></div>
-            <div class="item"><div class="item-text"><span class="name">Coca jamón o queso</span><div class="product-actions"><button class="order-btn" onclick="addToCart('Coca jamón o queso', 3.00)">Añadir</button></div></div><span class="price">3,00€</span></div>
-            <div class="item"><div class="item-text"><span class="name">Coca jamón y queso</span><div class="product-actions"><button class="order-btn" onclick="addToCart('Coca jamón y queso', 4.00)">Añadir</button></div></div><span class="price">4,00€</span></div>
-          </div>
-          <div class="note">Servicio a domicilio: 1,50€ o 2,50€ · Pedido mínimo: 10,00€.</div>
-        </div>
-
       </div>
     </section>
   </main>
@@ -1289,6 +1282,12 @@ footer{
         <button type="button" onclick="toggleExtra(this)">Cebolla</button>
         <button type="button" onclick="toggleExtra(this)">Champiñones</button>
         <button type="button" onclick="toggleExtra(this)">Maíz</button>
+        <button type="button" onclick="toggleExtra(this)">Carne picada</button>
+        <button type="button" onclick="toggleExtra(this)">Jamón york</button>
+        <button type="button" onclick="toggleExtra(this)">Chorizo picante</button>
+        <button type="button" onclick="toggleExtra(this)">Aceitunas</button>
+        <button type="button" onclick="toggleExtra(this)">Piña</button>
+        <button type="button" onclick="toggleExtra(this)">Salsa barbacoa</button>
       </div>
     </div>
 
