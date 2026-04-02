@@ -320,25 +320,28 @@ button{font:inherit}
 
 .quicknav{
   display:flex;
-  gap:10px;
-  overflow:auto;
-  padding:18px 0 8px;
-  scrollbar-width:none;
+  flex-wrap:wrap;
+  gap:14px;
+  margin:30px 0;
+  justify-content:space-between;
 }
-.quicknav::-webkit-scrollbar{display:none}
-.chip{
-  white-space:nowrap;
-  padding:11px 18px;
+.quicknav .chip{
+  flex:1 1 calc(25% - 14px);
+  text-align:center;
+  padding:14px 10px;
   border-radius:999px;
   background:rgba(53,40,33,.92);
   border:1px solid var(--line);
-  font-size:14px;
-  font-weight:600;
+  font-size:16px;
+  font-weight:700;
   transition:.25s ease;
+  min-width:140px;
 }
-.chip:hover{
-  transform:translateY(-2px);
-  border-color:rgba(212,177,131,.28);
+.quicknav .chip:hover{
+  transform:translateY(-2px) scale(1.02);
+  background:#d4b183;
+  color:#1f1814;
+  border-color:#d4b183;
   box-shadow:0 8px 20px rgba(0,0,0,.22);
 }
 
@@ -850,6 +853,9 @@ footer{
   .footer-grid{grid-template-columns:1fr}
   .hero h2{font-size:48px}
 }
+@media (max-width: 768px){
+  .quicknav .chip{flex:1 1 calc(50% - 14px)}
+}
 @media (max-width: 560px){
   .brand h1{font-size:40px}
   .hero-grid{padding:32px 20px}
@@ -971,7 +977,7 @@ footer{
 
       <div class="menu-layout">
       <div class="menu-wrap">
-        <!-- PIZZAS -->
+
         <div class="category reveal" id="pizzas">
           <h3>Pizzas</h3>
 
@@ -1057,7 +1063,6 @@ footer{
           <div class="note">Cada suplemento 1€ o 2€ · Consultar.</div>
         </div>
 
-        <!-- ENTRANTES -->
         <div class="category reveal" id="entrantes">
           <h3>Entrantes</h3>
           <div class="menu-grid">
@@ -1084,7 +1089,6 @@ footer{
           </div>
         </div>
 
-        <!-- ENSALADAS -->
         <div class="category reveal" id="ensaladas">
           <h3>Ensaladas</h3>
           <div class="menu-grid">
@@ -1099,7 +1103,6 @@ footer{
           </div>
         </div>
 
-        <!-- CROSTONES -->
         <div class="category reveal" id="crostones">
           <h3>Crostones</h3>
           <div class="menu-grid">
@@ -1113,7 +1116,6 @@ footer{
           </div>
         </div>
 
-        <!-- PASTA -->
         <div class="category reveal" id="pasta">
           <h3>Pasta</h3>
           <div class="menu-grid">
@@ -1126,7 +1128,6 @@ footer{
           <div class="note">En pasta conviene confirmar la salsa al finalizar el pedido por WhatsApp.</div>
         </div>
 
-        <!-- ESPECIALIDADES -->
         <div class="category reveal" id="especialidades">
           <h3>Especialidades de la casa</h3>
           <div class="menu-grid">
@@ -1140,7 +1141,6 @@ footer{
           </div>
         </div>
 
-        <!-- PLATOS -->
         <div class="category reveal" id="platos">
           <h3>Platos combinados</h3>
           <div class="menu-grid">
@@ -1154,7 +1154,6 @@ footer{
           </div>
         </div>
 
-        <!-- BEBIDAS -->
         <div class="category reveal" id="bebidas">
           <h3>Bebidas</h3>
           <div class="menu-grid">
@@ -1169,7 +1168,6 @@ footer{
           </div>
         </div>
 
-        <!-- POSTRES -->
         <div class="category reveal" id="postres">
           <h3>Postres</h3>
           <div class="menu-grid">
@@ -1181,9 +1179,10 @@ footer{
             <div class="item"><div class="item-text"><span class="name">Coulant de chocolate negro</span><div class="product-actions"><button class="order-btn" onclick="addToCart('Coulant de chocolate negro', 5.50)">Añadir</button></div></div><span class="price">5,50€</span></div>
           </div>
         </div>
+
       </div>
 
-<aside class="cart-panel reveal" id="carrito">
+      <aside class="cart-panel reveal" id="carrito">
     <h3>Tu pedido</h3>
     <div class="cart-sub">Añade productos, revisa el carrito y envía el pedido completo por WhatsApp.</div>
 
@@ -1256,7 +1255,8 @@ footer{
   </aside>
       </div>
     </section>
-  </main></div>
+  </main>
+</div>
 
 <footer>
   <div class="container footer-grid">
