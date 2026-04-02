@@ -1339,12 +1339,19 @@ function decreaseQty(name){
   renderCart();
 }
 
-function removeItem(name){
-  const index = cart.findIndex(p => p.name === name);
-  if(index > -1){
+function changeQty(index, change){
+  if(index < 0 || index >= cart.length) return;
+  cart[index].qty += change;
+  if(cart[index].qty <= 0){
     cart.splice(index, 1);
-    renderCart();
   }
+  renderCart();
+}
+
+function removeItem(index){
+  if(index < 0 || index >= cart.length) return;
+  cart.splice(index, 1);
+  renderCart();
 }
 
 function clearCart(){
@@ -1365,7 +1372,7 @@ function renderCart(){
   if(cart.length === 0){
     cartList.innerHTML = '<div class="cart-empty">Tu carrito está vacío.<br>Añade productos de la carta.</div>';
   } else {
-    cart.forEach(item => {
+    cart.forEach((item, index) => {
       const totalItem = item.price * item.qty;
       const div = document.createElement('div');
       div.className = 'cart-item';
@@ -1376,11 +1383,11 @@ function renderCart(){
         </div>
         <div class="cart-controls">
           <div class="qty-wrap">
-            <button class="qty-btn" onclick="decreaseQty(${JSON.stringify(item.name)})">−</button>
+            <button class="qty-btn" onclick="changeQty(${index}, -1)">−</button>
             <div class="qty-number">${item.qty}</div>
-            <button class="qty-btn" onclick="increaseQty(${JSON.stringify(item.name)})">+</button>
+            <button class="qty-btn" onclick="changeQty(${index}, 1)">+</button>
           </div>
-          <button class="remove-btn" onclick="removeItem(${JSON.stringify(item.name)})">Eliminar</button>
+          <button class="remove-btn" onclick="removeItem(${index})">Eliminar</button>
         </div>
       `;
       cartList.appendChild(div);
