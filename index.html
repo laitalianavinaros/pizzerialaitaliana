@@ -268,10 +268,7 @@ button{font:inherit}
 }
 
 .layout{
-  display:grid;
-  grid-template-columns:minmax(0,1fr) 380px;
-  gap:20px;
-  align-items:start;
+  display:block;
 }
 
 .story{margin-top:10px}
@@ -371,6 +368,12 @@ button{font:inherit}
 }
 
 .menu{padding:20px 0 24px}
+.menu-layout{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 380px;
+  gap:20px;
+  align-items:start;
+}
 .menu-wrap{display:grid;gap:18px}
 .category{
   background:linear-gradient(180deg, rgba(53,40,33,.98), rgba(64,48,41,.98));
@@ -836,7 +839,7 @@ footer{
 }
 
 @media (max-width: 1100px){
-  .layout{grid-template-columns:1fr}
+  .menu-layout{grid-template-columns:1fr}
   .cart-panel{position:relative;top:auto}
 }
 @media (max-width: 980px){
@@ -966,6 +969,7 @@ footer{
         <p>Añade al carrito y finaliza por WhatsApp</p>
       </div>
 
+      <div class="menu-layout">
       <div class="menu-wrap">
         <!-- PIZZAS -->
         <div class="category reveal" id="pizzas">
@@ -1178,10 +1182,8 @@ footer{
           </div>
         </div>
       </div>
-    </section>
-  </main>
 
-  <aside class="cart-panel reveal" id="carrito">
+<aside class="cart-panel reveal" id="carrito">
     <h3>Tu pedido</h3>
     <div class="cart-sub">Añade productos, revisa el carrito y envía el pedido completo por WhatsApp.</div>
 
@@ -1252,7 +1254,9 @@ footer{
       <button id="sendCartBtn" class="checkout-btn" onclick="sendOrder()" disabled>Enviar pedido por WhatsApp</button>
     </div>
   </aside>
-</div>
+      </div>
+    </section>
+  </main></div>
 
 <footer>
   <div class="container footer-grid">
