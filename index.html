@@ -1124,9 +1124,9 @@ footer{
             <div class="item"><div class="item-text"><span class="name">Tagliatelle</span><span class="desc">Elige la pasta y después la salsa. La salsa es la que marca el precio.</span><div class="product-actions"><button class="order-btn" onclick="openPastaModal('Tagliatelle')">Elegir salsa</button></div></div><span class="price">según salsa</span></div>
             <div class="item"><div class="item-text"><span class="name">Macarrones</span><span class="desc">Elige la pasta y después la salsa. La salsa es la que marca el precio.</span><div class="product-actions"><button class="order-btn" onclick="openPastaModal('Macarrones')">Elegir salsa</button></div></div><span class="price">según salsa</span></div>
             <div class="item"><div class="item-text"><span class="name">Gnocchi</span><span class="desc">Elige la pasta y después la salsa. La salsa es la que marca el precio.</span><div class="product-actions"><button class="order-btn" onclick="openPastaModal('Gnocchi')">Elegir salsa</button></div></div><span class="price">según salsa</span></div>
-            <div class="item"><div class="item-text"><span class="name">Pasta rellena</span><span class="desc">Elige la pasta y después la salsa. La salsa es la que marca el precio.</span><div class="product-actions"><button class="order-btn" onclick="openPastaModal('Pasta rellena')">Elegir salsa</button></div></div><span class="price">según salsa</span></div>
+            <div class="item"><div class="item-text"><span class="name">Pasta rellena</span><span class="desc">Ravioli o tortellini según disposición. La salsa marca el precio y la pasta rellena suma 1€.</span><div class="product-actions"><button class="order-btn" onclick="openPastaModal('Pasta rellena')">Elegir salsa</button></div></div><span class="price">salsa + 1€</span></div>
           </div>
-          <div class="note">Salsas visibles en la web: Napolitana 9,00€ · Boloñesa 9,50€ · Carbonara 10,00€ · Cuatro quesos 10,50€ · Roquefort 10,50€ · Pesto 9,50€ · Frutti di mare 12,00€. Si tus salsas o precios reales son otros, se cambian en una sola lista del código.</div>
+          <div class="note">Salsas a elegir: Amatriciana 9,50€ · Carbonara 9,00€ · Pesto 9,00€ · Gorgonzola 9,00€ · Roquefort 9,00€ · Boloñesa 9,50€ · Marinera picante 11,50€ · Nata y jamón 9,00€ · Salmón 9,50€ · Siciliana 9,00€ · Cuatro quesos 9,00€ · De la casa 10,00€ · Picante 8,00€ · Tomate 8,00€ · Funghi 9,50€.</div>
         </div>
 
 
@@ -1289,6 +1289,7 @@ footer{
     <div class="custom-section">
       <strong>Salsa</strong>
       <select id="pastaSauceSelect" style="width:100%;padding:12px 14px;border-radius:10px;border:none;background:#f3ebe1;color:#1a1411;"></select>
+      <div style="margin-top:8px;color:#d4b183;font-size:13px;font-weight:700;">La pasta rellena suma 1€ sobre el precio de la salsa.</div>
     </div>
 
     <div class="custom-section">
@@ -1336,13 +1337,21 @@ const cart = [];
 let currentPizza = null;
 let currentPasta = null;
 const PASTA_SAUCES = [
-  { name:'Napolitana', price:9.00 },
+  { name:'Amatriciana', price:9.50 },
+  { name:'Carbonara', price:9.00 },
+  { name:'Pesto', price:9.00 },
+  { name:'Gorgonzola', price:9.00 },
+  { name:'Roquefort', price:9.00 },
   { name:'Boloñesa', price:9.50 },
-  { name:'Carbonara', price:10.00 },
-  { name:'Cuatro quesos', price:10.50 },
-  { name:'Roquefort', price:10.50 },
-  { name:'Pesto', price:9.50 },
-  { name:'Frutti di mare', price:12.00 }
+  { name:'Marinera picante', price:11.50 },
+  { name:'Nata y jamón', price:9.00 },
+  { name:'Salmón', price:9.50 },
+  { name:'Siciliana', price:9.00 },
+  { name:'Cuatro quesos', price:9.00 },
+  { name:'De la casa', price:10.00 },
+  { name:'Picante', price:8.00 },
+  { name:'Tomate', price:8.00 },
+  { name:'Funghi', price:9.50 }
 ];
 
 
@@ -1480,10 +1489,17 @@ function addPastaToCart(){
 
   const selected = document.getElementById('pastaSauceSelect').value.split('|');
   const sauceName = selected[0];
-  const saucePrice = parseFloat(selected[1]);
+  let saucePrice = parseFloat(selected[1]);
   const notes = document.getElementById('pastaNotesInput').value.trim();
 
+  if(currentPasta === 'Pasta rellena'){
+    saucePrice += 1;
+  }
+
   let finalName = currentPasta + ' con salsa ' + sauceName;
+  if(currentPasta === 'Pasta rellena'){
+    finalName += ' (+ suplemento pasta rellena)';
+  }
   if(notes){
     finalName += ' [' + notes + ']';
   }
