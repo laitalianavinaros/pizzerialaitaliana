@@ -1116,17 +1116,19 @@ footer{
           </div>
         </div>
 
-        <div class="category reveal" id="pasta">
+        
+<div class="category reveal" id="pasta">
           <h3>Pasta</h3>
           <div class="menu-grid">
-            <div class="item"><div class="item-text"><span class="name">Spaguetti + salsa</span><div class="product-actions"><button class="order-btn" onclick="addToCart('Spaguetti + salsa', 9.00)">Añadir</button></div></div><span class="price">desde 9,00€</span></div>
-            <div class="item"><div class="item-text"><span class="name">Tagliatelle + salsa</span><div class="product-actions"><button class="order-btn" onclick="addToCart('Tagliatelle + salsa', 9.00)">Añadir</button></div></div><span class="price">desde 9,00€</span></div>
-            <div class="item"><div class="item-text"><span class="name">Macarrones + salsa</span><div class="product-actions"><button class="order-btn" onclick="addToCart('Macarrones + salsa', 9.00)">Añadir</button></div></div><span class="price">desde 9,00€</span></div>
-            <div class="item"><div class="item-text"><span class="name">Gnocchi + salsa</span><div class="product-actions"><button class="order-btn" onclick="addToCart('Gnocchi + salsa', 9.00)">Añadir</button></div></div><span class="price">desde 9,00€</span></div>
-            <div class="item"><div class="item-text"><span class="name">Pasta rellena</span><div class="product-actions"><button class="order-btn" onclick="addToCart('Pasta rellena', 10.00)">Añadir</button></div></div><span class="price">10,00€</span></div>
+            <div class="item"><div class="item-text"><span class="name">Spaguetti</span><span class="desc">Elige la pasta y después la salsa. La salsa es la que marca el precio.</span><div class="product-actions"><button class="order-btn" onclick="openPastaModal('Spaguetti')">Elegir salsa</button></div></div><span class="price">según salsa</span></div>
+            <div class="item"><div class="item-text"><span class="name">Tagliatelle</span><span class="desc">Elige la pasta y después la salsa. La salsa es la que marca el precio.</span><div class="product-actions"><button class="order-btn" onclick="openPastaModal('Tagliatelle')">Elegir salsa</button></div></div><span class="price">según salsa</span></div>
+            <div class="item"><div class="item-text"><span class="name">Macarrones</span><span class="desc">Elige la pasta y después la salsa. La salsa es la que marca el precio.</span><div class="product-actions"><button class="order-btn" onclick="openPastaModal('Macarrones')">Elegir salsa</button></div></div><span class="price">según salsa</span></div>
+            <div class="item"><div class="item-text"><span class="name">Gnocchi</span><span class="desc">Elige la pasta y después la salsa. La salsa es la que marca el precio.</span><div class="product-actions"><button class="order-btn" onclick="openPastaModal('Gnocchi')">Elegir salsa</button></div></div><span class="price">según salsa</span></div>
+            <div class="item"><div class="item-text"><span class="name">Pasta rellena</span><span class="desc">Elige la pasta y después la salsa. La salsa es la que marca el precio.</span><div class="product-actions"><button class="order-btn" onclick="openPastaModal('Pasta rellena')">Elegir salsa</button></div></div><span class="price">según salsa</span></div>
           </div>
-          <div class="note">En pasta conviene confirmar la salsa al finalizar el pedido por WhatsApp.</div>
+          <div class="note">Salsas visibles en la web: Napolitana 9,00€ · Boloñesa 9,50€ · Carbonara 10,00€ · Cuatro quesos 10,50€ · Roquefort 10,50€ · Pesto 9,50€ · Frutti di mare 12,00€. Si tus salsas o precios reales son otros, se cambian en una sola lista del código.</div>
         </div>
+
 
         <div class="category reveal" id="especialidades">
           <h3>Especialidades de la casa</h3>
@@ -1274,6 +1276,33 @@ footer{
 </button>
 
 
+
+<div id="pastaModal" class="custom-modal">
+  <div class="custom-box">
+    <h3 id="pastaTitle">Elegir salsa</h3>
+
+    <div class="custom-section">
+      <strong>Pasta</strong>
+      <input id="pastaTypeInput" readonly>
+    </div>
+
+    <div class="custom-section">
+      <strong>Salsa</strong>
+      <select id="pastaSauceSelect" style="width:100%;padding:12px 14px;border-radius:10px;border:none;background:#f3ebe1;color:#1a1411;"></select>
+    </div>
+
+    <div class="custom-section">
+      <strong>Notas</strong>
+      <input id="pastaNotesInput" placeholder="Ej: al dente, sin queso, extra salsa">
+    </div>
+
+    <div class="custom-actions">
+      <button class="btn-cancel" onclick="closePastaModal()">Cancelar</button>
+      <button class="btn-add" onclick="addPastaToCart()">Añadir</button>
+    </div>
+  </div>
+</div>
+
 <div id="customModal" class="custom-modal">
   <div class="custom-box">
     <h3 id="customTitle">Personalizar pizza</h3>
@@ -1305,6 +1334,17 @@ footer{
 
 const cart = [];
 let currentPizza = null;
+let currentPasta = null;
+const PASTA_SAUCES = [
+  { name:'Napolitana', price:9.00 },
+  { name:'Boloñesa', price:9.50 },
+  { name:'Carbonara', price:10.00 },
+  { name:'Cuatro quesos', price:10.50 },
+  { name:'Roquefort', price:10.50 },
+  { name:'Pesto', price:9.50 },
+  { name:'Frutti di mare', price:12.00 }
+];
+
 
 function formatPrice(value){
   return value.toFixed(2).replace('.', ',') + '€';
@@ -1410,6 +1450,46 @@ function toggleDeliveryFields(){
   const orderType = document.getElementById('orderType').value;
   const deliveryFields = document.getElementById('deliveryFields');
   deliveryFields.style.display = orderType === 'domicilio' ? 'block' : 'none';
+}
+
+
+function openPastaModal(pastaName){
+  currentPasta = pastaName;
+  document.getElementById('pastaTitle').innerText = 'Elegir salsa';
+  document.getElementById('pastaTypeInput').value = pastaName;
+
+  const select = document.getElementById('pastaSauceSelect');
+  select.innerHTML = '';
+  PASTA_SAUCES.forEach(sauce => {
+    const option = document.createElement('option');
+    option.value = sauce.name + '|' + sauce.price;
+    option.textContent = sauce.name + ' · ' + formatPrice(sauce.price);
+    select.appendChild(option);
+  });
+
+  document.getElementById('pastaNotesInput').value = '';
+  document.getElementById('pastaModal').style.display = 'flex';
+}
+
+function closePastaModal(){
+  document.getElementById('pastaModal').style.display = 'none';
+}
+
+function addPastaToCart(){
+  if(!currentPasta) return;
+
+  const selected = document.getElementById('pastaSauceSelect').value.split('|');
+  const sauceName = selected[0];
+  const saucePrice = parseFloat(selected[1]);
+  const notes = document.getElementById('pastaNotesInput').value.trim();
+
+  let finalName = currentPasta + ' con salsa ' + sauceName;
+  if(notes){
+    finalName += ' [' + notes + ']';
+  }
+
+  addToCart(finalName, saucePrice);
+  closePastaModal();
 }
 
 function openCustomizer(name, price){
