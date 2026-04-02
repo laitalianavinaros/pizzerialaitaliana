@@ -13,33 +13,57 @@ body{
   color:#efe3d6;
 }
 
+/* HEADER */
+.header{
+  text-align:center;
+  padding:20px;
+  font-size:26px;
+  font-weight:bold;
+}
+
+/* CARTA */
 .container{padding:20px;}
-
-h2{border-bottom:1px solid #333;padding-bottom:8px;}
-
-.item{padding:10px 0;border-bottom:1px solid rgba(255,255,255,.05);}
+.item{
+  padding:12px 0;
+  border-bottom:1px solid rgba(255,255,255,.05);
+}
 
 .btn{
   padding:8px 12px;
-  margin-top:5px;
   border:none;
   border-radius:999px;
   cursor:pointer;
+  margin-top:5px;
 }
 
 .add{background:#d4b183;color:#000;}
 .custom{border:1px solid #d4b183;background:transparent;color:#d4b183;}
 
-.cart{
+/* CARRITO */
+#cartPanel{
   position:fixed;
-  right:0;
+  right:-350px;
   top:0;
-  width:300px;
+  width:320px;
   height:100%;
   background:#2a201b;
   padding:20px;
+  transition:.3s;
 }
 
+#cartPanel.open{right:0;}
+
+#cartBtn{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  background:#d4b183;
+  padding:14px;
+  border-radius:50%;
+  cursor:pointer;
+}
+
+/* MODAL */
 .modal{
   display:none;
   position:fixed;
@@ -59,175 +83,164 @@ h2{border-bottom:1px solid #333;padding-bottom:8px;}
   display:inline-block;
   padding:6px 10px;
   border:1px solid #555;
-  margin:5px;
+  margin:4px;
   border-radius:999px;
   cursor:pointer;
 }
 
 .active{background:#d4b183;color:#000;}
-.removed{text-decoration:line-through;background:#7a2b2b;}
+.removed{background:#7a2b2b;text-decoration:line-through;}
 </style>
 </head>
 
 <body>
 
+<div class="header">
+Pizzería La Italiana · 📞 964828491 · 621492566
+</div>
+
 <div class="container">
 
 <h2>🍕 Pizzas</h2>
 
-<div class="item">
-Barbacoa · 11,90€
-<br>
-<button class="btn add" onclick="addToCart('Pizza Barbacoa',11.9)">Añadir</button>
-<button class="btn custom" onclick="openModal('Pizza Barbacoa',11.9)">Personalizar</button>
-</div>
-
-<div class="item">
-Diavola (picante) · 12€
-<br>
-<button class="btn add" onclick="addToCart('Pizza Diavola',12)">Añadir</button>
-<button class="btn custom" onclick="openModal('Pizza Diavola',12)">Personalizar</button>
-</div>
-
-<div class="item">
-Mexicana (picante) · 11,90€
-<br>
-<button class="btn add" onclick="addToCart('Pizza Mexicana',11.9)">Añadir</button>
-<button class="btn custom" onclick="openModal('Pizza Mexicana',11.9)">Personalizar</button>
-</div>
+<div class="item"><span class="name">Barbacoa</span> <span class="price">11,90€</span></div>
+<div class="item"><span class="name">Diavola (picante)</span> <span class="price">12,00€</span></div>
+<div class="item"><span class="name">Mexicana (picante)</span> <span class="price">11,90€</span></div>
+<div class="item"><span class="name">Griega</span> <span class="price">14,50€</span></div>
 
 <h2>🍝 Entrantes</h2>
 
-<div class="item">Patatas bravas · 7,50€
-<br><button class="btn add" onclick="addToCart('Patatas bravas',7.5)">Añadir</button>
-</div>
+<div class="item"><span class="name">Patatas bravas</span> <span class="price">7,50€</span></div>
+<div class="item"><span class="name">Calamares</span> <span class="price">9,00€</span></div>
 
-<div class="item">Calamares · 9€
-<br><button class="btn add" onclick="addToCart('Calamares',9)">Añadir</button>
-</div>
+<h2>🥗 Ensaladas</h2>
+
+<div class="item"><span class="name">Ensalada mixta</span> <span class="price">8,50€</span></div>
 
 <h2>🍰 Postres</h2>
 
-<div class="item">Tiramisú · 5,50€
-<br><button class="btn add" onclick="addToCart('Tiramisú',5.5)">Añadir</button>
-</div>
-
-<div class="item">Tarta de queso · 5,50€
-<br><button class="btn add" onclick="addToCart('Tarta de queso',5.5)">Añadir</button>
-</div>
-
-<div class="item">Tarta tres chocolates · 5,50€
-<br><button class="btn add" onclick="addToCart('Tarta tres chocolates',5.5)">Añadir</button>
-</div>
-
-<div class="item">Crep Nutella · 5,50€
-<br><button class="btn add" onclick="addToCart('Crep Nutella',5.5)">Añadir</button>
-</div>
-
-<div class="item">Crep dulce de leche · 5,50€
-<br><button class="btn add" onclick="addToCart('Crep dulce de leche',5.5)">Añadir</button>
-</div>
-
-<div class="item">Coulant chocolate · 5,50€
-<br><button class="btn add" onclick="addToCart('Coulant chocolate',5.5)">Añadir</button>
-</div>
+<div class="item"><span class="name">Tiramisú</span> <span class="price">5,50€</span></div>
+<div class="item"><span class="name">Tarta de queso</span> <span class="price">5,50€</span></div>
+<div class="item"><span class="name">Tarta tres chocolates</span> <span class="price">5,50€</span></div>
+<div class="item"><span class="name">Crep Nutella</span> <span class="price">5,50€</span></div>
+<div class="item"><span class="name">Crep dulce de leche</span> <span class="price">5,50€</span></div>
+<div class="item"><span class="name">Coulant chocolate</span> <span class="price">5,50€</span></div>
 
 </div>
 
-<!-- CARRITO -->
-<div class="cart">
-<h3>🧾 Pedido</h3>
-<div id="cart"></div>
-<p>Total: <span id="total">0€</span></p>
+<!-- 🛒 BOTON -->
+<div id="cartBtn" onclick="toggleCart()">🛒</div>
+
+<!-- 🛒 CARRITO -->
+<div id="cartPanel">
+<h3>Tu pedido</h3>
+<div id="cartItems"></div>
+<p>Total: <span id="cartTotal">0€</span></p>
 <button onclick="sendOrder()">Enviar pedido</button>
 </div>
 
-<!-- MODAL -->
-<div class="modal" id="modal">
+<!-- 🍕 MODAL -->
+<div id="pizzaModal" class="modal">
 <div class="modal-box">
-<h3 id="title"></h3>
-
-<div id="ingredients"></div>
-<div id="extras"></div>
-
-<button onclick="addCustom()">Añadir</button>
+<h3 id="pizzaTitle"></h3>
+<div id="removeBox"></div>
+<div id="extraBox"></div>
+<button onclick="addCustomPizza()">Añadir</button>
 <button onclick="closeModal()">Cerrar</button>
 </div>
 </div>
 
 <script>
-let cart=[],current=null,removed=[],extras=[];
+let cart=[],currentPizza=null,removed=[],extras=[];
 
-const pizzaData={
-"Pizza Barbacoa":["Tomate","Carne","Bacon","BBQ","Mozzarella"],
-"Pizza Diavola":["Tomate","Mozzarella","Chorizo picante"],
-"Pizza Mexicana":["Carne","Maíz","Cebolla","Picante"]
-};
-
-function addToCart(n,p){
-let f=cart.find(i=>i.name==n);
-f?f.qty++:cart.push({name:n,price:p,qty:1});
-render();
+function addToCart(name, price){
+  let item=cart.find(i=>i.name===name);
+  if(item)item.qty++;
+  else cart.push({name,price,qty:1});
+  renderCart();
+  toggleCart();
 }
 
-function render(){
-let h='',t=0;
-cart.forEach(i=>{
-t+=i.price*i.qty;
-h+=i.qty+' x '+i.name+'<br>';
-});
-cart.innerHTML=h;
-total.innerText=t.toFixed(2)+'€';
+function renderCart(){
+  let html='',total=0;
+  cart.forEach(i=>{
+    total+=i.price*i.qty;
+    html+=i.qty+' x '+i.name+'<br>';
+  });
+  cartItems.innerHTML=html;
+  cartTotal.innerText=total.toFixed(2)+'€';
 }
 
-function openModal(n,p){
-current={n,p};
-removed=[];extras=[];
-title.innerText=n;
+function toggleCart(){
+  cartPanel.classList.toggle("open");
+}
 
-let html='';
-pizzaData[n].forEach(i=>{
-html+=`<span class="chip" onclick="toggleRemove(this)">${i}</span>`;
-});
-ingredients.innerHTML=html;
+function openPizzaModal(name, price){
+  currentPizza={name,price};
+  removed=[];extras=[];
+  pizzaTitle.innerText=name;
 
-let ex=["Queso extra","Bacon","Pollo","Cebolla","Maíz"];
-extras.innerHTML='';
-ex.forEach(e=>{
-extras.innerHTML+=`<span class="chip" onclick="toggleExtra(this)">${e}</span>`;
-});
+  let base=["Tomate","Queso","Jamón"];
+  let extra=["Queso extra","Bacon","Pollo"];
 
-modal.style.display='flex';
+  removeBox.innerHTML='';
+  base.forEach(i=>{
+    removeBox.innerHTML+=`<span class="chip" onclick="toggleRemove(this)">${i}</span>`;
+  });
+
+  extraBox.innerHTML='';
+  extra.forEach(i=>{
+    extraBox.innerHTML+=`<span class="chip" onclick="toggleExtra(this)">${i}</span>`;
+  });
+
+  pizzaModal.style.display='flex';
 }
 
 function toggleRemove(el){
-el.classList.toggle('removed');
-let v=el.innerText;
-removed.includes(v)?removed=removed.filter(i=>i!=v):removed.push(v);
+  el.classList.toggle("removed");
 }
 
 function toggleExtra(el){
-el.classList.toggle('active');
-let v=el.innerText;
-extras.includes(v)?extras=extras.filter(i=>i!=v):extras.push(v);
+  el.classList.toggle("active");
 }
 
-function addCustom(){
-let n=current.n;
-if(removed.length)n+=' (sin '+removed.join(',')+')';
-if(extras.length)n+=' + '+extras.join(',');
-addToCart(n,current.p+extras.length);
-closeModal();
+function addCustomPizza(){
+  addToCart(currentPizza.name,currentPizza.price);
+  closeModal();
 }
 
-function closeModal(){modal.style.display='none';}
+function closeModal(){
+  pizzaModal.style.display='none';
+}
 
 function sendOrder(){
-let msg='🍕 Pedido La Italiana %0A%0A';
-cart.forEach(i=>msg+=i.qty+' x '+i.name+'%0A');
-msg+='Total: '+total.innerText;
-window.open('https://wa.me/34621492566?text='+msg);
+  let msg='Pedido:%0A';
+  cart.forEach(i=>{
+    msg+=i.qty+' x '+i.name+'%0A';
+  });
+  msg+='Total:'+cartTotal.innerText;
+  window.open('https://wa.me/34621492566?text='+msg);
 }
+
+/* 🔥 BOTONES AUTOMATICOS */
+document.querySelectorAll('.item').forEach(el=>{
+  let name=el.querySelector('.name').innerText;
+  let price=parseFloat(el.querySelector('.price').innerText.replace(',','.'));
+
+  let btn=document.createElement('button');
+  btn.innerText="Añadir";
+  btn.className="btn add";
+  btn.onclick=()=>addToCart(name,price);
+  el.appendChild(btn);
+
+  if(el.closest('h2')?.innerText.includes('Pizzas')){
+    let b2=document.createElement('button');
+    b2.innerText="Personalizar";
+    b2.className="btn custom";
+    b2.onclick=()=>openPizzaModal(name,price);
+    el.appendChild(b2);
+  }
+});
 </script>
 
 </body>
