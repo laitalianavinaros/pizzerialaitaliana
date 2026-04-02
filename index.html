@@ -3,19 +3,22 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pizzería La Italiana Vinaròs</title>
+<title>Pizzería La Italiana</title>
 
 <style>
 body{
   margin:0;
-  font-family:Inter, sans-serif;
+  font-family:Arial;
   background:#1f1814;
   color:#efe3d6;
 }
 
 .container{padding:20px;max-width:900px;margin:auto;}
 
-h2{border-bottom:1px solid rgba(255,255,255,.1);padding-bottom:8px;}
+h2{
+  border-bottom:1px solid rgba(255,255,255,.1);
+  padding-bottom:8px;
+}
 
 .item{
   padding:12px 0;
@@ -40,7 +43,6 @@ h2{border-bottom:1px solid rgba(255,255,255,.1);padding-bottom:8px;}
   background:#d4b183;
   padding:14px;
   border-radius:50%;
-  cursor:pointer;
 }
 
 #cartPanel{
@@ -55,33 +57,6 @@ h2{border-bottom:1px solid rgba(255,255,255,.1);padding-bottom:8px;}
 }
 
 #cartPanel.open{right:0;}
-
-.modal{
-  display:none;
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.7);
-  justify-content:center;
-  align-items:center;
-}
-
-.modal-box{
-  background:#2b211c;
-  padding:20px;
-  border-radius:20px;
-}
-
-.chip{
-  display:inline-block;
-  padding:6px 10px;
-  border:1px solid #555;
-  margin:4px;
-  border-radius:999px;
-  cursor:pointer;
-}
-
-.active{background:#d4b183;color:#000;}
-.removed{background:#7a2b2b;text-decoration:line-through;}
 </style>
 </head>
 
@@ -92,65 +67,72 @@ h2{border-bottom:1px solid rgba(255,255,255,.1);padding-bottom:8px;}
 <div id="cartBtn" onclick="toggleCart()">🛒</div>
 
 <div id="cartPanel">
-<h3>🧾 Pedido</h3>
+<h3>Pedido</h3>
 <div id="cartItems"></div>
 <p>Total: <span id="cartTotal">0€</span></p>
-<button onclick="sendOrder()">Enviar</button>
-</div>
-
-<div id="modal" class="modal">
-<div class="modal-box">
-<h3 id="pizzaTitle"></h3>
-<div id="removeBox"></div>
-<div id="extraBox"></div>
-<button onclick="addCustom()">Añadir</button>
-<button onclick="closeModal()">Cerrar</button>
-</div>
+<button onclick="sendOrder()">Enviar pedido</button>
 </div>
 
 <script>
 
-/* 🔥 TU CARTA COMPLETA (EDITABLE) */
+/* 🔥 TODA TU CARTA REAL */
 const MENU = {
-  pizzas:[
-    ["Barbacoa",11.9],
-    ["Diavola (picante)",12],
-    ["Mexicana (picante)",11.9],
-    ["Griega",14.5],
-    ["Cuatro Quesos",10.7],
-    ["Capriccio",10.7]
-  ],
-  entrantes:[
-    ["Patatas bravas",7.5],
-    ["Calamares",9],
-    ["Huevos rotos",10.5]
-  ],
-  ensaladas:[
-    ["Ensalada mixta",8.5],
-    ["Ensalada caprese",9]
-  ],
-  postres:[
-    ["Tiramisú",5.5],
-    ["Tarta de queso",5.5],
-    ["Tarta tres chocolates",5.5],
-    ["Crep Nutella",5.5],
-    ["Crep dulce de leche",5.5],
-    ["Coulant chocolate",5.5]
-  ]
+"Pizzas":[
+["Calzone",11.20],["Sencilla",7.90],["Margarita",8.50],["Bianca",11.20],
+["Sorrento",10.90],["Savoia",10.70],["Cuatro Estaciones",11.80],
+["Cuatro Quesos",10.70],["Roquefort",10.30],["Gorgonzola",10.90],
+["Capriccio",10.70],["Napoletana",10.70],["Marinera",13.00],
+["Terranova",13.50],["Salmón",13.00],["Bolognesa",11.20],
+["Boscaiola",11.20],["Toscana",11.90],["Capri",11.20],
+["Mexicana (picante)",11.90],["Americana",10.90],
+["Chorizo Picante (picante)",10.90],["Campesina",10.90],
+["Frankfurt",8.50],["Mallorquina",10.90],["Sobrasada",11.20],
+["Vegetal",10.70],["De la Casa",11.90],["Funghi",10.50],
+["Tropical",10.90],["Bambini",9.50],["Queso de Cabra",10.90],
+["Barbacoa",11.90],["Curry",11.70],["Rúcula",11.90],
+["Fiorentina",12.00],["Contadina",10.90],["Milanese",11.90],
+["Diavola (picante)",12.00],["Veneciana",12.00],
+["Seis Quesos",11.50],["Pollo",11.70],
+["Griega",14.50],["Stromboli",13.90],
+["Pizzaiola",14.50],["Livorno",11.70]
+],
+
+"Entrantes":[
+["Aceitunas",2.50],["Pan con allioli",4.00],["Patatas fritas",5.50],
+["Patatas bravas",7.50],["Patatas roquefort",8.00],
+["Patatas gratinadas",9.00],["Patatas cheddar bacon",8.50],
+["Antipasto",12.00],["Calamares",9.00],
+["Fingers pollo",9.50],["Brie mermelada",8.50],
+["Verdura tempura",7.50],["Huevos rotos jamón",10.50],
+["Sepia",9.50],["Pulpo",16.50]
+],
+
+"Ensaladas":[
+["Ensalada pollo",9.00],["Ensalada manzana",9.00],
+["Ensalada verde",7.00],["Ensalada mixta",8.50],
+["Caprese",9.00],["Queso cabra",10.50],
+["Foie",13.50]
+],
+
+"Postres":[
+["Tiramisú",5.50],["Tarta queso",5.50],
+["Tarta 3 chocolates",5.50],["Crep Nutella",5.50],
+["Crep dulce leche",5.50],["Coulant chocolate",5.50]
+]
 };
 
 /* 🔥 GENERAR CARTA */
 const menuDiv=document.getElementById("menu");
 
 for(let cat in MENU){
-  let html=`<h2>${cat.toUpperCase()}</h2>`;
+  let html=`<h2>${cat}</h2>`;
   MENU[cat].forEach(p=>{
     html+=`
     <div class="item">
       ${p[0]} · ${p[1]}€
       <br>
       <button class="btn add" onclick="addToCart('${p[0]}',${p[1]})">Añadir</button>
-      ${cat==="pizzas" ? `<button class="btn custom" onclick="openModal('${p[0]}',${p[1]})">Personalizar</button>`:""}
+      ${cat==="Pizzas" ? `<button class="btn custom" onclick="addToCart('${p[0]} personalizada',${p[1]})">Personalizar</button>`:""}
     </div>`;
   });
   menuDiv.innerHTML+=html;
@@ -179,34 +161,6 @@ function toggleCart(){
   cartPanel.classList.toggle("open");
 }
 
-/* 🍕 PERSONALIZAR */
-let current=null;
-function openModal(n,p){
-  current={n,p};
-  pizzaTitle.innerText=n;
-
-  removeBox.innerHTML='';
-  ["Tomate","Queso","Jamón"].forEach(i=>{
-    removeBox.innerHTML+=`<span class="chip" onclick="this.classList.toggle('removed')">${i}</span>`;
-  });
-
-  extraBox.innerHTML='';
-  ["Queso extra","Bacon","Pollo"].forEach(i=>{
-    extraBox.innerHTML+=`<span class="chip" onclick="this.classList.toggle('active')">${i}</span>`;
-  });
-
-  modal.style.display='flex';
-}
-
-function addCustom(){
-  addToCart(current.n,current.p);
-  closeModal();
-}
-
-function closeModal(){
-  modal.style.display='none';
-}
-
 /* 📲 WHATSAPP */
 function sendOrder(){
   let msg='Pedido:%0A';
@@ -216,7 +170,6 @@ function sendOrder(){
   msg+='Total:'+cartTotal.innerText;
   window.open('https://wa.me/34621492566?text='+msg);
 }
-
 </script>
 
 </body>
