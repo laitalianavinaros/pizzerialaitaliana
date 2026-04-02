@@ -1286,6 +1286,7 @@ footer{
     <div class="custom-section">
       <strong>Añadir ingredientes</strong>
       <input id="addInput" placeholder="Ej: queso extra, bacon, pollo, rúcula, parmesano">
+      <div style="margin-top:8px;color:#d4b183;font-size:13px;font-weight:700;">Cada ingrediente extra suma 1€</div>
     </div>
 
     <div class="custom-section">
@@ -1426,18 +1427,21 @@ function addCustomToCart(){
   const notes = document.getElementById('notesInput').value.trim();
 
   let finalName = currentPizza.name;
+  let finalPrice = currentPizza.price;
 
+  if(add){
+    const ingredientes = add.split(',').map(x => x.trim()).filter(Boolean);
+    finalPrice += ingredientes.length * 1;
+    finalName += ' (+ ' + ingredientes.join(', ') + ')';
+  }
   if(remove){
     finalName += ' (SIN: ' + remove + ')';
-  }
-  if(add){
-    finalName += ' (+ ' + add + ')';
   }
   if(notes){
     finalName += ' [' + notes + ']';
   }
 
-  addToCart(finalName, currentPizza.price);
+  addToCart(finalName, finalPrice);
   closeModal();
 }
 
