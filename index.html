@@ -903,7 +903,7 @@ footer{
         <div>
           <div class="badge">Auténtica pizzería italiana · Desde 1982</div>
           <h2>Pide desde la web en pocos segundos</h2>
-          <p><strong>Elige tus platos, personaliza tus pizzas y envía el pedido completo por WhatsApp.</strong><br>Frente al mar en Vinaròs · Para llevar, en local y a domicilio</p>
+          <p><strong>Elige tus platos, personaliza tus pizzas con texto libre y envía el pedido completo por WhatsApp.</strong><br>Frente al mar en Vinaròs · Para llevar, en local y a domicilio</p>
           <p class="sales-line">Carrito visual · Total automático · Pedido rápido</p>
           <p class="confianza">Servicio a domicilio · Para llevar · En local · Desde 1982</p>
           <div class="actions">
@@ -931,8 +931,8 @@ footer{
         <span>Añade, quita y cambia cantidades sin salir de la web.</span>
       </div>
       <div class="promo-card">
-        <strong>🍕 Personaliza pizzas</strong>
-        <span>Extras, quitar ingredientes y notas para cocina.</span>
+        <strong>🍕 Personalización libre</strong>
+        <span>Texto libre para añadir o quitar ingredientes y notas para cocina.</span>
       </div>
       <div class="promo-card">
         <strong>📲 Pedido final por WhatsApp</strong>
@@ -1273,36 +1273,24 @@ footer{
   🛒 Carrito <span class="cart-count" id="floatingCartCount">0</span>
 </button>
 
+
 <div id="customModal" class="custom-modal">
   <div class="custom-box">
     <h3 id="customTitle">Personalizar pizza</h3>
 
     <div class="custom-section">
-      <strong>Extras (+1€ cada uno)</strong>
-      <div class="extras-grid">
-        <button type="button" onclick="toggleExtra(this)">Queso extra</button>
-        <button type="button" onclick="toggleExtra(this)">Bacon</button>
-        <button type="button" onclick="toggleExtra(this)">Pollo</button>
-        <button type="button" onclick="toggleExtra(this)">Cebolla</button>
-        <button type="button" onclick="toggleExtra(this)">Champiñones</button>
-        <button type="button" onclick="toggleExtra(this)">Maíz</button>
-        <button type="button" onclick="toggleExtra(this)">Carne picada</button>
-        <button type="button" onclick="toggleExtra(this)">Jamón york</button>
-        <button type="button" onclick="toggleExtra(this)">Chorizo picante</button>
-        <button type="button" onclick="toggleExtra(this)">Aceitunas</button>
-        <button type="button" onclick="toggleExtra(this)">Piña</button>
-        <button type="button" onclick="toggleExtra(this)">Salsa barbacoa</button>
-      </div>
+      <strong>Quitar ingredientes</strong>
+      <input id="removeInput" placeholder="Ej: sin cebolla, sin aceitunas, sin anchoas">
     </div>
 
     <div class="custom-section">
-      <strong>Quitar ingredientes</strong>
-      <input id="removeInput" placeholder="Ej: sin cebolla">
+      <strong>Añadir ingredientes</strong>
+      <input id="addInput" placeholder="Ej: queso extra, bacon, pollo, rúcula, parmesano">
     </div>
 
     <div class="custom-section">
       <strong>Notas</strong>
-      <input id="notesInput" placeholder="Ej: bien hecha, cortar en 8">
+      <input id="notesInput" placeholder="Ej: bien hecha, cortar en 8, sin partir">
     </div>
 
     <div class="custom-actions">
@@ -1313,9 +1301,9 @@ footer{
 </div>
 
 <script>
+
 const cart = [];
 let currentPizza = null;
-let selectedExtras = [];
 
 function formatPrice(value){
   return value.toFixed(2).replace('.', ',') + '€';
@@ -1418,11 +1406,10 @@ function toggleDeliveryFields(){
 
 function openCustomizer(name, price){
   currentPizza = { name, price };
-  selectedExtras = [];
   document.getElementById('customTitle').innerText = name;
   document.getElementById('customModal').style.display = 'flex';
-  document.querySelectorAll('.extras-grid button').forEach(b => b.classList.remove('active'));
   document.getElementById('removeInput').value = '';
+  document.getElementById('addInput').value = '';
   document.getElementById('notesInput').value = '';
 }
 
@@ -1430,37 +1417,27 @@ function closeModal(){
   document.getElementById('customModal').style.display = 'none';
 }
 
-function toggleExtra(btn){
-  const value = btn.innerText;
-  if(btn.classList.contains('active')){
-    btn.classList.remove('active');
-    selectedExtras = selectedExtras.filter(e => e !== value);
-  } else {
-    btn.classList.add('active');
-    selectedExtras.push(value);
-  }
-}
 
 function addCustomToCart(){
   if(!currentPizza) return;
 
   const remove = document.getElementById('removeInput').value.trim();
+  const add = document.getElementById('addInput').value.trim();
   const notes = document.getElementById('notesInput').value.trim();
 
   let finalName = currentPizza.name;
 
-  if(selectedExtras.length){
-    finalName += ' + ' + selectedExtras.join(', ');
-  }
   if(remove){
-    finalName += ' (' + remove + ')';
+    finalName += ' (SIN: ' + remove + ')';
+  }
+  if(add){
+    finalName += ' (+ ' + add + ')';
   }
   if(notes){
     finalName += ' [' + notes + ']';
   }
 
-  const finalPrice = currentPizza.price + (selectedExtras.length * 1);
-  addToCart(finalName, finalPrice);
+  addToCart(finalName, currentPizza.price);
   closeModal();
 }
 
