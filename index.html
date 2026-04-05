@@ -2,16 +2,12 @@
 <html lang="es">
 <head>
   <meta name="google-site-verification" content="wGjA-fJv2103tP0HoVaqBowpORbZDiJ_ptv-TP119go" />
-
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>Pizzería en Vinaròs | Pizza a domicilio | La Italiana</title>
-
   <meta name="description" content="Pizzería La Italiana en Vinaròs frente al mar. Pizza artesanal, pasta y reparto a domicilio. Pide por WhatsApp o llama ahora. Abierto desde 1982.">
-
   <meta name="keywords" content="pizzería Vinaròs, pizza a domicilio Vinaroz, restaurante italiano Vinaròs, comida italiana Vinaròs, pizza cerca de mí">
-
   <meta name="robots" content="index, follow">
   <meta name="author" content="Pizzería La Italiana Vinaròs">
 
@@ -777,7 +773,8 @@ button{font:inherit}
   margin-bottom:8px;
   color:var(--gold3);
 }
-.custom-section input{
+.custom-section input,
+.custom-section select{
   width:100%;
   padding:10px 12px;
   margin-top:6px;
@@ -1159,7 +1156,16 @@ footer{
               <div class="item"><div class="item-text"><span class="name">Tagliatelle</span><span class="desc">Elige la pasta y después la salsa. La salsa es la que marca el precio.</span><div class="product-actions"><button class="order-btn" onclick="openPastaModal('Tagliatelle')">Elegir salsa</button></div></div><span class="price">según salsa</span></div>
               <div class="item"><div class="item-text"><span class="name">Macarrones</span><span class="desc">Elige la pasta y después la salsa. La salsa es la que marca el precio.</span><div class="product-actions"><button class="order-btn" onclick="openPastaModal('Macarrones')">Elegir salsa</button></div></div><span class="price">según salsa</span></div>
               <div class="item"><div class="item-text"><span class="name">Gnocchi</span><span class="desc">Elige la pasta y después la salsa. La salsa es la que marca el precio.</span><div class="product-actions"><button class="order-btn" onclick="openPastaModal('Gnocchi')">Elegir salsa</button></div></div><span class="price">según salsa</span></div>
-              <div class="item"><div class="item-text"><span class="name">Pasta rellena</span><span class="desc">Ravioli o tortellini según disposición. La salsa marca el precio y la pasta rellena suma 1€.</span><div class="product-actions"><button class="order-btn" onclick="openPastaModal('Pasta rellena')">Elegir salsa</button></div></div><span class="price">salsa + 1€</span></div>
+              <div class="item">
+                <div class="item-text">
+                  <span class="name">Pasta rellena</span>
+                  <span class="desc">Elige el relleno: carne, espinacas y requesón o funghi. La salsa marca el precio y la pasta rellena suma 1€.</span>
+                  <div class="product-actions">
+                    <button class="order-btn" onclick="openPastaModal('Pasta rellena')">Elegir relleno y salsa</button>
+                  </div>
+                </div>
+                <span class="price">salsa + 1€</span>
+              </div>
             </div>
             <div class="note">Salsas a elegir: Amatriciana 9,50€ · Carbonara 9,00€ · Pesto 9,00€ · Gorgonzola 9,00€ · Roquefort 9,00€ · Boloñesa 9,50€ · Marinera picante 11,50€ · Nata y jamón 9,00€ · Salmón 9,50€ · Siciliana 9,00€ · Cuatro quesos 9,00€ · De la casa 10,00€ · Picante 8,00€ · Tomate 8,00€ · Funghi 9,50€.</div>
           </div>
@@ -1371,9 +1377,18 @@ footer{
       <input id="pastaTypeInput" readonly>
     </div>
 
+    <div id="pastaStuffingWrap" class="custom-section" style="display:none;">
+      <strong>Relleno</strong>
+      <select id="pastaStuffingSelect">
+        <option value="Carne">Carne</option>
+        <option value="Espinacas y requesón">Espinacas y requesón</option>
+        <option value="Funghi">Funghi</option>
+      </select>
+    </div>
+
     <div class="custom-section">
       <strong>Salsa</strong>
-      <select id="pastaSauceSelect" style="width:100%;padding:12px 14px;border-radius:10px;border:none;background:#f3ebe1;color:#1a1411;"></select>
+      <select id="pastaSauceSelect"></select>
       <div style="margin-top:8px;color:#d4b183;font-size:13px;font-weight:700;">La pasta rellena suma 1€ sobre el precio de la salsa.</div>
     </div>
 
@@ -1528,7 +1543,7 @@ function toggleDeliveryFields(){
 
 function openPastaModal(pastaName){
   currentPasta = pastaName;
-  document.getElementById('pastaTitle').innerText = 'Elegir salsa';
+  document.getElementById('pastaTitle').innerText = pastaName === 'Pasta rellena' ? 'Elegir relleno y salsa' : 'Elegir salsa';
   document.getElementById('pastaTypeInput').value = pastaName;
 
   const select = document.getElementById('pastaSauceSelect');
@@ -1539,6 +1554,16 @@ function openPastaModal(pastaName){
     option.textContent = sauce.name + ' · ' + formatPrice(sauce.price);
     select.appendChild(option);
   });
+
+  const stuffingWrap = document.getElementById('pastaStuffingWrap');
+  const stuffingSelect = document.getElementById('pastaStuffingSelect');
+
+  if(pastaName === 'Pasta rellena'){
+    stuffingWrap.style.display = 'block';
+    stuffingSelect.value = 'Carne';
+  } else {
+    stuffingWrap.style.display = 'none';
+  }
 
   document.getElementById('pastaNotesInput').value = '';
   document.getElementById('pastaModal').style.display = 'flex';
@@ -1556,14 +1581,20 @@ function addPastaToCart(){
   let saucePrice = parseFloat(selected[1]);
   const notes = document.getElementById('pastaNotesInput').value.trim();
 
+  let finalName = currentPasta;
+
   if(currentPasta === 'Pasta rellena'){
+    const stuffing = document.getElementById('pastaStuffingSelect').value;
     saucePrice += 1;
+    finalName += ' de ' + stuffing;
   }
 
-  let finalName = currentPasta + ' con salsa ' + sauceName;
+  finalName += ' con salsa ' + sauceName;
+
   if(currentPasta === 'Pasta rellena'){
     finalName += ' (+ suplemento pasta rellena)';
   }
+
   if(notes){
     finalName += ' [' + notes + ']';
   }
@@ -1639,38 +1670,40 @@ function sendOrder(){
   }
 
   let lines = [];
-  lines.push('🍕 *Pedido La Italiana*');
+  lines.push('🍕 *NUEVO PEDIDO - LA ITALIANA*');
   lines.push('');
-  lines.push('*Cliente:* ' + name);
-  lines.push('*Teléfono:* ' + phone);
-  lines.push('*Tipo:* ' + (orderType === 'domicilio' ? 'A domicilio' : 'Recoger en local'));
+  lines.push('👤 *Cliente:* ' + name);
+  lines.push('📞 *Teléfono:* ' + phone);
+  lines.push('🛍️ *Tipo de pedido:* ' + (orderType === 'domicilio' ? 'A domicilio' : 'Recoger en local'));
 
   if(orderType === 'domicilio'){
-    lines.push('*Dirección:* ' + address);
-    lines.push('*Reparto:* pendiente de confirmar según zona (1,50€ o 2,50€)');
+    lines.push('📍 *Dirección:* ' + address);
+    lines.push('🚚 *Reparto:* pendiente de confirmar según zona (1,50€ o 2,50€)');
   }
 
-  lines.push('*Hora deseada:* ' + (orderTime || 'Lo antes posible'));
-  lines.push('*Pago:* ' + paymentMethod);
+  lines.push('⏰ *Hora deseada:* ' + (orderTime || 'Lo antes posible'));
+  lines.push('💳 *Pago:* ' + paymentMethod);
   lines.push('');
-  lines.push('*Productos:*');
+  lines.push('🧾 *DETALLE DEL PEDIDO:*');
 
   let total = 0;
   cart.forEach(item => {
     const subtotal = item.price * item.qty;
     total += subtotal;
-    lines.push('- ' + item.qty + ' x ' + item.name + ' (' + formatPrice(item.price) + ') = ' + formatPrice(subtotal));
+    lines.push('• ' + item.qty + ' x ' + item.name);
+    lines.push('  ' + formatPrice(item.price) + ' c/u · Subtotal: ' + formatPrice(subtotal));
   });
 
   lines.push('');
-  lines.push('*Total productos:* ' + formatPrice(total));
+  lines.push('💰 *TOTAL PRODUCTOS:* ' + formatPrice(total));
 
   if(notes){
-    lines.push('*Notas:* ' + notes);
+    lines.push('');
+    lines.push('📝 *Notas del pedido:* ' + notes);
   }
 
   lines.push('');
-  lines.push('📍 Confirmadme por favor el pedido, el tiempo aproximado y el coste del reparto si es a domicilio.');
+  lines.push('✅ Confirmadme por favor el pedido, el tiempo aproximado y el coste del reparto si es a domicilio.');
 
   const message = encodeURIComponent(lines.join('\n'));
   const url = 'https://wa.me/34621492566?text=' + message;
