@@ -1216,6 +1216,17 @@ footer{
                 <span class="price">12,50€</span>
               </div>
 
+              <div class="item">
+                <div class="item-text">
+                  <span class="name">Bocadillo Griego</span>
+                  <span class="desc">Bocadillo con masa de pizza, relleno de carne, pollo o mixto, con cebolla, pepino, tomate, lechuga y salsa.</span>
+                  <div class="product-actions">
+                    <button class="order-btn" onclick="openGreekSandwichModal()">Elegir relleno</button>
+                  </div>
+                </div>
+                <span class="price">11,00€</span>
+              </div>
+
               <div class="item"><div class="item-text"><span class="name">Enterita a la plancha</span><div class="product-actions"><button class="order-btn" onclick="addToCart('Enterita a la plancha', 12.50)">Añadir</button></div></div><span class="price">12,50€</span></div>
             </div>
           </div>
@@ -1406,6 +1417,26 @@ footer{
   </div>
 </div>
 
+<div id="greekSandwichModal" class="custom-modal">
+  <div class="custom-box">
+    <h3>Bocadillo Griego</h3>
+
+    <div class="custom-section">
+      <strong>Elige el relleno</strong>
+      <select id="greekSandwichFilling">
+        <option value="Pollo">Pollo</option>
+        <option value="Carne">Carne</option>
+        <option value="Mixto">Mixto</option>
+      </select>
+    </div>
+
+    <div class="custom-actions">
+      <button class="btn-cancel" onclick="closeGreekSandwichModal()">Cancelar</button>
+      <button class="btn-add" onclick="addGreekSandwichToCart()">Añadir</button>
+    </div>
+  </div>
+</div>
+
 <div id="customModal" class="custom-modal">
   <div class="custom-box">
     <h3 id="customTitle">Personalizar pizza</h3>
@@ -1455,6 +1486,21 @@ const PASTA_SAUCES = [
   { name:'Tomate', price:8.00 },
   { name:'Funghi', price:9.50 }
 ];
+
+function openGreekSandwichModal(){
+  document.getElementById('greekSandwichFilling').value = 'Pollo';
+  document.getElementById('greekSandwichModal').style.display = 'flex';
+}
+
+function closeGreekSandwichModal(){
+  document.getElementById('greekSandwichModal').style.display = 'none';
+}
+
+function addGreekSandwichToCart(){
+  const filling = document.getElementById('greekSandwichFilling').value;
+  addToCart('Bocadillo Griego - ' + filling, 11.00);
+  closeGreekSandwichModal();
+}
 
 function formatPrice(value){
   return value.toFixed(2).replace('.', ',') + '€';
